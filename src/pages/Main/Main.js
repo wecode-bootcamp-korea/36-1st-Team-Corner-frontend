@@ -1,35 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Main.scss';
 
-const Card = () => {
+const Card = ({ product }) => {
+  const { image, name, price, discount, reviewCount, tags } = product;
   return (
     <div className="card">
-      <img src="url" alt="cardImage" />
-      <h3 className=" productName">hello</h3>
-      <span className="currentPrice" />
-      <span className="price" />
+      <img src={image} alt="productImage" />
+      <h3 className="productName">{name}</h3>
+      <span className="currentPrice"> {discount} </span>
+      <span className="price"> {price} </span>
       <p className="reviewCount">
-        리뷰 <span className="reviewCounter">0</span>
+        리뷰 <span className="reviewCounter">{reviewCount}</span>
       </p>
     </div>
   );
 };
 
-const ItemList = () => {
+const ItemList = ({ products }) => {
   return (
     <div className="itemList">
-      <Card />
+      {products.map(product => {
+        return <Card key={product.id} product={product} />;
+      })}
     </div>
   );
 };
 
-const Pagination = () => {
+const Pagination = ({ products }) => {
   return (
     <div className="pagination">
-      <ItemList />
-      <button>이전</button>
+      <ItemList products={products} />
+      <button className="prevPage">이전</button>
       <span>1 2 3</span>
-      <button>다음</button>
+      <button className="nextPage">다음</button>
+    </div>
+  );
+};
+
+const ProductsInMain = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/mockdata/mockproducts.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(setProducts);
+  }, []);
+
+  return (
+    <div className="productsInMain">
+      <Pagination products={products} />
     </div>
   );
 };
@@ -38,9 +59,7 @@ const Main = () => {
   return (
     <>
       <img className="carousel" src="" alt="carouselImage" />
-      <div className="productsInMain">
-        <Pagination />
-      </div>
+      <ProductsInMain />
     </>
   );
 };
