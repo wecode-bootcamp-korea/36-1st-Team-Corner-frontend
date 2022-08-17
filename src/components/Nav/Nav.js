@@ -11,23 +11,50 @@ const Nav = () => {
         <span>캐러셀 입니다</span>
       </div>
       <div className="navArea">
-        <h1 className="logo">BODYLIKE</h1>
-        <div className="menu">
-          <ul className="menuList">
-            <li>
-              <Link className="link" to="/login">
-                로그인
-              </Link>
+        <div className="content">
+          <Link className="logo" to="/main">
+            BODYLIKE
+          </Link>
+          <div className="menu">
+            <ul className="menuList">
+              <li>
+                <Link className="link" to="/login">
+                  로그인
+                </Link>
+              </li>
+              <li>
+                <Link className="link" to="/cart">
+                  장바구니
+                </Link>
+                <div className="countBg">0</div>
+              </li>
+              <li>
+                <div className="search">
+                  <i class="fas fa-search" />
+                  <input type="search" />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="categoryTab">
+        <div className="tabs">
+          <ul className="tabList">
+            <li className="first">
+              <span>FIRST</span>
             </li>
-            <li>
-              <Link className="link" to="/cart">
-                장바구니
-              </Link>
-              <div className="countBg">0</div>
+            <li className="second">
+              <span>SECOND</span>
             </li>
-            <li>
-              <i class="fas fa-search" />
-              <input className="search" type="search" />
+            <li className="third">
+              <span>THIRD</span>
+            </li>
+            <li className="fourth">
+              <span>FOURTH</span>
+            </li>
+            <li className="fifth">
+              <span>FIFTH</span>
             </li>
           </ul>
         </div>

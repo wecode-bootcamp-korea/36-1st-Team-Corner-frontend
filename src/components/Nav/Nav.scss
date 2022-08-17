@@ -7,46 +7,106 @@
   .navCarousel {
     height: 50px;
     background-color: #2087c9;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .navArea {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    padding: 50px 0;
 
-    .logo {
-      font-size: 35px;
-    }
-
-    .menuList {
+    .content {
+      width: 1200px;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      li {
-        height: 13px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 13px;
-        line-height: 13px;
-        padding-right: 5px;
-        border-right: 1px solid black;
-      }
-
-      .link {
+      .logo {
         text-decoration: none;
-        color: black;
+        font-size: 30px;
+        font-weight: 900;
+        color: #2087c9;
       }
 
-      .countBg {
-        width: 15px;
-        height: 15px;
+      .menuList {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: black;
-        color: white;
-        border-radius: 50%;
-        font-size: 13px;
+
+        li {
+          height: 13px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 13px;
+          line-height: 13px;
+          font-weight: 700;
+          color: #4a4a4a;
+          padding: 0 10px;
+          border-right: 1px solid #b2b2b2;
+
+          i {
+            font-size: 15px;
+            margin-right: 5px;
+          }
+
+          input {
+            width: 130px;
+            height: 13px;
+            border: 0;
+            border-bottom: solid 1px #4a4a4a;
+            padding: 2px 0;
+            outline: none;
+          }
+        }
+
+        li:last-child {
+          border: none;
+        }
+
+        .link {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .countBg {
+          width: 14px;
+          height: 14px;
+          background-color: #4a4a4a;
+          color: white;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 14px;
+          font-size: 10px;
+          font-weight: 400;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+
+  .categoryTab {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .tabs {
+      width: 1200px;
+      height: 18px;
+      display: flex;
+      justify-content: flex-start;
+
+      .tabList {
+        display: flex;
+
+        span {
+          font-size: 18px;
+          margin-right: 50px;
+        }
       }
     }
   }
