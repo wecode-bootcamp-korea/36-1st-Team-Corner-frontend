@@ -1,17 +1,27 @@
 import React from 'react';
 import './Login.scss';
-// import { useNavigate } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  // const [info, setInfo] = useState({
-  //   userEmail: '',
-  //   userPw: '',
-  // });
+  const [info, setInfo] = useState({
+    userEmail: '',
+    userPw: '',
+  });
+  const onChangeinfo = e => {
+    const { name, value } = e.target;
+    setInfo({ ...info, [name]: value });
+  };
+
   const navigate = useNavigate();
   const goToMain = e => {
     navigate('/main');
   };
+
+  const passed =
+    info.userEmail.includes('@') &&
+    info.userEmail.length > 5 &&
+    info.userPw.length > 5;
 
   return (
     <div className="layout">
@@ -24,14 +34,23 @@ const Login = () => {
           <p>BODYLIKE</p>
           <form>
             <h2 className="loginText"> 로그인 </h2>
-            <input type="email" placeholder="아이디(영문 소문자/숫자 4~16자)" />
+            <input
+              type="email"
+              placeholder="아이디(영문 소문자/숫자 4~16자)"
+              value={info.userEmail}
+              onChange={onChangeinfo}
+              name="userEmail"
+            />
             <input
               type="password"
               placeholder="비밀번호(영문 대소문자/숫자 4~16자)"
+              value={info.userPw}
+              onChange={onChangeinfo}
+              name="userPw"
             />
-            <Link to="/main">
-              <button onClick={goToMain}>로그인하기</button>
-            </Link>
+            <button disabled={!passed} onClick={goToMain}>
+              로그인하기
+            </button>
 
             <Link to="/signUp">
               <button>회원가입하기</button>
