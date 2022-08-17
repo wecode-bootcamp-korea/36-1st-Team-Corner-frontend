@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import ItemList from './ItemList';
 
 const Pagination = (
   { products },
-  { pageNumber },
-  { movePrev },
-  { moveNext },
-  { movePage },
+  { filterProducts },
+  { changeCurrentPage },
   { currentPage }
 ) => {
-  const [productsFiltered, setProductsFiltered] = useState([]);
+  const pageNumber = Math.ceil(products.length / 9);
   const pageNumbers = [];
-
   for (let i = 0; i <= pageNumber; i++) {
     pageNumbers.push(i + 1);
   }
+
+  const movePrev = () => {
+    if (currentPage !== 1) changeCurrentPage(currentPage - 1);
+  };
+
+  const moveNext = () => {
+    if (currentPage !== currentPage[currentPage.length - 1])
+      changeCurrentPage(currentPage + 1);
+  };
+
+  const movePage = click => {
+    if (currentPage !== click.target.value)
+      changeCurrentPage(click.target.value);
+  };
+
+  useEffect(() => {
+    filterProducts();
+  });
+
   return (
     <div className="pagination">
       <ItemList products={products} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const Card = ({ product }) => {
   const { image, name, price, discount, reviewCount } = product;

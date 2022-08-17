@@ -4,7 +4,6 @@ import Pagination from './Pagination';
 const ProductsInMain = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageNumber = Math.ceil(products.length / 9); //문제 있을 듯;;
 
   useEffect(() => {
     fetch('/data/mockdata/mockproducts.json', {
@@ -14,28 +13,24 @@ const ProductsInMain = () => {
       .then(setProducts);
   }, []);
 
-  const movePrev = () => {
-    if (currentPage !== 1) setCurrentPage(currentPage - 1);
+  const filterProducts = () => {
+    setProducts(() => {
+      let targetKey = currentPage * 10;
+      products.filter(x => x.key <= targetKey && x.key > targetKey - 10);
+    });
   };
 
-  const moveNext = () => {
-    if (currentPage !== currentPage[currentPage.length - 1])
-      setCurrentPage(currentPage + 1);
-  };
-
-  const movePage = click => {
-    if (currentPage !== click.target.value) setCurrentPage(click.target.value);
+  const switchPage = page => {
+    setCurrentPage(page);
   };
 
   return (
     <div className="productsInMain">
       <Pagination
         products={products}
-        pageNumber={pageNumber}
-        movePrev={movePrev}
-        moveNext={moveNext}
-        movePage={movePage}
         currentPage={currentPage}
+        filterProduct={filterProducts}
+        changeCurrentPage={switchPage}
       />
     </div>
   );
