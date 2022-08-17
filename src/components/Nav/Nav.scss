@@ -1,8 +1,8 @@
 .nav {
-  width: 100%;
-
+  width: 100vw;
   display: flex;
   flex-direction: column;
+  top: 0;
 
   .navCarousel {
     height: 50px;
@@ -10,9 +10,44 @@
   }
 
   .navArea {
-    .link {
-      text-decoration: none;
-      color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      font-size: 35px;
+    }
+
+    .menuList {
+      display: flex;
+
+      li {
+        height: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        line-height: 13px;
+        padding-right: 5px;
+        border-right: 1px solid black;
+      }
+
+      .link {
+        text-decoration: none;
+        color: black;
+      }
+
+      .countBg {
+        width: 15px;
+        height: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: white;
+        border-radius: 50%;
+        font-size: 13px;
+      }
     }
   }
 }

@@ -12,8 +12,8 @@ const Nav = () => {
       </div>
       <div className="navArea">
         <h1 className="logo">BODYLIKE</h1>
-        <div className="navMenu">
-          <ul className="navMenuList">
+        <div className="menu">
+          <ul className="menuList">
             <li>
               <Link className="link" to="/login">
                 로그인
@@ -27,6 +27,7 @@ const Nav = () => {
             </li>
             <li>
               <i class="fas fa-search" />
+              <input className="search" type="search" />
             </li>
           </ul>
         </div>
