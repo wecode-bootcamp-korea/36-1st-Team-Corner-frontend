@@ -77,28 +77,4 @@
       }
     }
   }
-
-  .categoryTab {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
-
-    .tabs {
-      width: 1200px;
-      height: 18px;
-      display: flex;
-      justify-content: flex-start;
-
-      .tabList {
-        display: flex;
-
-        span {
-          font-size: 18px;
-          margin-right: 50px;
-        }
-      }
-    }
-  }
 }
