@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Main.scss';
 
 const Card = ({ product }) => {
-  const { image, name, price, discount, reviewCount, tags } = product;
+  const { image, name, price, discount, reviewCount } = product;
   return (
     <div className="card">
       <img src={image} alt="productImage" />
@@ -26,28 +26,45 @@ const ItemList = ({ products }) => {
   );
 };
 
-const Pagination = ({ products }) => {
-  const pageNumber = products.length / 9;
+const Pagination = (
+  { products },
+  { pageNumber },
+  { movePrev },
+  { moveNext },
+  { movePage },
+  { currentPage }
+) => {
+  const [productsFiltered, setProductsFiltered] = useState([]);
   const pageNumbers = [];
 
-  for (let firstPage = 1; firstPage <= pageNumber; firstPage++) {
-    pageNumbers[firstPage] = firstPage;
+  for (let i = 0; i <= pageNumber; i++) {
+    pageNumbers.push(i + 1);
   }
-
   return (
     <div className="pagination">
       <ItemList products={products} />
-      <button className="prevPage">이전</button>
+      <button className="prevPage" onClick={movePrev}>
+        이전
+      </button>
       <p className="pageNumbers">
-        <span className="pageNumber" />
+        {pageNumbers.map(page => {
+          return (
+            <span className="pageNumber" key={page} onClick={movePage}>
+              {page}
+            </span>
+          );
+        })}
       </p>
-      <button className="nextPage">다음</button>
+      <button className="nextPage" onClick={moveNext}>
+        다음
+      </button>
     </div>
   );
 };
 
 const ProductsInMain = () => {
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     fetch('/data/mockdata/mockproducts.json', {
@@ -57,9 +74,29 @@ const ProductsInMain = () => {
       .then(setProducts);
   }, []);
 
+  const movePrev = () => {
+    if (currentPage !== 1) setCurrentPage(currentPage - 1);
+  };
+
+  const moveNext = () => {
+    if (currentPage !== currentPage[currentPage.length - 1])
+      setCurrentPage(currentPage + 1);
+  };
+
+  const movePage = click => {
+    if (currentPage !== click.target.value) setCurrentPage(click.target.value);
+  };
+
   return (
     <div className="productsInMain">
-      <Pagination products={products} />
+      <Pagination
+        products={products}
+        pageNumber={pageNumber}
+        movePrev={movePrev}
+        moveNext={moveNext}
+        movePage={movePage}
+        currentPage={currentPage}
+      />
     </div>
   );
 };
