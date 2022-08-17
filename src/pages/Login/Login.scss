@@ -1,0 +1,74 @@
+.layout {
+  height: 1080px;
+
+  img {
+    width: auto;
+    height: 1080px;
+    width: 50%;
+    float: right;
+  }
+}
+
+//TODO
+//img, layoutLeftPage float가 아닌 flex:0 flex:1 로 교체 (기능 구현 후 레이아웃 디테일 수정 예정)
+
+.layoutLeftPage {
+  float: left;
+  width: 50%;
+  height: 1080px;
+
+  p {
+    text-align: left;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50%;
+    text-align: center;
+  }
+
+  input,
+  button,
+  .loginText {
+    width: 375px;
+    height: 40px;
+  }
+
+  .loginText {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.33;
+    margin-bottom: 40px;
+    text-align: left;
+  }
+
+  input {
+    border: none;
+    border-bottom: solid 1px #cccccc;
+    margin-bottom: 20px;
+  }
+  //TODO
+  // placeholder 색 넣기
+
+  button {
+    border: none;
+    border-radius: 5.5px;
+    background-color: #2087c9;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    margin-top: 10px;
+  }
+}
+
+.formOuter {
+  display: flex;
+  flex-direction: column;
+  margin: 0 100px;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+}
