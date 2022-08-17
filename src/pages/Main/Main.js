@@ -27,11 +27,20 @@ const ItemList = ({ products }) => {
 };
 
 const Pagination = ({ products }) => {
+  const pageNumber = products.length / 9;
+  const pageNumbers = [];
+
+  for (let firstPage = 1; firstPage <= pageNumber; firstPage++) {
+    pageNumbers[firstPage] = firstPage;
+  }
+
   return (
     <div className="pagination">
       <ItemList products={products} />
       <button className="prevPage">이전</button>
-      <span>1 2 3</span>
+      <p className="pageNumbers">
+        <span className="pageNumber" />
+      </p>
       <button className="nextPage">다음</button>
     </div>
   );
