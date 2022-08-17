@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavCarousel from './NavCarousel';
 import './Nav.scss';
 
 const Nav = () => {
   return (
     <nav className="nav">
-      <div className="navCarousel">
-        <span>안녕하세요 이것은</span>
-        <span>매우매우 멋진</span>
-        <span>캐러셀 입니다</span>
-      </div>
+      <NavCarousel />
       <div className="navArea">
         <div className="content">
           <Link className="logo" to="/main">
