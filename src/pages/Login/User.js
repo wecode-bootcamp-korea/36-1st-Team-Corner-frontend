@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const User = ({ content }) => {
-  const { title, btnText, img, fetch } = content;
+  const { title, btnText, img } = content;
   const [info, setInfo] = useState({
     userId: '',
     userPw: '',
@@ -14,61 +14,51 @@ const User = ({ content }) => {
     setInfo({ ...info, [name]: value });
   };
 
-  // const navigate = useNavigate();
   // const goToLogin = e => {
   //   navigate('/login');
   //   alert('회원가입이 완료 되었습니다. 로그인해주세요');
   // };
-  // backend 팀과 아직 맞춰보지 못해서 fetch 함수에 어떻게 넣을지 몰라 주석처리
+  //backend팀과 fetch 함수에 어떻게 넣을지 몰라 주석처리
 
   const passed =
     info.userId.length > 5 &&
-    info.userPw.length > 5 &&
-    info.userId.includes('@');
-  // 유효성 검사 기준 (아이디(이메일) 소문자,(length 4~16), 비밀번호 대소문자 포함 )
+    16 > info.userPw.length > 5 &&
+    info.userId.includes('@', '.');
 
   const toSignUp = e => {
     e.preventDefault();
-    fetch(' http://127.0.0.1:8000/account/signup', {
+    fetch('http://10.58.2.51:3000/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        user_id: info.userId,
-        user_name: 'Adam',
-        password: info.userPw.toString(),
         email: info.userId,
-        phone_number: '010-2421-1241',
-        birth_date: '1994-04-04',
+        password: info.userPw.toString(),
       }),
     });
   };
 
   const toLogin = e => {
     e.preventDefault();
-    fetch('http://10.58.0.71:3000/post/login', {
+    fetch('http://10.58.2.51:3000/users/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        user_id: info.userId,
-        user_name: 'Adam',
-        password: info.userPw.toString(),
         email: info.userId,
-        phone_number: '010-2421-1241',
-        birth_date: '1994-04-04',
+        password: info.userPw.toString(),
       }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.MESSAGE === 'login success') {
-          localStorage.setItem('token', data.TOKEN);
-        } else {
-          alert('아이디, 비밀번호가 잘못되었습니다.');
-        }
-      });
+    }).then(response => {
+      if (response.status === 200) {
+        localStorage.setItem('token', response.accessToken);
+        alert('로그인 성공');
+      } else if (response.status === 400) {
+        alert('아이디 혹은 비밀번호를 확인 해 주세요');
+      }
+      return response.json();
+    });
   };
 
   return (
@@ -94,7 +84,7 @@ const User = ({ content }) => {
               onChange={onChangeinfo}
             />
 
-            <button disabled={!passed} onClick={{ fetch }}>
+            <button disabled={!passed} onClick={toLogin}>
               {btnText}
             </button>
 
