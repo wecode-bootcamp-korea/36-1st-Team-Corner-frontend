@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const User = ({ content }) => {
+const User = ({ content, isSelectLogin }) => {
   const { title, btnText, img } = content;
   const [info, setInfo] = useState({
     userId: '',
@@ -52,7 +52,7 @@ const User = ({ content }) => {
       }),
     }).then(response => {
       if (response.status === 200) {
-        localStorage.setItem('token', response.accessToken);
+        localStorage.setItem('token', String(response.accessToken));
         alert('로그인 성공');
       } else if (response.status === 400) {
         alert('아이디 혹은 비밀번호를 확인 해 주세요');
@@ -83,8 +83,10 @@ const User = ({ content }) => {
               value={info.userPw}
               onChange={onChangeinfo}
             />
-
-            <button disabled={!passed} onClick={toLogin}>
+            <button
+              disabled={!passed}
+              onClick={isSelectLogin ? toLogin : toSignUp}
+            >
               {btnText}
             </button>
 
