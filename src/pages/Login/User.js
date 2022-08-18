@@ -8,22 +8,26 @@ const User = ({ content }) => {
     userId: '',
     userPw: '',
   });
+  // const [emailInfo, setEmailInfo] = useState('')
   const onChangeinfo = e => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
   };
 
   const navigate = useNavigate();
-  const goToMain = e => {
-    navigate('/main');
+  const goToLogin = e => {
+    navigate('/login');
+    alert('회원가입이 완료 되었습니다. 로그인해주세요');
   };
 
   const passed =
-    info.userId.toLowerCase() &&
+    // info.userId.toLowerCase() &&
     info.userId.length > 5 &&
-    info.userPw.length > 5;
-  // console.log(passed);
+    info.userPw.length > 5 &&
+    info.userId.includes('@');
   // 유효성 검사 기준 (아이디 소문자,(length 4~16), 비밀번호 대소문자 포함 )
+
+  console.log(passed);
 
   return (
     <div className="layout">
@@ -33,29 +37,30 @@ const User = ({ content }) => {
           <p>BODYLIKE</p>
           <form>
             <h2 className="title"> {title} </h2>
-            {title === '회원가입' && <input type="text" placeholder="이름" />}
             <input
               type="text"
-              placeholder="아이디(영문 소문자/숫자 4~16자)"
+              placeholder="이메일"
+              name="userId"
               value={info.userId}
               onChange={onChangeinfo}
-              name="userId"
             />
             <input
               type="password"
               placeholder="비밀번호(영문 대소문자/숫자 4~16자)"
+              name="userPw"
               value={info.userPw}
               onChange={onChangeinfo}
-              name="userPw"
             />
-            <button disabled={!passed} onClick={goToMain}>
+
+            <button disabled={!passed} onClick={goToLogin}>
               {btnText}
             </button>
 
-            <Link to="/signup">
-              <button>회원가입하기</button>
-              {/* 조건부 렌더링 */}
-            </Link>
+            {title === '로그인' && (
+              <Link to="/signup">
+                <button>회원가입하기</button>
+              </Link>
+            )}
           </form>
         </div>
       </div>
