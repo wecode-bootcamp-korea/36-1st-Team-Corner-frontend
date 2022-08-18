@@ -5,8 +5,8 @@ import CategoryTab from './CategoryTab';
 import './Nav.scss';
 
 const Nav = () => {
-  const [products, setProducts] = useState([]);
-  const [userInput, setUserInput] = useState('');
+  //const [products, setProducts] = useState([]);
+  //const [userInput, setUserInput] = useState('');
 
   const handleChange = e => {
     setUserInput(e.target.value);
