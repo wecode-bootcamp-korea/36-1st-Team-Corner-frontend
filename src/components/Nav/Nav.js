@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavCarousel from './NavCarousel';
 import CategoryTab from './CategoryTab';
 import './Nav.scss';
 
 const Nav = () => {
+  const [products, setProducts] = useState([]);
+  const [userInput, setUserInput] = useState('');
+
+  const handleChange = e => {
+    setUserInput(e.target.value);
+  };
+
+  // const searchedProduct = products.filter(product => {
+  //   return product.name.includes(userInput);
+  // });
+
   return (
     <nav className="nav">
       <NavCarousel />
@@ -28,8 +39,8 @@ const Nav = () => {
               </li>
               <li>
                 <div className="search">
-                  <i class="fas fa-search" />
-                  <input type="search" />
+                  <i className="fas fa-search" />
+                  <input type="search" onChange={handleChange} />
                 </div>
               </li>
             </ul>

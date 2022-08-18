@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './CategoryTab.scss';
 
 const CategoryTab = () => {
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/categoryMock.json', {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => {
+        setCategory(data);
+      });
+  }, []);
+
   return (
     <div className="categoryTab">
       <div className="tabs">
         <ul className="tabList">
-          <li className="first">
-            <span>FIRST</span>
-          </li>
-          <li className="second">
-            <span>SECOND</span>
-          </li>
-          <li className="third">
-            <span>THIRD</span>
-          </li>
-          <li className="fourth">
-            <span>FOURTH</span>
-          </li>
-          <li className="fifth">
-            <span>FIFTH</span>
-          </li>
+          {category.map((el, i) => {
+            const categoryTab = category[i];
+            return <li key={categoryTab.id}>{categoryTab.name}</li>;
+          })}
         </ul>
       </div>
     </div>

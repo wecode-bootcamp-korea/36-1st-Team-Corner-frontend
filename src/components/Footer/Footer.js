@@ -11,14 +11,14 @@ const Footer = () => {
             <h2>브랜드로바 스토리</h2>
             <h2>JAJU 묻는 질문</h2>
             <div className="sns">
-              <i class="fab fa-twitter" />
-              <i class="fab fa-instagram" />
-              <i class="fab fa-facebook-f" />
-              <i class="fab fa-youtube" />
+              <i className="fab fa-twitter" />
+              <i className="fab fa-instagram" />
+              <i className="fab fa-facebook-f" />
+              <i className="fab fa-youtube" />
             </div>
             <span>이용 약과 | 댕댕정보 처리방침</span>
             <span>
-              Copyright <i class="far fa-copyright" /> BODYLIKE.ALL rights
+              Copyright <i className="far fa-copyright" /> BODYLIKE.ALL rights
               reserved.
             </span>
           </div>
