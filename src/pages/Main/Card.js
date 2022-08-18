@@ -1,14 +1,16 @@
 import React from 'react';
+import './card.scss';
 
 const Card = ({ product }) => {
   const { image, name, price, discount, reviewCount } = product;
 
   return (
     <div className="card">
-      <img src={image} alt="productImage" />
+      <img className="thumbNailImage" src={image} alt="productImage" />
       <h3 className="productName">{name}</h3>
       <span className="currentPrice"> {discount} </span>
       <span className="price"> {price} </span>
+      <p className="tagSpace" />
       <p className="reviewCount">
         리뷰 <span className="reviewCounter">{reviewCount}</span>
       </p>

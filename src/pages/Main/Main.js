@@ -5,7 +5,11 @@ import './Main.scss';
 const Main = () => {
   return (
     <>
-      <img className="carousel" src="" alt="carouselImage" />
+      <img
+        className="carousel"
+        src="/images/soapmockimage.jpeg"
+        alt="carouselImage"
+      />
       <ProductsInMain />
     </>
   );
