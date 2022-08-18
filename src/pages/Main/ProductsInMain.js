@@ -13,24 +13,19 @@ const ProductsInMain = () => {
       .then(setProducts);
   }, []);
 
-  const filterProducts = () => {
-    setProducts(() => {
-      let targetKey = currentPage * 10;
-      products.filter(x => x.key <= targetKey && x.key > targetKey - 10);
-    });
-  }; //나중에 백엔드에서 오프셋 리미트로 처리
-
-  const changeCurrentPage = page => {
-    setCurrentPage(page);
-  };
+  // useEffect(() => {
+  //   setProducts(() => {
+  //     let targetKey = currentPage * 10;
+  //     products.filter(x => x.id <= targetKey && x.id > targetKey - 10);
+  //   });
+  // }, [currentPage]); //나중에 백엔드에서 오프셋 리미트로 처리
 
   return (
     <div className="productsInMain">
       <Pagination
         products={products}
         currentPage={currentPage}
-        filterProduct={filterProducts}
-        changeCurrentPage={changeCurrentPage}
+        changeCurrentPage={setCurrentPage}
       />
     </div>
   );

@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ItemList from './ItemList';
 
-const Pagination = ({
-  products,
-  changeCurrentPage,
-  filterProducts,
-  currentPage,
-}) => {
+const Pagination = ({ products, changeCurrentPage, currentPage }) => {
+  console.log('pagination', currentPage);
   const pageNumber = Math.ceil(products.length / 9);
   const pageNumbers = [];
   for (let i = 0; i <= pageNumber; i++) {
@@ -27,10 +23,9 @@ const Pagination = ({
       changeCurrentPage(click.target.value);
   };
 
-  useEffect(() => filterProducts, [currentPage]);
   return (
     <div className="pagination">
-      <ItemList products={products} />
+      <ItemList products={products} currentPage={currentPage} />
       <button className="prevPage" onClick={movePrev}>
         이전
       </button>
