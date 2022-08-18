@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const User = ({ content }) => {
-  const { title, btnText } = content;
+  const { title, btnText, img } = content;
   const [info, setInfo] = useState({
     userId: '',
     userPw: '',
@@ -27,15 +27,13 @@ const User = ({ content }) => {
 
   return (
     <div className="layout">
-      <img
-        alt="mainImg"
-        src="https://images.unsplash.com/photo-1611489704164-6f73c62bd810?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-      />
+      <img alt="mainImg" src={img} />
       <div className="layoutLeftPage">
         <div className="formOuter">
           <p>BODYLIKE</p>
           <form>
             <h2 className="title"> {title} </h2>
+            {title === '회원가입' && <input type="text" placeholder="이름" />}
             <input
               type="text"
               placeholder="아이디(영문 소문자/숫자 4~16자)"
@@ -54,10 +52,10 @@ const User = ({ content }) => {
               {btnText}
             </button>
 
-            {/* <Link to="{SIGNUP_DATA}"> */}
-            <button>회원가입하기</button>
-            {/* 조건부 렌더링 */}
-            {/* </Link> */}
+            <Link to="/signup">
+              <button>회원가입하기</button>
+              {/* 조건부 렌더링 */}
+            </Link>
           </form>
         </div>
       </div>
