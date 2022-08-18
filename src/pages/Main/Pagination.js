@@ -2,10 +2,9 @@ import React from 'react';
 import ItemList from './ItemList';
 
 const Pagination = ({ products, changeCurrentPage, currentPage }) => {
-  console.log('pagination', currentPage);
   const pageNumber = Math.ceil(products.length / 9);
   const pageNumbers = [];
-  for (let i = 0; i <= pageNumber; i++) {
+  for (let i = 0; i < pageNumber; i++) {
     pageNumbers.push(i + 1);
   }
 
@@ -14,15 +13,14 @@ const Pagination = ({ products, changeCurrentPage, currentPage }) => {
   };
 
   const moveNext = () => {
-    if (currentPage !== currentPage[currentPage.length - 1])
-      changeCurrentPage(currentPage + 1);
+    if (currentPage < pageNumbers.length) changeCurrentPage(currentPage + 1);
   };
 
   const movePage = click => {
     if (currentPage !== click.target.value)
       changeCurrentPage(click.target.value);
   };
-
+  console.log('main', currentPage);
   return (
     <div className="pagination">
       <ItemList products={products} currentPage={currentPage} />
@@ -32,9 +30,14 @@ const Pagination = ({ products, changeCurrentPage, currentPage }) => {
       <p className="pageNumbers">
         {pageNumbers.map(page => {
           return (
-            <span className="pageNumber" key={page} onClick={movePage}>
+            <button
+              className="pageNumber"
+              key={page}
+              onClick={movePage}
+              value={page}
+            >
               {page}
-            </span>
+            </button>
           );
         })}
       </p>

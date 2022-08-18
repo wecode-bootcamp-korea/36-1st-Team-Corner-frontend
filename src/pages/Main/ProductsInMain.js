@@ -12,14 +12,7 @@ const ProductsInMain = () => {
       .then(res => res.json())
       .then(setProducts);
   }, []);
-
-  // useEffect(() => {
-  //   setProducts(() => {
-  //     let targetKey = currentPage * 10;
-  //     products.filter(x => x.id <= targetKey && x.id > targetKey - 10);
-  //   });
-  // }, [currentPage]); //나중에 백엔드에서 오프셋 리미트로 처리
-
+  console.log('main', currentPage);
   return (
     <div className="productsInMain">
       <Pagination

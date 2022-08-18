@@ -2,6 +2,7 @@ import React from 'react';
 
 const Card = ({ product }) => {
   const { image, name, price, discount, reviewCount } = product;
+
   return (
     <div className="card">
       <img src={image} alt="productImage" />
