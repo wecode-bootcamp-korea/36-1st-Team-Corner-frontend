@@ -2,23 +2,22 @@
   height: 1080px;
 
   img {
-    width: auto;
     height: 1080px;
     width: 50%;
     float: right;
+    object-fit: cover;
   }
 }
 
-//TODO
-//img, layoutLeftPage float가 아닌 flex:0 flex:1 로 교체 (기능 구현 후 레이아웃 디테일 수정 예정)
-
 .layoutLeftPage {
-  float: left;
   width: 50%;
   height: 1080px;
+  float: left;
+  position: absolute;
 
   p {
     text-align: left;
+    display: flex;
   }
 
   //TODO

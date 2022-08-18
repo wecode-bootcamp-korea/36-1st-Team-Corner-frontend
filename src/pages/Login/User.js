@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const User = ({ content }) => {
-  const { title, btnText, img } = content;
+  const { title, btnText, img, fetch } = content;
   const [info, setInfo] = useState({
     userId: '',
     userPw: '',
@@ -19,6 +19,7 @@ const User = ({ content }) => {
   //   navigate('/login');
   //   alert('회원가입이 완료 되었습니다. 로그인해주세요');
   // };
+  // backend 팀과 아직 맞춰보지 못해서 fetch 함수에 어떻게 넣을지 몰라 주석처리
 
   const passed =
     info.userId.length > 5 &&
@@ -28,7 +29,7 @@ const User = ({ content }) => {
 
   const toSignUp = e => {
     e.preventDefault();
-    fetch('http://10.58.0.71:3000/users/signup', {
+    fetch(' http://127.0.0.1:8000/account/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,12 +43,6 @@ const User = ({ content }) => {
         birth_date: '1994-04-04',
       }),
     });
-    // .then(response => response.json())
-    // .then(data => {
-    //   if (data.message === 'SUCCESS') {
-    //     navigate('/login');
-    //   }
-    // });
   };
 
   const toLogin = e => {
@@ -71,7 +66,7 @@ const User = ({ content }) => {
         if (data.MESSAGE === 'login success') {
           localStorage.setItem('token', data.TOKEN);
         } else {
-          alert('확인해주세요');
+          alert('아이디, 비밀번호가 잘못되었습니다.');
         }
       });
   };
@@ -99,7 +94,7 @@ const User = ({ content }) => {
               onChange={onChangeinfo}
             />
 
-            <button disabled={!passed} onClick={toLogin}>
+            <button disabled={!passed} onClick={{ fetch }}>
               {btnText}
             </button>
 
