@@ -4,7 +4,6 @@ import './CategoryTab.scss';
 const CategoryTab = () => {
   const [category, setCategory] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
-  console.log('현재탭', activeTab);
 
   useEffect(() => {
     fetch('/data/categoryMock.json', {
