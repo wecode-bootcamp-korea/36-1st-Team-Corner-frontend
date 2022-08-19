@@ -13,16 +13,11 @@ const User = ({ content, isSelectLogin }) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
   };
-
-  // const goToLogin = e => {
-  //   navigate('/login');
-  //   alert('회원가입이 완료 되었습니다. 로그인해주세요');
-  // };
-  //backend팀과 fetch 함수에 어떻게 넣을지 몰라 주석처리
+  const navigate = useNavigate();
 
   const passed =
     info.userId.length > 5 &&
-    16 > info.userPw.length > 5 &&
+    17 > info.userPw.length > 5 &&
     info.userId.includes('@', '.');
 
   const toSignUp = e => {
@@ -36,6 +31,13 @@ const User = ({ content, isSelectLogin }) => {
         email: info.userId,
         password: info.userPw.toString(),
       }),
+    }).then(response => {
+      if (response.status === 200) {
+        localStorage.setItem('token', String(response.accessToken));
+        alert('회원가입 성공');
+        navigate('/login');
+      }
+      return response.json();
     });
   };
 
@@ -54,6 +56,7 @@ const User = ({ content, isSelectLogin }) => {
       if (response.status === 200) {
         localStorage.setItem('token', String(response.accessToken));
         alert('로그인 성공');
+        navigate('/main');
       } else if (response.status === 400) {
         alert('아이디 혹은 비밀번호를 확인 해 주세요');
       }
