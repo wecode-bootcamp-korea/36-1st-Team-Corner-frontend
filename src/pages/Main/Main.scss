@@ -1,7 +1,72 @@
-.carousel {
-  display: block;
-  margin: 10px auto 50px auto;
-  width: 1080px;
-  height: 585px;
-  object-fit: cover;
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 1200px;
+  .carousel {
+    display: flex;
+    align-items: center;
+
+    .prevImg {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: solid 2px black;
+      border-bottom: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      margin-left: 3%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .nextImg {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: solid 2px black;
+      border-bottom: none;
+      border-left: none;
+      transform: rotate(45deg);
+      margin-right: 3%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .carouselWindow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px auto 50px auto;
+      width: 1080px;
+      height: 650px;
+      overflow-x: hidden;
+
+      .images {
+        display: flex;
+        width: 100%;
+
+        .carouselImage {
+          width: 100%;
+          min-width: 1080px;
+          height: 585px;
+        }
+      }
+      .carouselBar {
+        display: flex;
+        justify-content: flex-start;
+
+        .bar {
+          width: 5rem;
+          height: 50px;
+          border: solid 1px black;
+          background-color: black;
+
+          color: white;
+        }
+      }
+    }
+  }
 }
