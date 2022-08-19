@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import NavCarousel from './NavCarousel';
 import CategoryTab from './CategoryTab';
@@ -6,9 +7,18 @@ import './Nav.scss';
 
 const Nav = () => {
   const [userInput, setUserInput] = useState('');
+  console.log('검색어', userInput);
 
   const handleChange = e => {
     setUserInput(e.target.value);
+  };
+
+  const navigate = useNavigate();
+
+  const onSubmitSearch = e => {
+    if (e.key === 'Enter') {
+      navigate(`/products/search?keword=${userInput}`);
+    }
   };
 
   return (
@@ -33,10 +43,14 @@ const Nav = () => {
                 <div className="countBg">0</div>
               </li>
               <li>
-                <div className="search">
+                <form className="search">
                   <i className="fas fa-search" />
-                  <input type="search" onChange={handleChange} />
-                </div>
+                  <input
+                    type="search"
+                    onChange={handleChange}
+                    onKeyPress={onSubmitSearch}
+                  />
+                </form>
               </li>
             </ul>
           </div>
