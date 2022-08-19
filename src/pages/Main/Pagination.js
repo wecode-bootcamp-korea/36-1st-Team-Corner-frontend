@@ -2,24 +2,33 @@ import React from 'react';
 import ItemList from './ItemList';
 import './pagination.scss';
 
-const Pagination = ({ products, changeCurrentPage, currentPage }) => {
+const Pagination = ({
+  products,
+  changeCurrentPage,
+  currentPage,
+  paramsSave,
+}) => {
   const pageNumber = Math.ceil(products.length / 9);
   const pageNumbers = [];
   for (let i = 0; i < pageNumber; i++) {
     pageNumbers.push(i + 1);
   }
 
-  const movePrev = () => {
+  const movePrev = pageNum => {
     if (currentPage !== 1) changeCurrentPage(currentPage - 1);
+    paramsSave((pageNum - 1) * 9);
   };
 
-  const moveNext = () => {
+  const moveNext = pageNum => {
     if (currentPage < pageNumbers.length) changeCurrentPage(currentPage + 1);
+    paramsSave((pageNum - 1) * 9);
   };
 
   const movePage = click => {
     if (currentPage !== Number(click.target.value))
       changeCurrentPage(Number(click.target.value));
+
+    paramsSave((Number(click.target.value) - 1) * 9);
   };
 
   return (
@@ -37,7 +46,7 @@ const Pagination = ({ products, changeCurrentPage, currentPage }) => {
                   !(currentPage === page) ? 'pageNumber' : 'clickedPageNumber'
                 }
                 key={page}
-                onClick={movePage}
+                onClick={() => movePage(page)}
                 value={page}
               >
                 {page}

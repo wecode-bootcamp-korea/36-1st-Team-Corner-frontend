@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Pagination from './Pagination';
 import './productsinmain.scss';
 
 const ProductsInMain = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const offSet = searchParams.get('offset');
+  const limit = 9;
 
   useEffect(() => {
-    fetch('/data/mockdata/mockproducts.json', {
+    fetch(`http://10.58.4.134:3000/?offset=${offSet}&limit=${limit}`, {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(setProducts);
-  }, []);
+      .then(data => setProducts(data.data));
+  }, [offSet]);
 
   return (
     <div className="productsInMain">
@@ -26,6 +30,7 @@ const ProductsInMain = () => {
         products={products}
         currentPage={currentPage}
         changeCurrentPage={setCurrentPage}
+        paramsSave={setSearchParams}
       />
     </div>
   );
