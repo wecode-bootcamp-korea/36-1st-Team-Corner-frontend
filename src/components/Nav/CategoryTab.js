@@ -26,7 +26,7 @@ const CategoryTab = () => {
           {category.map((el, i) => {
             const categoryTab = category[i];
             return (
-              <li key={categoryTab.id} onClick={() => clickHandler(i)}>
+              <li key={categoryTab.id} onClick={() => clickHandler(i + 1)}>
                 {categoryTab.name}
               </li>
             );
