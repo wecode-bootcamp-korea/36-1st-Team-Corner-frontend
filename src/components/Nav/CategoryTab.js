@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './CategoryTab.scss';
 
 const CategoryTab = () => {
   const [category, setCategory] = useState([]);
-  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     fetch('/data/categoryMock.json', {
@@ -15,20 +15,16 @@ const CategoryTab = () => {
       });
   }, []);
 
-  const clickHandler = id => {
-    setActiveTab(id);
-  };
-
   return (
     <div className="categoryTab">
       <div className="tabs">
         <ul className="tabList">
-          {category.map((el, i) => {
-            const categoryTab = category[i];
+          {category.map(({ id, name }, i) => {
             return (
-              <li key={categoryTab.id} onClick={() => clickHandler(i + 1)}>
-                {categoryTab.name}
-              </li>
+              //아래 주소는 차후 상품리스트 컴포넌트가 완성되면 라우터.js에 추가해야 합니다
+              <Link key={id} to={`/products/list/${id}`}>
+                <li>{name}</li>
+              </Link>
             );
           })}
         </ul>
