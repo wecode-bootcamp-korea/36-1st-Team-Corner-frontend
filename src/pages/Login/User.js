@@ -78,7 +78,7 @@ const User = ({ content, isSelectLogin }) => {
   };
 
   return (
-    <div className="layout">
+    <div className="user">
       <img alt="mainImg" src={img} />
       <div className="layoutLeftPage">
         <div className="formOuter">
