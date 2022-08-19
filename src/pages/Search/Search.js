@@ -1,8 +1,18 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './Search.scss';
 
 const Search = () => {
-  return <div className="search">검색된 상품 리스트입니다</div>;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchedWord = searchParams.get('q');
+
+  return (
+    <div className="search">
+      <h1>검색</h1>
+      <span>쿼리 스트링 : {queryString}</span>
+    </div>
+  );
 };
 
 export default Search;
