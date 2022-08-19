@@ -17,12 +17,12 @@ const User = ({ content, isSelectLogin }) => {
 
   const passed =
     info.userId.length > 5 &&
-    17 > info.userPw.length > 5 &&
+    info.userPw.length > 5 &&
     info.userId.includes('@', '.');
 
   const toSignUp = e => {
     e.preventDefault();
-    fetch('http://10.58.2.51:3000/users/signup', {
+    fetch('http://10.58.4.134:3000/auth/signUp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const User = ({ content, isSelectLogin }) => {
 
   const toLogin = e => {
     e.preventDefault();
-    fetch('http://10.58.2.51:3000/users/signin', {
+    fetch('http:///10.58.4.134:3000/auth/signIn', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,16 +52,29 @@ const User = ({ content, isSelectLogin }) => {
         email: info.userId,
         password: info.userPw.toString(),
       }),
-    }).then(response => {
-      if (response.status === 200) {
-        localStorage.setItem('token', String(response.accessToken));
-        alert('로그인 성공');
-        navigate('/main');
-      } else if (response.status === 400) {
-        alert('아이디 혹은 비밀번호를 확인 해 주세요');
-      }
-      return response.json();
-    });
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.accessToken) {
+          localStorage.setItem('token', result.accessToken);
+          alert('로그인 성공');
+          navigate('/main');
+        } else {
+          alert('아이디 혹은 비밀번호를 확인 해 주세요');
+        }
+      });
+
+    //   if (response.status === 200) {
+    //     response.json().then(json => {
+    //       localStorage.setItem('token', String(json.accessToken));
+    //     });
+    //     alert('로그인 성공');
+    //     // navigate('/main');
+    //   } else if (response.status === 400) {
+    //     alert('아이디 혹은 비밀번호를 확인 해 주세요');
+    //   }
+    //   return response.json();
+    // });
   };
 
   return (
