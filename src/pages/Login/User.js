@@ -33,7 +33,9 @@ const User = ({ content, isSelectLogin }) => {
       }),
     }).then(response => {
       if (response.status === 200) {
-        localStorage.setItem('token', String(response.accessToken));
+        response.json().then(json => {
+          localStorage.setItem('token', String(json.accessToken));
+        });
         alert('회원가입 성공');
         navigate('/login');
       }
@@ -64,10 +66,10 @@ const User = ({ content, isSelectLogin }) => {
         }
       });
 
-    //   if (response.status === 200) {
-    //     response.json().then(json => {
-    //       localStorage.setItem('token', String(json.accessToken));
-    //     });
+    // if (response.status === 200) {
+    //   response.json().then(json => {
+    //     localStorage.setItem('token', String(json.accessToken));
+    //   });
     //     alert('로그인 성공');
     //     // navigate('/main');
     //   } else if (response.status === 400) {
@@ -75,6 +77,8 @@ const User = ({ content, isSelectLogin }) => {
     //   }
     //   return response.json();
     // });
+    // fetch 함수 리팩토링
+    // 토요일에 다시 서버 맞춰볼 예정이어서 주석처리했습니다
   };
 
   return (
