@@ -7,7 +7,6 @@ import './Nav.scss';
 
 const Nav = () => {
   const [userInput, setUserInput] = useState('');
-  console.log('검색어', userInput);
 
   const handleChange = e => {
     setUserInput(e.target.value);
@@ -17,7 +16,7 @@ const Nav = () => {
 
   const onSubmitSearch = e => {
     if (e.key === 'Enter') {
-      navigate(`/products/search?keword=${userInput}`);
+      navigate(`/products/search?q=${userInput}`);
     }
   };
 

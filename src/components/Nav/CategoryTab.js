@@ -21,7 +21,6 @@ const CategoryTab = () => {
         <ul className="tabList">
           {category.map(({ id, name }, i) => {
             return (
-              //아래 주소는 차후 상품리스트 컴포넌트가 완성되면 라우터.js에 추가해야 합니다
               <Link className="link" key={id} to={`/products/list/${id}`}>
                 <li>{name}</li>
               </Link>
