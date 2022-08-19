@@ -14,9 +14,14 @@
     .tabList {
       display: flex;
 
-      li {
-        font-size: 18px;
-        margin-right: 50px;
+      .link {
+        text-decoration: none;
+        color: inherit;
+
+        li {
+          font-size: 18px;
+          margin-right: 50px;
+        }
       }
     }
   }
