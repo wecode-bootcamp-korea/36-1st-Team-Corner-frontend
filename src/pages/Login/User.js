@@ -22,30 +22,29 @@ const User = ({ content, isSelectLogin }) => {
 
   const toSignUp = e => {
     e.preventDefault();
-    fetch('http://10.58.4.134:3000/auth/signUp', {
+    fetch('http://10.58.7.174:3000/auth/signUp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: info.userId,
-        password: info.userPw.toString(),
+        password: info.userPw,
       }),
     }).then(response => {
       if (response.status === 200) {
-        response.json().then(json => {
-          localStorage.setItem('token', String(json.accessToken));
-        });
         alert('회원가입 성공');
         navigate('/login');
+        // response.json().then(json => {
+        //   localStorage.setItem('token', json.accessToken);
+        // });
       }
-      return response.json();
     });
   };
 
   const toLogin = e => {
     e.preventDefault();
-    fetch('http:///10.58.4.134:3000/auth/signIn', {
+    fetch('http:///10.58.7.174:3000/auth/signIn', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
