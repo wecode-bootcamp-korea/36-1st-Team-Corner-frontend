@@ -31,15 +31,15 @@ const User = ({ content, isSelectLogin }) => {
         email: info.userId,
         password: info.userPw,
       }),
-    }).then(response => {
-      if (response.status === 200) {
-        alert('회원가입 성공');
-        navigate('/login');
-        // response.json().then(json => {
-        //   localStorage.setItem('token', json.accessToken);
-        // });
-      }
-    });
+    })
+      .then(response => {
+        if (response.ok) {
+          alert('회원가입 성공');
+          navigate('/login');
+        }
+        return response.json();
+      })
+      .then(response => response.json());
   };
 
   const toLogin = e => {
@@ -64,20 +64,6 @@ const User = ({ content, isSelectLogin }) => {
           alert('아이디 혹은 비밀번호를 확인 해 주세요');
         }
       });
-
-    // if (response.status === 200) {
-    //   response.json().then(json => {
-    //     localStorage.setItem('token', String(json.accessToken));
-    //   });
-    //     alert('로그인 성공');
-    //     // navigate('/main');
-    //   } else if (response.status === 400) {
-    //     alert('아이디 혹은 비밀번호를 확인 해 주세요');
-    //   }
-    //   return response.json();
-    // });
-    // fetch 함수 리팩토링
-    // 토요일에 다시 서버 맞춰볼 예정이어서 주석처리했습니다
   };
 
   return (

@@ -22,6 +22,15 @@
   //TODO
   // 폰트 정해지면 넣을 에정
 
+  .formOuter {
+    height: 100%;
+    margin: 0 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
   form {
     margin-top: 50%;
     display: flex;
@@ -61,13 +70,4 @@
     font-size: 14px;
     font-weight: 500;
   }
-}
-
-.formOuter {
-  height: 100%;
-  margin: 0 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
 }
