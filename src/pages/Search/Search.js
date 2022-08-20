@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './Search.scss';
 
@@ -19,7 +19,7 @@ const Search = () => {
     <>
       <div className="search">
         <h1>검색</h1>
-        <span>쿼리 스트링 : {searchedWord}</span>
+        <span>검색어 : {searchedWord}</span>
       </div>
       <ul className="searchedProductList">
         {searchedProduct.map((product, i) => {
