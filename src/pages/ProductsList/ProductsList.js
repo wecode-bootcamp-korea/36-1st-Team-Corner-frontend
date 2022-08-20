@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const ProductsList = () => {
-  const params = useParams();
-  const categoryId = params.id;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryId = searchParams.get('cate');
 
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`API주소/products/list/${categoryId}`, {
+    fetch(`API주소/products/list?cate=${categoryId}`, {
       method: 'GET',
     })
       //TODO : 차후 서버 주소로 변경 필요
