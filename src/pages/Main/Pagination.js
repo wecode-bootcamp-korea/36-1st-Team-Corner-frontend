@@ -8,27 +8,32 @@ const Pagination = ({
   currentPage,
   paramsSave,
 }) => {
-  const pageNumber = Math.ceil(products.length / 9);
+  const pageNumber = Math.ceil(31 / 9);
   const pageNumbers = [];
   for (let i = 0; i < pageNumber; i++) {
     pageNumbers.push(i + 1);
   }
 
   const movePrev = pageNum => {
-    if (currentPage !== 1) changeCurrentPage(currentPage - 1);
-    paramsSave((pageNum - 1) * 9);
+    if (currentPage !== 1) {
+      changeCurrentPage(currentPage - 1);
+      paramsSave(pageNum - 1);
+    }
   };
 
   const moveNext = pageNum => {
-    if (currentPage < pageNumbers.length) changeCurrentPage(currentPage + 1);
-    paramsSave((pageNum - 1) * 9);
+    if (currentPage < pageNumbers.length) {
+      changeCurrentPage(currentPage + 1);
+      paramsSave(pageNum + 1);
+    }
   };
 
   const movePage = click => {
-    if (currentPage !== Number(click.target.value))
+    if (currentPage !== Number(click.target.value)) {
       changeCurrentPage(Number(click.target.value));
-
-    paramsSave((Number(click.target.value) - 1) * 9);
+      paramsSave(click.target.value);
+      console.log(Number(click.target.value));
+    }
   };
 
   return (

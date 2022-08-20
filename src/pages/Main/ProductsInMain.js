@@ -6,17 +6,17 @@ import './productsinmain.scss';
 const ProductsInMain = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const offSet = searchParams.get('offset');
-  const limit = 9;
+  const [searchParams, setSearchParams] = useSearchParams(`?page=1&pageSize=9`);
+  const page = searchParams.get('page');
+  console.log('main', searchParams);
 
   useEffect(() => {
-    fetch(`http://10.58.4.134:3000/?offset=${offSet}&limit=${limit}`, {
+    fetch(`http://10.58.7.174:3000/?page=${page}&pageSize=9`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => setProducts(data.data));
-  }, [offSet]);
+  }, [page]);
 
   return (
     <div className="productsInMain">
