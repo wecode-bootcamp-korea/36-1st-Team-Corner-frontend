@@ -6,14 +6,14 @@ const ProductsList = () => {
   const categoryId = searchParams.get('cate');
 
   const [products, setProducts] = useState([]);
+  console.log('상품', products);
 
   useEffect(() => {
-    fetch(`API주소/products/list?cate=${categoryId}`, {
+    fetch(`http://10.58.7.174:3000/products/list?cate=${categoryId}`, {
       method: 'GET',
     })
-      //TODO : 차후 서버 주소로 변경 필요
       .then(response => response.json())
-      .then(result => setProducts(result));
+      .then(result => setProducts(result.data));
   }, [categoryId]);
 
   return (
