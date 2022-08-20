@@ -3,14 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './Product.scss';
 
 const Product = () => {
-  const [product, setProduct] = useState({});
-  const { img, title, price } = product;
+  const [product, setProduct] = useState([]);
+  const { name, img, price } = product;
   const params = useParams();
   const productId = params.id;
   const navigate = useNavigate;
 
   useEffect(() => {
-    fetch(`https://reqres.in/api/product/${productId}`)
+    fetch(`http://10.58.7.174:3000/product/${productId}`)
       .then(response => response.json())
       .then(result => setProduct(result.data));
   }, [productId]);
@@ -20,7 +20,7 @@ const Product = () => {
     const token = localStorage.getItem('token') || '';
 
     if (token) {
-      fetch(`http://10.58.4.114:8000/user/cart/${productId}`, {
+      fetch(`http://10.58.7.174:3000/product/${productId}`, {
         method: 'POST',
         headers: {
           AUTHORIZATION: token,
@@ -46,7 +46,7 @@ const Product = () => {
     const token = localStorage.getItem('token') || '';
 
     if (token) {
-      fetch(`http://10.58.4.114:8000/user/cart/${productId}`, {
+      fetch(`http://10.58.7.174:3000/product/${productId}`, {
         method: 'POST',
         headers: {
           AUTHORIZATION: token,
@@ -66,6 +66,7 @@ const Product = () => {
         });
     }
   };
+  // console.log(product[0].name);
 
   return (
     <div className="product">
@@ -73,7 +74,7 @@ const Product = () => {
         <div className="productPage">
           <img className="productImg" alt="productImg" src={img} />
           <form className="productForm">
-            <div className="priceTitle"> {title} </div>
+            <div className="priceTitle"> {name} </div>
             <div className="price">
               <div className="priceTag"> {price} 원 </div>
               <div className="salePrice"> ({price} * 0.8) 원 </div>
