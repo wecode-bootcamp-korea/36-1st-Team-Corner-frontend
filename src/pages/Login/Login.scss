@@ -2,8 +2,8 @@
   height: 1080px;
 
   img {
-    height: 1080px;
     width: 50%;
+    height: 1080px;
     float: right;
     object-fit: cover;
   }
@@ -13,7 +13,6 @@
   width: 50%;
   height: 1080px;
   float: left;
-  position: absolute;
 
   p {
     text-align: left;
@@ -24,10 +23,10 @@
   // 폰트 정해지면 넣을 에정
 
   form {
+    margin-top: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50%;
     text-align: center;
   }
 
@@ -39,36 +38,36 @@
   }
 
   .title {
+    margin-bottom: 40px;
     font-size: 30px;
     font-weight: 700;
     line-height: 1.33;
-    margin-bottom: 40px;
     text-align: left;
   }
 
   input {
+    margin-bottom: 20px;
     border: none;
     border-bottom: solid 1px #cccccc;
-    margin-bottom: 20px;
   }
 
   button {
+    margin-top: 10px;
+    margin-bottom: 12px;
+    background-color: #2087c9;
+    color: #ffffff;
     border: none;
     border-radius: 5.5px;
-    background-color: #2087c9;
-    margin-bottom: 12px;
     font-size: 14px;
     font-weight: 500;
-    color: #ffffff;
-    margin-top: 10px;
   }
 }
 
 .formOuter {
+  height: 100%;
+  margin: 0 100px;
   display: flex;
   flex-direction: column;
-  margin: 0 100px;
-  height: 100%;
-  text-align: center;
   justify-content: center;
+  text-align: center;
 }
