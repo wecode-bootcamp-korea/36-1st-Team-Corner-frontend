@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import './carousel.scss';
 
 const Carousel = () => {
-  const [carNum, setCarNum] = useState(0);
-  const MAX_SLIDES = 4;
+  const [carNum, setCarNum] = useState(1);
+  const MAX_SLIDES = 5;
   const slideRef = useRef();
 
   const moveNext = () => {
@@ -56,6 +56,12 @@ const Carousel = () => {
               />
             );
           })}
+          <img
+            className="carouselImage"
+            src={CAROUSEL_IMAGES[0].url}
+            alt="carouselImage"
+            key={CAROUSEL_IMAGES[0].key}
+          />
         </div>
         <div className="carouselBar">
           {CAROUSEL_IMAGES.map(image => {
