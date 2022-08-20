@@ -25,7 +25,7 @@ const Nav = () => {
       <NavCarousel />
       <div className="navArea">
         <div className="content">
-          <Link className="logo" to="/main">
+          <Link className="logo" to="/">
             BODYLIKE
           </Link>
           <div className="menu">
