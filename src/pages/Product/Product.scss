@@ -64,6 +64,10 @@
   margin-top: 17px;
   padding: 20px 0 35px 0;
   font-size: 20px;
+
+  .totalPriceText {
+    font-weight: bold;
+  }
 }
 
 .salePrice {
@@ -88,12 +92,12 @@
     background: #000;
     color: #fff;
     text-align: center;
-    width: 50%;
+    width: 49%;
   }
 
   .cart {
     margin: 0 10px;
-    width: 50%;
+    width: 49%;
     height: 66px;
     line-height: 66px;
     font-size: 25px;
