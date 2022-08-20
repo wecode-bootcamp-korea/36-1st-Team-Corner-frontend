@@ -4,5 +4,80 @@
 
   .cartContents {
     width: 1200px;
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .cartProductArea {
+      width: 1200px;
+      margin: 20px 0;
+      border: 1px solid black;
+      text-align: center;
+
+      thead {
+        border: 1px solid black;
+
+        th {
+          border: 1px solid black;
+        }
+      }
+      tfoot {
+        td {
+          text-align: right;
+        }
+      }
+
+      tbody {
+        tr {
+          border: 1px solid black;
+
+          td:last-child {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    .cartTotalPrice {
+      width: 1200px;
+      border: 1px solid black;
+      margin: 20px 0;
+
+      tbody {
+        border: 1px solid black;
+
+        td {
+          text-align: center;
+        }
+      }
+    }
+
+    .cartGuide {
+      width: 1200px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      margin-top: 20px;
+
+      h2 {
+        font-weight: 700;
+      }
+
+      .guide {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          margin: 5px 0;
+        }
+      }
+    }
   }
 }
