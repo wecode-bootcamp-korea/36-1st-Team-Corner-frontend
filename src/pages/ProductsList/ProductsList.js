@@ -5,7 +5,7 @@ const ProductsList = () => {
   const params = useParams();
   const categoryId = params.id;
 
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch(`API주소/products/list/${categoryId}`, {
@@ -16,12 +16,13 @@ const ProductsList = () => {
       .then(result => setProducts(result));
   }, [categoryId]);
 
-  const { name } = products;
-
   return (
-    <div className="productsList">
-      <p>상품 name:{name}</p>
-    </div>
+    <ul className="productsList">
+      {products.map((product, i) => {
+        return <li key={product.id}>상품명:{product.name}</li>;
+      })}
+    </ul>
+    //서버에서 데이터가 제대로 들어오는지 확인하기 위한 임시 코드입니다
     //TODO : merge 후 pagination page 컴포넌트 추가 필요
   );
 };
