@@ -32,7 +32,6 @@ const Pagination = ({
     if (currentPage !== Number(click.target.value)) {
       changeCurrentPage(Number(click.target.value));
       paramsSave(click.target.value);
-      console.log(Number(click.target.value));
     }
   };
 
