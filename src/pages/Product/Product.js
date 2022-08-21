@@ -7,6 +7,7 @@ const Product = () => {
   const params = useParams();
   const productId = params.id;
   const navigate = useNavigate;
+  const [count, setCount] = useState(1);
 
   const { name, thumbnail_image_url, price } = product;
 
@@ -27,7 +28,7 @@ const Product = () => {
           AUTHORIZATION: token,
         },
         body: JSON.stringify({
-          quantity: 1,
+          quantity: { count },
         }),
       })
         .then(res => res.json())
@@ -68,6 +69,14 @@ const Product = () => {
     }
   };
 
+  const countPlus = e => {
+    setCount(preCount => preCount + 1);
+  };
+  const countMin = e => {
+    setCount(preCount => preCount - 1);
+  };
+
+  // console.log(count);
   return (
     <div className="product">
       <div className="productMargin">
@@ -81,7 +90,29 @@ const Product = () => {
             <div className="priceTitle"> {name} </div>
             <div className="price">
               <div className="priceTag"> {price} 원 </div>
-              <div className="salePrice"> ({price} * 0.8) 원 </div>
+              <div className="salePrice"> ({price}*0.8) 원 </div>
+            </div>
+            <div className="productOption">
+              <div className="optionName">{name}</div>
+              <div className="countOption">
+                <input defaultValue={count} className="countInput" />
+                <div className="countBtn">
+                  <img
+                    className="countUpBtn"
+                    src="https://img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif"
+                    alt="수량증가"
+                    onClick={countPlus}
+                  />
+                  <img
+                    className="countDownBtn"
+                    src="	https://img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif
+                  "
+                    alt="수량증가"
+                    onClick={countMin}
+                  />
+                </div>
+              </div>
+              <div className="optionPrice">{price} 원</div>
             </div>
             <div className="totalPrice">
               <span className="totalPriceText"> 총 상품 금액 </span>
