@@ -4,11 +4,19 @@ import { useSearchParams } from 'react-router-dom';
 const ProductsList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryId = searchParams.get('cate');
-
+  const pageNumber = searchParams.get('page');
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.7.174:3000/products/list?cate=${categoryId}`, {
+    fetch(`http://10.58.0.117:3000/products/list?page=${pageNumber}`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(result => setProducts(result.data));
+  }, [pageNumber]);
+
+  useEffect(() => {
+    fetch(`http://10.58.0.117:3000/products/list?cate=${categoryId}&page=1`, {
       method: 'GET',
     })
       .then(response => response.json())
