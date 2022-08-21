@@ -55,29 +55,5 @@
         }
       }
     }
-
-    .cartGuide {
-      width: 1200px;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid black;
-      margin-top: 20px;
-
-      h2 {
-        font-weight: 700;
-      }
-
-      .guide {
-        display: flex;
-        flex-direction: column;
-        margin: 10px 0;
-
-        div {
-          display: flex;
-          flex-direction: column;
-          margin: 5px 0;
-        }
-      }
-    }
   }
 }
