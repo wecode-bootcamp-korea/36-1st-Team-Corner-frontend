@@ -20,7 +20,7 @@ const CategoryTab = () => {
     <div className="categoryTab">
       <div className="tabs">
         <ul className="tabList">
-          <Link className="link" to="/products/list">
+          <Link className="link" to="/products/list?page=1">
             <li>All</li>
           </Link>
           {category.map(({ id, name }, i) => {
