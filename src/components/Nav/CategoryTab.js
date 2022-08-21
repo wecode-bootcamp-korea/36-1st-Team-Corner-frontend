@@ -20,6 +20,9 @@ const CategoryTab = () => {
     <div className="categoryTab">
       <div className="tabs">
         <ul className="tabList">
+          <Link className="link" to="/products/list">
+            <li>All</li>
+          </Link>
           {category.map(({ id, name }, i) => {
             return (
               <Link className="link" key={id} to={`/products/list?cate=${id}`}>
