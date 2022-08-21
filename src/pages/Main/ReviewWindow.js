@@ -8,7 +8,7 @@ const ReviewWindow = () => {
 
   const toggleReview = () => {
     const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImV4cCI6MTY2MTA3ODQwMCwiaWF0IjoxNjYxMDQyNDAwfQ.xJ3DN0wszJB-tsCxHCTr2D-IF4EYNuLKYJDBk3kbqGo';
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
 
     fetch('http://10.58.2.51:3000/product/1/review/access', {
       method: 'GET',
