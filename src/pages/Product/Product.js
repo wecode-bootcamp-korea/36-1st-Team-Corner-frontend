@@ -72,7 +72,11 @@ const Product = () => {
     <div className="product">
       <div className="productMargin">
         <div className="productPage">
-          <img className="productImg" alt="productImg" src={thumbnail_image_url} />
+          <img
+            className="productImg"
+            alt="productImg"
+            src={thumbnail_image_url}
+          />
           <form className="productForm">
             <div className="priceTitle"> {name} </div>
             <div className="price">
