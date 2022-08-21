@@ -4,15 +4,17 @@ import './Product.scss';
 
 const Product = () => {
   const [product, setProduct] = useState([]);
-  const { name, img, price } = product;
   const params = useParams();
   const productId = params.id;
   const navigate = useNavigate;
 
+  // const [one] = product;
+  const { name, img, price } = product;
+
   useEffect(() => {
-    fetch(`http://10.58.7.174:3000/product/${productId}`)
+    fetch(`/data/productData.json`)
       .then(response => response.json())
-      .then(result => setProduct(result.data));
+      .then(result => setProduct(result.data[0]));
   }, [productId]);
 
   const toBuy = e => {
