@@ -54,7 +54,8 @@ const Product = () => {
           AUTHORIZATION: token,
         },
         body: JSON.stringify({
-          quantity: 1,
+          quantity: { count },
+          totalPrice: `${priceOfTotal}`,
         }),
       })
         .then(res => res.json())
@@ -63,7 +64,7 @@ const Product = () => {
             return navigate('/cart');
           } else {
             alert('로그인이 필요한 기능입니다');
-            navigate('/cart');
+            navigate('/login');
           }
         });
     }
@@ -73,10 +74,12 @@ const Product = () => {
     setCount(preCount => preCount + 1);
   };
   const countMin = e => {
-    setCount(preCount => preCount - 1);
+    setCount(preCount => (preCount <= 0 ? 0 : preCount - 1));
   };
 
-  // console.log(count);
+  const discountPrice = price * 0.8;
+  const priceOfInteger = Math.floor(price);
+  const priceOfTotal = priceOfInteger * count;
   return (
     <div className="product">
       <div className="productMargin">
@@ -89,13 +92,13 @@ const Product = () => {
           <form className="productForm">
             <div className="priceTitle"> {name} </div>
             <div className="price">
-              <div className="priceTag"> {price} 원 </div>
-              <div className="salePrice"> ({price}*0.8) 원 </div>
+              <div className="priceTag">{discountPrice} 원</div>
+              <div className="salePrice"> {priceOfInteger} 원 </div>
             </div>
             <div className="productOption">
               <div className="optionName">{name}</div>
               <div className="countOption">
-                <input defaultValue={count} className="countInput" />
+                <input value={count} className="countInput" />
                 <div className="countBtn">
                   <img
                     className="countUpBtn"
@@ -112,11 +115,11 @@ const Product = () => {
                   />
                 </div>
               </div>
-              <div className="optionPrice">{price} 원</div>
+              <div className="optionPrice">{priceOfInteger} 원</div>
             </div>
             <div className="totalPrice">
               <span className="totalPriceText"> 총 상품 금액 </span>
-              <span className="totalPriceNum"> {price} 원 </span>
+              <span className="totalPriceNum"> {priceOfTotal} 원 </span>
             </div>
 
             <div className="btn">
