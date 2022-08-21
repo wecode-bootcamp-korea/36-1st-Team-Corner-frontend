@@ -10,19 +10,21 @@ const ReviewWindow = () => {
     const token =
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImV4cCI6MTY2MTA3ODQwMCwiaWF0IjoxNjYxMDQyNDAwfQ.xJ3DN0wszJB-tsCxHCTr2D-IF4EYNuLKYJDBk3kbqGo';
 
-    fetch('http://10.58.2.51:3000/product/1/review', {
+    fetch('http://10.58.2.51:3000/product/1/review1', {
       method: 'POST',
       headers: {
-        AUTHORIZATION: token,
+        'Content-Type': `application/json`,
+        Authorization: token,
       },
-      body: JSON.stringify({ contents: 'hello hello hello' }),
+      body: JSON.stringify({ contents: '너무 덥다 리뷰 테스트!!!!!!' }),
     })
       .then(res => res.json())
       .then(res => {
-        if (res.ok === true) {
+        if (res.message === 'REVIEW_POSTED_SUCCESS') {
           setIsReviewExist(!isReviewExist);
+        } else {
+          alert('로그인이 필요한 기능입니다.');
         }
-        alert('로그인이 필요한 기능입니다.');
       });
   };
 
@@ -55,8 +57,8 @@ const ReviewWindow = () => {
         </div>
         <div className={isReviewExist ? 'reviews' : 'reviewsHide'}>
           <div className="review">
-            <p className="reviewTitle">현재 리뷰가 없음</p>
-            <p className="reviewText">어서 작상해 보라고!</p>
+            <p className="reviewTitle">리뷰 제목입니다</p>
+            <p className="reviewText">너무 좋아요</p>
           </div>
           <div className="userInfo">규선님</div>
         </div>
