@@ -5,11 +5,13 @@ import './Main.scss';
 
 const Main = () => {
   return (
-    <div className="main">
-      <p />
-      <Carousel />
-      <ProductsInMain />
-      <p />
+    <div className="mainWrapper">
+      <div className="main">
+        <p />
+        <Carousel />
+        <ProductsInMain />
+        <p />
+      </div>
     </div>
   );
 };

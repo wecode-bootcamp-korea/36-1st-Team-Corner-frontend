@@ -1,6 +1,11 @@
-.main {
+.mainWrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  width: 1200px;
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    width: 1200px;
+  }
 }

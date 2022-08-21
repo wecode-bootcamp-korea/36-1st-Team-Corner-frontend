@@ -5,11 +5,14 @@ import './pagination.scss';
 /** 
 const [products, setProducts] = useState([]);
 const [currentPage, setCurrentPage] = useState(1);
-const [searchParams, setSearchParams] = useSearchParams(`?page=1&pageSize=9`);
+const [searchParams, setSearchParams] = useSearchParams();
 const page = searchParams.get('page');
-console.log('main', searchParams);
+
 
 useEffect(() => {
+  const initialAddr = 
+  if(searchParam === null)
+ 
   fetch(`http://10.58.7.174:3000/?page=${page}`, {
     method: 'GET',
   })

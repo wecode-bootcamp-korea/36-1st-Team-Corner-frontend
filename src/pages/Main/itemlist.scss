@@ -2,4 +2,12 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+
+  div:nth-child(3n + 1) {
+    margin-right: 28px;
+  }
+
+  div:nth-child(3n + 2) {
+    margin-right: 28px;
+  }
 }

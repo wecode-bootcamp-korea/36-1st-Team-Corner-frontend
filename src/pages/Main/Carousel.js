@@ -38,7 +38,7 @@ const Carousel = () => {
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${carNum * 1080}px`;
+    slideRef.current.style.transform = `translateX(-${carNum * 100}%`;
   }, [carNum]);
 
   return (
