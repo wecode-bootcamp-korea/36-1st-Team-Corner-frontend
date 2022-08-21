@@ -1,7 +1,32 @@
-import React from 'react';
+import { check } from 'prettier';
+import React, { useState, useEffect } from 'react';
 import './Cart.scss';
 
 const Cart = () => {
+  const [cartProducts, setCartProducts] = useState([]);
+  console.log('상품리스트', cartProducts);
+
+  const [checkedProducts, setCheckedProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/data/cartMockData.json', {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => setCartProducts(data));
+  }, []);
+  // useEffect(() => {
+  //   fetch('API주소/user/cart', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: localStorage.getItem('access_token'),
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(result => setCartProducts(result.data));
+  // }, []);
+
   return (
     <div className="cart">
       <div className="cartContents">
@@ -21,84 +46,39 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td>
-                <div className="cartProductImg">
-                  <img alt="상품" src="#" />
-                </div>
-              </td>
-              <td>
-                <span>샤워기</span>
-              </td>
-              <td>
-                <span>1000원</span>
-              </td>
-              <td>
-                <span>2</span>
-              </td>
-              <td>
-                <span>2000원</span>
-              </td>
-              <td>
-                <button>주문하기</button>
-                <button>X</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td>
-                <div className="cartProductImg">
-                  <img alt="상품" src="#" />
-                </div>
-              </td>
-              <td>
-                <span>샤워기</span>
-              </td>
-              <td>
-                <span>1000원</span>
-              </td>
-              <td>
-                <span>2</span>
-              </td>
-              <td>
-                <span>2000원</span>
-              </td>
-              <td>
-                <button>주문하기</button>
-                <button>X</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td>
-                <div className="cartProductImg">
-                  <img alt="상품" src="#" />
-                </div>
-              </td>
-              <td>
-                <span>샤워기</span>
-              </td>
-              <td>
-                <span>1000원</span>
-              </td>
-              <td>
-                <span>2</span>
-              </td>
-              <td>
-                <span>2000원</span>
-              </td>
-              <td>
-                <button>주문하기</button>
-                <button>X</button>
-              </td>
-            </tr>
+            {cartProducts.map((product, i) => {
+              const { id, name, price } = product;
+              return (
+                <tr key={id}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>
+                    <div className="cartProductImg">
+                      <img alt="상품" src="#" />
+                    </div>
+                  </td>
+                  <td>
+                    <span>{name}</span>
+                  </td>
+                  <td>
+                    <span>{price}</span>
+                  </td>
+                  <td>
+                    <button>-</button>
+                    <span>1</span>
+                    <button>+</button>
+                  </td>
+                  <td>
+                    <span>{price}</span>
+                  </td>
+                  <td>
+                    <button>주문하기</button>
+                    <button>삭제하기</button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
           <tfoot>
             <tr>
@@ -106,8 +86,8 @@ const Cart = () => {
             </tr>
           </tfoot>
         </table>
-        <button>선택삭제</button>
-        <button>전체삭제</button>
+        <button>선택상품삭제</button>
+        <button>장바구나비우기</button>
         <table className="cartTotalPrice">
           <thead>
             <tr>
