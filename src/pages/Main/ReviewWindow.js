@@ -10,17 +10,15 @@ const ReviewWindow = () => {
     const token =
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImV4cCI6MTY2MTA3ODQwMCwiaWF0IjoxNjYxMDQyNDAwfQ.xJ3DN0wszJB-tsCxHCTr2D-IF4EYNuLKYJDBk3kbqGo';
 
-    fetch('http://10.58.2.51:3000/product/1/review1', {
-      method: 'POST',
+    fetch('http://10.58.2.51:3000/product/1/review/access', {
+      method: 'GET',
       headers: {
-        'Content-Type': `application/json`,
         Authorization: token,
       },
-      body: JSON.stringify({ contents: '너무 덥다 리뷰 테스트!!!!!!' }),
     })
       .then(res => res.json())
       .then(res => {
-        if (res.message === 'REVIEW_POSTED_SUCCESS') {
+        if (res.result === true) {
           setIsReviewExist(!isReviewExist);
         } else {
           alert('로그인이 필요한 기능입니다.');
