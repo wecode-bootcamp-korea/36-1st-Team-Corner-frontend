@@ -51,7 +51,7 @@ const User = ({ content, isSelectLogin }) => {
       },
       body: JSON.stringify({
         email: info.userId,
-        password: info.userPw.toString(),
+        password: info.userPw,
       }),
     })
       .then(response => response.json())
