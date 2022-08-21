@@ -8,8 +8,7 @@ const Product = () => {
   const productId = params.id;
   const navigate = useNavigate;
 
-  // const [one] = product;
-  const { name, img, price } = product;
+  const { name, thumbnail_image_url, price } = product;
 
   useEffect(() => {
     fetch(`/data/productData.json`)
@@ -68,13 +67,12 @@ const Product = () => {
         });
     }
   };
-  // console.log(product[0].name);
 
   return (
     <div className="product">
       <div className="productMargin">
         <div className="productPage">
-          <img className="productImg" alt="productImg" src={img} />
+          <img className="productImg" alt="productImg" src={thumbnail_image_url} />
           <form className="productForm">
             <div className="priceTitle"> {name} </div>
             <div className="price">
