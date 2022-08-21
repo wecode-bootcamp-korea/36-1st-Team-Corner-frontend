@@ -1,0 +1,22 @@
+.paginationGroup {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+
+  button {
+    border: none;
+    background-color: white;
+    font-size: 12px;
+  }
+  .pageNumber {
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      color: blue;
+    }
+  }
+  .clickedPageNumber {
+    color: blue;
+  }
+}
