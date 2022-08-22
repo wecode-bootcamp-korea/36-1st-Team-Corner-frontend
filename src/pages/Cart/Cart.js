@@ -6,7 +6,9 @@ import './Cart.scss';
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [checkedProducts, setCheckedProducts] = useState([]);
+
   console.log('선택상품', checkedProducts);
+
   const isAllProductsChecked =
     cartProducts.length !== 0 && cartProducts.length === checkedProducts.length;
 
@@ -36,6 +38,7 @@ const Cart = () => {
       .then(response => response.json())
       .then(data => setCartProducts(data));
   }, []);
+
   // useEffect(() => {
   //   fetch('API주소/user/cart', {
   //     method: 'GET',
@@ -114,11 +117,6 @@ const Cart = () => {
               );
             })}
           </tbody>
-          <tfoot>
-            <tr>
-              <td>합계 : 1000원</td>
-            </tr>
-          </tfoot>
         </table>
         <button>선택상품삭제</button>
         <button>장바구나비우기</button>
