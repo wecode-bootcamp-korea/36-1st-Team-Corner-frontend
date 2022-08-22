@@ -12,7 +12,7 @@
 
  ${창의적이고} ${기발한} ${백엔드 마스터}가 되고 싶은 `이지현`
 
- ${도전하고} ${꿈꾸는} ${풀스택} 개발자가 되고 싶은 `최규선`  
+ ${도전하고} ${꿈꾸는} ${풀스택} 개발자가 되고 싶은 `최규선`
 
  $[성장하고] ${나아가는} ${풀스택} 개발자가 되고 싶은 `조은지`
 
@@ -36,5 +36,41 @@
 
 <aside>
 👉 생활용품 구매 (회원가입, 로그인, 장바구니)
+
+</aside>
+
+### 페이지네이션을 적용할 페이지에 삽입해야 할 코드
+
+<aside>
+
+const [products, setProducts] = useState([]);
+const [currentPage, setCurrentPage] = useState(1);
+const [searchParams, setSearchParams] = useSearchParams();
+const page = searchParams.get('page');
+
+useEffect(() => {
+
+fetch(`http://127.0.0.1:3000/products/list?cate=1&page==1`, {
+method: 'GET',
+})
+.then(res => res.json())
+.then(data => setProducts(data.data));
+}, []);
+
+useEffect(() => {
+
+fetch(`http://10.58.7.174:3000/?page=${page}`, {
+method: 'GET',
+})
+.then(res => res.json())
+.then(data => setProducts(data.data));
+}, [page]);
+
+<Pagination
+  products={products}
+  currentPage={currentPage}
+  changeCurrentPage={setCurrentPage}
+  paramsSave={setSearchParams}
+/>;
 
 </aside>

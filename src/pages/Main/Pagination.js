@@ -2,46 +2,13 @@ import React from 'react';
 import ItemList from './ItemList';
 import './pagination.scss';
 
-/**  해당 코드를 상품을 받아오는 부분에 넣어야 하고, 리뷰페이지들은 비슷한 구조로 새로짜야함.
-const [products, setProducts] = useState([]);
-const [currentPage, setCurrentPage] = useState(1);
-const [searchParams, setSearchParams] = useSearchParams();
-const page = searchParams.get('page');
-
-useEffect(() => {
-  
-  fetch(`http://127.0.0.1:3000/products/list?cate=1&page==1`, {
-    method: 'GET',
-  })
-    .then(res => res.json())
-    .then(data => setProducts(data.data));
-}, []);
-
-useEffect(() => {
- 
-  fetch(`http://10.58.7.174:3000/?page=${page}`, {
-    method: 'GET',
-  })
-    .then(res => res.json())
-    .then(data => setProducts(data.data));
-}, [page]);
-
-<Pagination
-  products={products}
-  currentPage={currentPage}
-  changeCurrentPage={setCurrentPage}
-  paramsSave={setSearchParams}
-/>;
-
-*/
-
 const Pagination = ({
   products,
   changeCurrentPage,
   currentPage,
   paramsSave,
 }) => {
-  const pageNumber = Math.ceil(31 /**products.length */ / 9); //괄호 안에 31은 지우고 주석처리 된 부분을 활성화해야합니다.
+  const pageNumber = Math.ceil(products.length / 9);
   const pageNumbers = [];
   for (let i = 0; i < pageNumber; i++) {
     pageNumbers.push(i + 1);

@@ -1,11 +1,10 @@
-.mainWrapper {
+.main {
   display: flex;
   justify-content: center;
 
-  .main {
+  .mainWrapper {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     width: 1200px;
   }
 }

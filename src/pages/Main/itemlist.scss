@@ -4,7 +4,6 @@
   flex-wrap: wrap;
 
   div:nth-child(3n + 2) {
-    margin-right: 28px;
-    margin-left: 28px;
+    margin: 0 28px;
   }
 }

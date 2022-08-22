@@ -2,32 +2,32 @@ import React, { useState, useRef, useEffect } from 'react';
 import './carousel.scss';
 
 const Carousel = () => {
-  const [carNum, setCarNum] = useState(1);
-  const MAX_SLIDES = 5;
+  const [carouselPositionNumber, setCarouselPositionNumber] = useState(1);
+  const MAX_SLIDES = CAROUSEL_IMAGES.length;
   const slideRef = useRef();
 
   const moveNext = () => {
-    if (carNum >= MAX_SLIDES) {
-      setCarNum(0);
+    if (carouselPositionNumber >= MAX_SLIDES) {
+      setCarouselPositionNumber(0);
     } else {
-      setCarNum(carNum + 1);
+      setCarouselPositionNumber(carouselPositionNumber + 1);
     }
   };
 
   const movePrev = () => {
-    if (carNum === 0) {
-      setCarNum(MAX_SLIDES);
+    if (carouselPositionNumber === 0) {
+      setCarouselPositionNumber(MAX_SLIDES);
     } else {
-      setCarNum(carNum - 1);
+      setCarouselPositionNumber(carouselPositionNumber - 1);
     }
   };
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (carNum >= MAX_SLIDES) {
-        setCarNum(0);
+      if (carouselPositionNumber >= MAX_SLIDES) {
+        setCarouselPositionNumber(0);
       } else {
-        setCarNum(carNum + 1);
+        setCarouselPositionNumber(carouselPositionNumber + 1);
       }
     }, 3000);
 
@@ -38,8 +38,10 @@ const Carousel = () => {
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${carNum * 100}%`;
-  }, [carNum]);
+    slideRef.current.style.transform = `translateX(-${
+      carouselPositionNumber * 100
+    }%`;
+  }, [carouselPositionNumber]);
 
   return (
     <div className="carousel">
@@ -52,7 +54,7 @@ const Carousel = () => {
                 className="carouselImage"
                 src={image.url}
                 alt="carouselImage"
-                key={image.key}
+                key={image.id}
               />
             );
           })}
@@ -60,7 +62,7 @@ const Carousel = () => {
             className="carouselImage"
             src={CAROUSEL_IMAGES[0].url}
             alt="carouselImage"
-            key={CAROUSEL_IMAGES[0].key}
+            key={CAROUSEL_IMAGES[0].id}
           />
         </div>
         <div className="carouselBar">
@@ -68,7 +70,9 @@ const Carousel = () => {
             return (
               <p
                 key={image.key}
-                className={carNum === image.key - 1 ? 'barOn' : 'barOff'}
+                className={
+                  carouselPositionNumber === image.id - 1 ? 'barOn' : 'barOff'
+                }
               />
             );
           })}
@@ -82,9 +86,9 @@ const Carousel = () => {
 export default Carousel;
 
 const CAROUSEL_IMAGES = [
-  { key: 1, url: '/images/bathroom-g829dda9cf_1280.jpeg' },
-  { key: 2, url: '/images/soapmockimage.jpeg' },
-  { key: 3, url: '/images/bathtub-g096f4cd54_1280.jpeg' },
-  { key: 4, url: '/images/faucet-g452aa8a23_1280.jpeg' },
-  { key: 5, url: '/images/towels-g0f64b6995_1280.jpeg' },
+  { id: 1, url: '/images/bathroom-g829dda9cf_1280.jpeg' },
+  { id: 2, url: '/images/soapmockimage.jpeg' },
+  { id: 3, url: '/images/bathtub-g096f4cd54_1280.jpeg' },
+  { id: 4, url: '/images/faucet-g452aa8a23_1280.jpeg' },
+  { id: 5, url: '/images/towels-g0f64b6995_1280.jpeg' },
 ];

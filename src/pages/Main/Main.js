@@ -5,8 +5,8 @@ import './Main.scss';
 
 const Main = () => {
   return (
-    <div className="mainWrapper">
-      <div className="main">
+    <div className="main">
+      <div className="mainWrapper">
         <p />
         <Carousel />
         <ProductsInMain />
