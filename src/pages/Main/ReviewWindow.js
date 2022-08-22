@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './reviewWindow.scss';
+import './ReviewWindow.scss';
 
 const ReviewWindow = () => {
-  const [isReviewExist, setIsReviewExist] = useState(false);
+  const [isReviewExist, setIsReviewExist] = useState(true);
   const [reviewList, setReviewList] = useState([]);
-  const [reviewTitle, setReviewTitle] = useState();
   const [reviewText, setReviewText] = useState();
-
-  if (reviewList.length > 0) {
-    setIsReviewExist(true);
-  }
 
   const toggleReview = () => {
     const token =
@@ -31,37 +26,31 @@ const ReviewWindow = () => {
       });
   };
 
-  const putRevTitle = e => {
-    setReviewTitle(e.target.value);
-  };
-
   const putRevText = e => {
     setReviewText(e.target.value);
   };
 
   const submitReview = () => {
     //해당 함수의 headers/body 확인해야함
-    fetch('', {
+    fetch('http://10.58.2.51:3000//product/1/review', {
       method: 'POST',
       header: {
         'Contents-Type': 'application/json',
       },
       body: {
-        contents: JSON.stringify({ title: reviewTitle, text: reviewText }),
+        contents: JSON.stringify({ contents: reviewText }),
       },
     });
-    setReviewTitle('');
     setReviewText('');
   };
 
-  useEffect(
-    fetch('url', {
+  useEffect(() => {
+    fetch('http://10.58.2.51:3000//product/1/reviews', {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(setReviewList),
-    []
-  );
+      .then(setReviewList);
+  }, [reviewList]);
 
   return (
     <div className="reviewWindow">
@@ -96,12 +85,9 @@ const ReviewWindow = () => {
           })}
 
           <div className={isReviewExist ? 'reviewInput' : 'reviewInputHide'}>
-            <input
-              type="text"
-              placeholder="제목을 입력하세요."
-              onChange={putRevTitle}
-            />
-            <textarea placeholder="내용을 입력하세요." onChange={putRevText} />
+            <textarea placeholder="내용을 입력하세요." onChange={putRevText}>
+              {reviewText}
+            </textarea>
           </div>
           <div
             className={isReviewExist ? 'reviewButtons' : 'reviewButtonsHide'}
