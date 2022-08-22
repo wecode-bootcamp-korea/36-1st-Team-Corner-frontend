@@ -43,6 +43,23 @@ const Cart = () => {
     }
   };
 
+  const deleteAllProducts = () => {
+    if (window.confirm('장바구니를 비우시겠습니까?')) {
+      fetch('http://10.58.0.117:3000/cart/product', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      }).then(response => {
+        if (response.status === 204) {
+          setCartProducts([]);
+          setCheckedProducts('');
+        }
+      });
+    }
+  };
+
   return (
     <div className="cart">
       <div className="cartContents">
@@ -109,7 +126,9 @@ const Cart = () => {
           </tbody>
         </table>
         <button>선택상품삭제</button>
-        <button>장바구니비우기</button>
+        <button className="deleteBtn" onClick={deleteAllProducts}>
+          장바구니비우기
+        </button>
         <table className="cartTotalPrice">
           <thead>
             <tr>
