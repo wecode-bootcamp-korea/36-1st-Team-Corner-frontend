@@ -12,11 +12,11 @@ const ProductsList = () => {
       method: 'GET',
     })
       .then(response => response.json())
-      .then(result => setProducts(result.data));
+      .then(result => console.log(result.data));
   }, [pageNumber]);
 
   useEffect(() => {
-    fetch(`http://10.58.0.117:3001/products/list?cate=${categoryId}&page=1`, {
+    fetch(`http://10.58.0.117:3000/products/list?cate=${categoryId}&page=1`, {
       method: 'GET',
     })
       .then(response => response.json())
