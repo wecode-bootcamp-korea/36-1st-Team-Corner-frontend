@@ -17,7 +17,8 @@ const Product = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const { name, thumbnail_image_url, price, stock } = product;
+  const { name, thumbnail_image_url, price, detail } = product;
+
   useEffect(() => {
     fetch(`/data/productData.json`)
       .then(response => response.json())
@@ -29,12 +30,12 @@ const Product = () => {
   const toBuy = e => {
     e.preventDefault();
     const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyMDQyODUsImlhdCI6MTY2MTE2ODI4NX0.-9_PKB_y2MLusZijYYi95Ch1mFzU8of_tdSwVTx6V7k';
 
     const x = true;
 
     if (x === true) {
-      fetch(`http://10.58.2.193:3000/cart/product/${productId}`, {
+      fetch(`http://10.58.0.117:3000/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,11 +62,11 @@ const Product = () => {
   const goToCart = e => {
     e.preventDefault();
     const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyMDQyODUsImlhdCI6MTY2MTE2ODI4NX0.-9_PKB_y2MLusZijYYi95Ch1mFzU8of_tdSwVTx6V7k';
 
     const x = true;
     if (x === true) {
-      fetch(`http://10.58.2.193:3000/cart/product/${productId}`, {
+      fetch(`http://10.58.0.117:3000/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +152,7 @@ const Product = () => {
         </div>
         <Modal isOpen={isModalOpen} toggleModal={eventHandler} />
         <div>
-          <ProductDetail />
+          <ProductDetail ProductDetails={detail} />
         </div>
       </div>
     </div>
