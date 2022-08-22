@@ -1,0 +1,77 @@
+@import '../../styles/variables.scss';
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+
+  .navArea {
+    @include flexCenter;
+    padding: 50px 0;
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 1200px;
+
+      .logo {
+        color: $mainColor;
+        text-decoration: none;
+        font-size: 30px;
+        font-weight: 900;
+      }
+
+      .menuList {
+        display: flex;
+
+        li {
+          @include flexCenter;
+          height: 13px;
+          padding: 0 10px;
+          color: #4a4a4a;
+          border-right: 1px solid #b2b2b2;
+          font-size: 13px;
+          line-height: 13px;
+          font-weight: 700;
+
+          i {
+            margin-right: 5px;
+            font-size: 15px;
+          }
+
+          input {
+            width: 130px;
+            height: 14px;
+            padding: 2px 0;
+            border: 0;
+            border-bottom: solid 1px #4a4a4a;
+            outline: none;
+          }
+        }
+
+        li:last-child {
+          border: none;
+        }
+
+        .link {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        .countBadge {
+          width: 14px;
+          height: 15px;
+          margin-left: 2px;
+          color: white;
+          background-color: #4a4a4a;
+          border-radius: 50%;
+          font-size: 10px;
+          font-weight: 400;
+          text-align: center;
+          line-height: 14px;
+        }
+      }
+    }
+  }
+}
