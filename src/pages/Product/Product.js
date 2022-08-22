@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Product.scss';
+import Modal from './Modal';
 
 const Product = () => {
   const [product, setProduct] = useState([]);
+  const [count, setCount] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   const params = useParams();
   const productId = params.id;
-  const navigate = useNavigate;
-  const [count, setCount] = useState(1);
 
-  const { name, thumbnail_image_url, price } = product;
+  const eventHandler = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const { name, thumbnail_image_url, price, stock } = product;
 
   useEffect(() => {
     fetch(`/data/productData.json`)
@@ -17,23 +23,26 @@ const Product = () => {
       .then(result => setProduct(result.data[0]));
   }, [productId]);
 
+  const token = localStorage.getItem('token') || '';
+
   const toBuy = e => {
     e.preventDefault();
-    const token = localStorage.getItem('token') || '';
 
     if (token) {
       fetch(`http://10.58.7.174:3000/product/${productId}`, {
         method: 'POST',
         headers: {
-          AUTHORIZATION: token,
+          Authorization: token,
         },
         body: JSON.stringify({
           quantity: { count },
+          totalPrice: { priceOfTotal },
+          stock: { stock },
         }),
       })
         .then(res => res.json())
         .then(res => {
-          if (res.ok === true) {
+          if (res.ok) {
             return navigate('/cart');
           } else {
             alert('로그인이 필요한 기능입니다');
@@ -45,23 +54,22 @@ const Product = () => {
 
   const goToCart = e => {
     e.preventDefault();
-    const token = localStorage.getItem('token') || '';
-
     if (token) {
       fetch(`http://10.58.7.174:3000/product/${productId}`, {
         method: 'POST',
         headers: {
-          AUTHORIZATION: token,
+          Authorization: token,
         },
         body: JSON.stringify({
           quantity: { count },
-          totalPrice: `${priceOfTotal}`,
+          totalPrice: { priceOfTotal },
+          stock: { stock },
         }),
       })
         .then(res => res.json())
         .then(res => {
-          if (res.ok === true) {
-            return navigate('/cart');
+          if (res.ok) {
+            return setIsModalOpen(true);
           } else {
             alert('로그인이 필요한 기능입니다');
             navigate('/login');
@@ -73,13 +81,14 @@ const Product = () => {
   const countPlus = e => {
     setCount(preCount => preCount + 1);
   };
-  const countMin = e => {
+  const countMinus = e => {
     setCount(preCount => (preCount <= 0 ? 0 : preCount - 1));
   };
 
   const discountPrice = price * 0.8;
   const priceOfInteger = Math.floor(price);
   const priceOfTotal = priceOfInteger * count;
+
   return (
     <div className="product">
       <div className="productMargin">
@@ -111,7 +120,7 @@ const Product = () => {
                     src="	https://img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif
                   "
                     alt="수량증가"
-                    onClick={countMin}
+                    onClick={countMinus}
                   />
                 </div>
               </div>
@@ -121,7 +130,6 @@ const Product = () => {
               <span className="totalPriceText"> 총 상품 금액 </span>
               <span className="totalPriceNum"> {priceOfTotal} 원 </span>
             </div>
-
             <div className="btn">
               <button className="buyBtn" onClick={toBuy}>
                 바로 구매하기
@@ -132,6 +140,7 @@ const Product = () => {
             </div>
           </form>
         </div>
+        <Modal isOpen={isModalOpen} toggleModal={eventHandler} />
       </div>
     </div>
   );

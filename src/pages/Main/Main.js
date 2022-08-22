@@ -1,8 +1,7 @@
-import React from 'react';
+// import React from 'react';
+// import Modal from './Modal';
 import './Main.scss';
 
-const Main = () => {
-  return <h1>Hello World</h1>;
-};
+const Main = () => {};
 
 export default Main;
