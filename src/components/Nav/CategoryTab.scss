@@ -1,15 +1,15 @@
 .categoryTab {
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
   margin-bottom: 40px;
 
   .tabs {
-    width: 1200px;
-    height: 18px;
     display: flex;
     justify-content: flex-start;
+    width: 1200px;
+    height: 18px;
 
     .tabList {
       display: flex;
@@ -19,8 +19,8 @@
         color: inherit;
 
         li {
-          font-size: 18px;
           margin-right: 50px;
+          font-size: 18px;
         }
       }
     }
