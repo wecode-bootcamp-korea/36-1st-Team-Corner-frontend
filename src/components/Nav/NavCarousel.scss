@@ -1,0 +1,8 @@
+@import '../../styles/variables.scss';
+
+.navCarousel {
+  @include flexCenter;
+  height: 50px;
+  color: white;
+  background-color: #2087c9;
+}
