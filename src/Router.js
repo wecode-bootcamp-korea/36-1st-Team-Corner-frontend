@@ -4,6 +4,7 @@ import ReviewWindow from './pages/Main/ReviewWindow';
 import Nav from './components/Nav/Nav';
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
+import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
 
         <Route path="/review/" element={<ReviewWindow />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
