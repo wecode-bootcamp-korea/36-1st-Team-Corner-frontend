@@ -6,10 +6,10 @@ import './Login.scss';
 const Login = () => {
   const location = useLocation();
   const currentURL = location.pathname;
-  const isSelectLogin = currentURL === '/login' && true;
+  const isSelectLogin = currentURL === '/login';
 
   return (
-    <div className="Login">
+    <div className="login">
       <User
         content={isSelectLogin ? LOGIN_DATA : SIGNUP_DATA}
         isSelectLogin={isSelectLogin}
