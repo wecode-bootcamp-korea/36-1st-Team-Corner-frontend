@@ -7,6 +7,7 @@ import Search from './pages/Search/Search';
 const Router = () => {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Main />} />
