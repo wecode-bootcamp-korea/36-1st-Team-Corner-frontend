@@ -8,7 +8,7 @@ const ProductsList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.0.117:3000/products/list?page=${pageNumber}`, {
+    fetch(`http://10.58.0.117:3001/products/list?page=${pageNumber}`, {
       method: 'GET',
     })
       .then(response => response.json())
@@ -16,7 +16,7 @@ const ProductsList = () => {
   }, [pageNumber]);
 
   useEffect(() => {
-    fetch(`http://10.58.0.117:3000/products/list?cate=${categoryId}&page=1`, {
+    fetch(`http://10.58.0.117:3001/products/list?cate=${categoryId}&page=1`, {
       method: 'GET',
     })
       .then(response => response.json())
@@ -29,7 +29,7 @@ const ProductsList = () => {
         return <li key={product.id}>상품명:{product.name}</li>;
       })}
     </ul>
-    //TODO : merge 후 pagination page 컴포넌트 추가 필요
+    //TODO : merge 후 상품 리스트 컴포넌트 추가 필요
   );
 };
 
