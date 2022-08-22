@@ -3,8 +3,14 @@ import './ReviewWindow.scss';
 
 const ReviewWindow = () => {
   const [isReviewExist, setIsReviewExist] = useState(true);
+  const [isInputClosed, setIsInputClosed] = useState(false);
+  const [isReturned, setIsReturned] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const [reviewText, setReviewText] = useState();
+
+  const activateInput = () => {
+    setIsInputClosed(!isInputClosed);
+  };
 
   const toggleReview = () => {
     const token =
@@ -30,27 +36,26 @@ const ReviewWindow = () => {
     setReviewText(e.target.value);
   };
 
-  const submitReview = () => {
-    //해당 함수의 headers/body 확인해야함
-    fetch('http://10.58.2.51:3000//product/1/review', {
+  const submitReview = async () => {
+    await fetch('http://10.58.2.193:3000/product/1/review', {
       method: 'POST',
-      header: {
-        'Contents-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ',
       },
-      body: {
-        contents: JSON.stringify({ contents: reviewText }),
-      },
+      body: JSON.stringify({ contents: reviewText }),
     });
-    setReviewText('');
+    await setIsReturned(!isReturned);
   };
 
   useEffect(() => {
-    fetch('http://10.58.2.51:3000//product/1/reviews', {
+    fetch('http://10.58.2.193:3000/product/1/reviews', {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(setReviewList);
-  }, [reviewList]);
+      .then(res => setReviewList(res.data));
+  }, [isReturned]);
 
   return (
     <div className="reviewWindow">
@@ -70,8 +75,8 @@ const ReviewWindow = () => {
         <div className={isReviewExist ? 'reviews' : 'reviewsHide'}>
           {reviewList.map(review => {
             return (
-              <>
-                <div className="review" key={review.id}>
+              <React.Fragment key={review.id}>
+                <div className="review">
                   <p className="reviewText" onChange={putRevText}>
                     {review.contents}
                   </p>
@@ -80,7 +85,7 @@ const ReviewWindow = () => {
                   <div>{review.name}</div>
                   <div>{review.created_at}</div>
                 </div>
-              </>
+              </React.Fragment>
             );
           })}
 
@@ -88,14 +93,21 @@ const ReviewWindow = () => {
             <textarea placeholder="내용을 입력하세요." onChange={putRevText}>
               {reviewText}
             </textarea>
-          </div>
-          <div
-            className={isReviewExist ? 'reviewButtons' : 'reviewButtonsHide'}
-          >
-            <button className="cancelInput">작성취소</button>
-            <button className="registerInput" onClick={submitReview}>
-              등록하기
-            </button>
+            <div
+              className={isInputClosed ? 'inputActivateHide' : 'inputActivate'}
+            >
+              <button onClick={activateInput}>리뷰작성 모달</button>
+            </div>
+
+            <div
+              className={isReviewExist ? 'reviewButtons' : 'reviewButtonsHide'}
+            >
+              <button className="cancelInput">작성취소</button>
+
+              <button className="registerInput" onClick={submitReview}>
+                등록하기
+              </button>
+            </div>
           </div>
         </div>
       </div>

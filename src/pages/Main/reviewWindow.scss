@@ -26,3 +26,11 @@
     display: none;
   }
 }
+.inputActivate {
+  display: none;
+}
+.inputActivateHide {
+  z-index: 1000;
+  width: 100px;
+  height: 100px;
+}
