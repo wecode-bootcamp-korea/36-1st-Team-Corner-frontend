@@ -1,9 +1,33 @@
 import React, { useState, useEffect } from 'react';
+//import { Link } from 'react-router-dom';
 import CartFooter from './CartFooter';
 import './Cart.scss';
 
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState([]);
+  const [checkedProducts, setCheckedProducts] = useState([]);
+  console.log('선택상품', checkedProducts);
+  const isAllProductsChecked =
+    cartProducts.length !== 0 && cartProducts.length === checkedProducts.length;
+
+  const handleCheckAll = () => {
+    setCheckedProducts(cartProducts.map(product => product.id));
+    if (isAllProductsChecked) {
+      setCheckedProducts([]);
+    }
+  };
+
+  const handleCheck = e => {
+    const { id, checked } = e.target;
+    setCheckedProducts([...checkedProducts, Number(id)]);
+    if (!checked) {
+      setCheckedProducts(
+        checkedProducts.filter(product => product !== Number(id))
+      );
+    }
+  };
+
+  //const onChange = e => {};
 
   useEffect(() => {
     fetch('http://localhost:3001/data/cartMockData.json', {
@@ -32,7 +56,12 @@ const Cart = () => {
           <thead>
             <tr>
               <th>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  checked={isAllProductsChecked}
+                  onClick={handleCheckAll}
+                  //onChange={onChange}
+                />
               </th>
               <th>이미지</th>
               <th>상품명</th>
@@ -43,12 +72,20 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            {cartProducts.map((product, i) => {
+            {cartProducts.map(product => {
               const { id, name, price } = product;
+              checkedProducts.includes(product.id);
               return (
                 <tr key={id}>
                   <td>
-                    <input type="checkbox" />
+                    <input
+                      key={product.id}
+                      type="checkbox"
+                      checked={checkedProducts.includes(product.id)}
+                      id={product.id}
+                      onClick={handleCheck}
+                      //onChange={onChange}
+                    />
                   </td>
                   <td>
                     <div className="cartProductImg">
@@ -63,7 +100,7 @@ const Cart = () => {
                   </td>
                   <td>
                     <button>-</button>
-                    <span>1</span>
+                    <div>1</div>
                     <button>+</button>
                   </td>
                   <td>
