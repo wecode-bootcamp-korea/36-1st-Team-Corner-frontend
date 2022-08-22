@@ -1,10 +1,10 @@
 footer {
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #2087c9;
+  width: 100vw;
   color: #fff;
+  background: #2087c9;
 
   .footerInner {
     width: 1200px;
@@ -13,27 +13,27 @@ footer {
 
     .footerLogo {
       display: block;
+      margin-bottom: 40px;
       font-size: 27px;
       font-weight: 900;
-      margin-bottom: 40px;
     }
 
     .footerBox {
       display: flex;
 
       .boxBrand {
-        width: 300px;
         display: flex;
         flex-direction: column;
+        width: 300px;
 
         h2 {
-          font-size: 20px;
           margin-bottom: 10px;
+          font-size: 20px;
         }
 
         .sns {
-          font-size: 25px;
           padding: 30px 0;
+          font-size: 25px;
 
           i {
             margin-right: 15px;
@@ -42,8 +42,8 @@ footer {
 
         span {
           display: block;
-          font-size: 12px;
           margin-bottom: 5px;
+          font-size: 12px;
         }
       }
 
@@ -52,15 +52,15 @@ footer {
         font-size: 14px;
 
         h2 {
+          margin-bottom: 20px;
           font-size: 20px;
           font-weight: 900;
-          margin-bottom: 20px;
         }
 
         li {
           display: block;
-          font-size: 12px;
           margin-bottom: 5px;
+          font-size: 12px;
         }
       }
 
@@ -68,9 +68,9 @@ footer {
         width: 300px;
 
         h2 {
+          margin-bottom: 10px;
           font-size: 20px;
           font-weight: 700;
-          margin-bottom: 10px;
         }
       }
     }
