@@ -11,6 +11,7 @@ const Product = () => {
   const navigate = useNavigate();
   const params = useParams();
   const productId = params.id;
+  const counted = parseInt(count);
 
   const eventHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -24,25 +25,25 @@ const Product = () => {
   }, [productId]);
 
   // const token = localStorage.getItem('token') || '';
-  const token = {
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImV4cCI6MTY2MTAxNTEzMSwiaWF0IjoxNjYwOTc5MTMxfQ.OQkzQtAq4M7tMw6cdWAilKQ1uZK6ld6WFCz3Ng2ol0s',
-  };
 
   const toBuy = e => {
     e.preventDefault();
+    const token =
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
 
-    if (token) {
-      fetch(`http://10.58.7.174:3000/product/${productId}`, {
+    const x = true;
+
+    if (x === true) {
+      fetch(`http://10.58.2.193:3000/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
         },
         body: JSON.stringify({
-          quantity: { count },
-          totalPrice: { priceOfTotal },
-          stock: { stock },
+          quantity: counted,
+          // totalPrice: { priceOfTotal },
+          // stock: { stock },
         }),
       })
         .then(res => res.json())
@@ -59,28 +60,30 @@ const Product = () => {
 
   const goToCart = e => {
     e.preventDefault();
-    if (token) {
-      fetch(`http://10.58.7.174:3000/product/${productId}`, {
+    const token =
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
+
+    const x = true;
+    if (x === true) {
+      fetch(`http://10.58.2.193:3000/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
         },
         body: JSON.stringify({
-          quantity: { count },
-          totalPrice: { priceOfTotal },
-          stock: { stock },
+          quantity: counted,
+          // totalPrice: { priceOfTotal },
+          // stock: { stock },
         }),
-      })
-        .then(res => res.json())
-        .then(res => {
-          if (res.ok) {
-            return setIsModalOpen(true);
-          } else {
-            alert('로그인이 필요한 기능입니다');
-            navigate('/login');
-          }
-        });
+      }).then(res => {
+        if (res.ok) {
+          return setIsModalOpen(true);
+        } else {
+          alert('로그인이 필요한 기능입니다');
+          navigate('/login');
+        }
+      });
     }
   };
 

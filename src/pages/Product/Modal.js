@@ -13,7 +13,7 @@ const Modal = ({ isOpen, toggleModal }) => {
         <p className="textContent">장바구니에 상품이 정상적으로 담겼습니다.</p>
       </div>
       <div className="modalButtons">
-        <Link to="/">
+        <Link to="/cart">
           <button className="goToCartButton">장바구니 이동</button>
         </Link>
         <button className="backToShopButton" onClick={toggleModal}>
