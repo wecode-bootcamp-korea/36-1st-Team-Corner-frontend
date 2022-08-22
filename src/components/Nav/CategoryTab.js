@@ -9,7 +9,7 @@ const CategoryTab = () => {
     fetch('/data/categoryMock.json', {
       method: 'GET',
     })
-      //TODO: 차후 서버 주소로 변경 필요
+      //TODO: 차후 서버 주소로 변경 예정
       .then(response => response.json())
       .then(data => {
         setCategory(data);

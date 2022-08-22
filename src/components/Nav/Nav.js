@@ -39,7 +39,7 @@ const Nav = () => {
                 <Link className="link" to="/cart">
                   장바구니
                 </Link>
-                <div className="countBg">0</div>
+                <div className="countBadge">0</div>
               </li>
               <li>
                 <form className="search">
