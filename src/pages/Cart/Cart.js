@@ -44,7 +44,7 @@ const Cart = () => {
   //     method: 'GET',
   //     headers: {
   //       'Content-Type': 'application/json',
-  //       Authorization: localStorage.getItem('access_token'),
+  //       Authorization: localStorage.getItem('토큰이름'),
   //     },
   //   })
   //     .then(response => response.json())
