@@ -7,7 +7,21 @@ const Cart = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [checkedProducts, setCheckedProducts] = useState([]);
 
-  console.log('선택상품', checkedProducts);
+  //const token = localStorage.getItem('token');
+  const token =
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyMDQyODUsImlhdCI6MTY2MTE2ODI4NX0.-9_PKB_y2MLusZijYYi95Ch1mFzU8of_tdSwVTx6V7k';
+
+  useEffect(() => {
+    fetch('http://10.58.0.117:3000/cart/product', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+    })
+      .then(response => response.json())
+      .then(result => setCartProducts(result.data));
+  }, []);
 
   const isAllProductsChecked =
     cartProducts.length !== 0 && cartProducts.length === checkedProducts.length;
@@ -29,28 +43,6 @@ const Cart = () => {
     }
   };
 
-  //const onChange = e => {};
-
-  useEffect(() => {
-    fetch('http://localhost:3001/data/cartMockData.json', {
-      method: 'GET',
-    })
-      .then(response => response.json())
-      .then(data => setCartProducts(data));
-  }, []);
-
-  // useEffect(() => {
-  //   fetch('API주소/user/cart', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: localStorage.getItem('토큰이름'),
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(result => setCartProducts(result.data));
-  // }, []);
-
   return (
     <div className="cart">
       <div className="cartContents">
@@ -63,7 +55,6 @@ const Cart = () => {
                   type="checkbox"
                   checked={isAllProductsChecked}
                   onClick={handleCheckAll}
-                  //onChange={onChange}
                 />
               </th>
               <th>이미지</th>
@@ -87,7 +78,6 @@ const Cart = () => {
                       checked={checkedProducts.includes(product.id)}
                       id={product.id}
                       onClick={handleCheck}
-                      //onChange={onChange}
                     />
                   </td>
                   <td>
@@ -119,7 +109,7 @@ const Cart = () => {
           </tbody>
         </table>
         <button>선택상품삭제</button>
-        <button>장바구나비우기</button>
+        <button>장바구니비우기</button>
         <table className="cartTotalPrice">
           <thead>
             <tr>
