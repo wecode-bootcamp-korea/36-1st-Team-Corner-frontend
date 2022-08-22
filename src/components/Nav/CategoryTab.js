@@ -41,6 +41,6 @@ export default CategoryTab;
 const CATEGORY_LIST = [
   { id: 1, name: '샤워기' },
   { id: 2, name: '샤워호스' },
-  { id: 3, name: '비누' },
-  { id: 4, name: '배스밤' },
+  { id: 3, name: '배스밤' },
+  { id: 4, name: '비누' },
 ];
