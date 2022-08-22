@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Product.scss';
 import Modal from './Modal';
+import ProductDetail from './ProductDetail';
 
 const Product = () => {
   const [product, setProduct] = useState([]);
@@ -16,14 +17,17 @@ const Product = () => {
   };
 
   const { name, thumbnail_image_url, price, stock } = product;
-
   useEffect(() => {
     fetch(`/data/productData.json`)
       .then(response => response.json())
       .then(result => setProduct(result.data[0]));
   }, [productId]);
 
-  const token = localStorage.getItem('token') || '';
+  // const token = localStorage.getItem('token') || '';
+  const token = {
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImV4cCI6MTY2MTAxNTEzMSwiaWF0IjoxNjYwOTc5MTMxfQ.OQkzQtAq4M7tMw6cdWAilKQ1uZK6ld6WFCz3Ng2ol0s',
+  };
 
   const toBuy = e => {
     e.preventDefault();
@@ -32,6 +36,7 @@ const Product = () => {
       fetch(`http://10.58.7.174:3000/product/${productId}`, {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           Authorization: token,
         },
         body: JSON.stringify({
@@ -58,6 +63,7 @@ const Product = () => {
       fetch(`http://10.58.7.174:3000/product/${productId}`, {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           Authorization: token,
         },
         body: JSON.stringify({
@@ -141,6 +147,9 @@ const Product = () => {
           </form>
         </div>
         <Modal isOpen={isModalOpen} toggleModal={eventHandler} />
+        <div>
+          <ProductDetail />
+        </div>
       </div>
     </div>
   );
