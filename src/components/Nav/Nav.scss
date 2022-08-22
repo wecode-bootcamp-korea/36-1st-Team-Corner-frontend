@@ -1,12 +1,12 @@
+@import '../../styles/variables.scss';
+
 .nav {
   display: flex;
   flex-direction: column;
   width: 100vw;
 
   .navArea {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter;
     padding: 50px 0;
 
     .content {
@@ -16,7 +16,7 @@
       width: 1200px;
 
       .logo {
-        color: #2087c9;
+        color: $mainColor;
         text-decoration: none;
         font-size: 30px;
         font-weight: 900;
@@ -26,9 +26,7 @@
         display: flex;
 
         li {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include flexCenter;
           height: 13px;
           padding: 0 10px;
           color: #4a4a4a;

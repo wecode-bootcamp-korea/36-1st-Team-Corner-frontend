@@ -1,1 +1,7 @@
 $mainColor: #2087c9;
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
