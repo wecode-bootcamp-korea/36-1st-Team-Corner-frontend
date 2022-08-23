@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import NavCarousel from './NavCarousel';
 import CategoryTab from './CategoryTab';
+import CountingBadge from './CountingBadge';
 import './Nav.scss';
 
 const Nav = () => {
@@ -40,7 +41,7 @@ const Nav = () => {
                 <Link className="link" to="/user/cart">
                   장바구니
                 </Link>
-                <div className="countBadge">0</div>
+                <CountingBadge />
               </li>
               <li>
                 <form className="search">
