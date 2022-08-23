@@ -6,6 +6,10 @@
 
   button {
     border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .cartContents {
@@ -49,7 +53,7 @@
           border: 1px solid rgba(0, 0, 0, 0.2);
 
           .tdImgbox {
-            width: 150px;
+            width: 130px;
 
             .cartProductImg {
               padding: 15px 0;
@@ -64,20 +68,18 @@
           }
 
           .tdNamebox {
-            width: 350px;
+            width: 300px;
             font-size: 15px;
             font-weight: bold;
           }
 
           .tdPricebox {
-            width: 200px;
             font-size: 15px;
           }
 
           .tdCountbox {
             width: 150px;
             font-size: 15px;
-            vertical-align: middle;
 
             .btnbox {
               display: flex;
@@ -94,10 +96,23 @@
           }
 
           .tdBtnsbox {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            width: 250px;
+
+            .orderBtn {
+              width: 100px;
+              height: 30px;
+              color: white;
+              background-color: black;
+              margin: 0 5px;
+            }
+
+            .deleteThisBtn {
+              width: 100px;
+              height: 30px;
+              background-color: inherit;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+              margin: 0 5px;
+            }
           }
         }
       }
@@ -106,7 +121,7 @@
     .deleteBtnBox {
       width: 1200px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
 
       .deleteAllBtn {
         background-color: white;
@@ -154,7 +169,8 @@
     }
 
     .bottomBtnBox {
-      @include flexCenter;
+      display: flex;
+      justify-content: space-between;
 
       .bottomBtn {
         width: 200px;
@@ -163,6 +179,7 @@
         color: white;
         background-color: black;
         font-size: 16px;
+        text-decoration: none;
       }
     }
   }
