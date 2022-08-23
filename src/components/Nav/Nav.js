@@ -31,6 +31,7 @@ const Nav = () => {
           <div className="menu">
             <ul className="menuList">
               <li>
+                {}
                 <Link className="link" to="/login">
                   로그인
                 </Link>
