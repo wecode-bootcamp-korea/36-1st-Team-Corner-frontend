@@ -1,21 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './CategoryTab.scss';
 
 const CategoryTab = () => {
-  // const [category, setCategory] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('/data/categoryMock.json', {
-  //     method: 'GET',
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setCategory(data);
-  //     });
-  // }, []);
-  //TODO : 서버에서 카테고리 테이블 받아오는 방법 구상 중
-
   return (
     <div className="categoryTab">
       <div className="tabs">
