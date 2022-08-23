@@ -36,8 +36,8 @@ const ReviewWindow = () => {
     setReviewText(e.target.value);
   };
 
-  const submitReview = async () => {
-    await fetch('http://10.58.2.193:3000/product/1/review', {
+  const submitReview = () => {
+    fetch('http://10.58.2.193:3000/product/1/review', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -45,8 +45,7 @@ const ReviewWindow = () => {
           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ',
       },
       body: JSON.stringify({ contents: reviewText }),
-    });
-    await setIsReturned(!isReturned);
+    }).then(() => setIsReturned(!isReturned));
   };
 
   useEffect(() => {
