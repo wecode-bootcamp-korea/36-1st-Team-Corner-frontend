@@ -60,6 +60,49 @@ const Cart = () => {
     }
   };
 
+  // const deleteProduct = id = {
+  //   fetch(`http://10.58.0.117:3000/cart/product/${id}`, {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: token,
+  //     },
+  //   })
+  //   .then(response => response.json())
+  //   .then(result => setCartProducts(result.data))
+  // };
+
+  const deleteThisProduct = id => {
+    if (window.confirm('선택하신 상품을 삭제하시겠습니까?')) {
+      fetch(`http://10.58.0.117:3000/cart/product/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      }).then(response => {
+        if (response.status === 204) {
+          setCartProducts(cartProducts.filter(el => el.id !== id));
+        }
+      });
+    }
+  };
+
+  const deleteSelectedProduct = () => {
+    if (window.confirm('선택하신 상품을 삭제하시겠습니까?')) {
+      fetch(`http://10.58.0.117:3000/cart/product`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          id: checkedProducts,
+        }),
+      }).then(response => response.json());
+    }
+  };
+
   return (
     <div className="cart">
       <div className="cartContents">
@@ -84,22 +127,23 @@ const Cart = () => {
           </thead>
           <tbody>
             {cartProducts.map(product => {
-              const { id, name, price } = product;
-              checkedProducts.includes(product.id);
+              const { id, name, price, quantity, thumbnail_image_url } =
+                product;
+              checkedProducts.includes(id);
               return (
                 <tr key={id}>
                   <td>
                     <input
-                      key={product.id}
+                      key={id}
                       type="checkbox"
-                      checked={checkedProducts.includes(product.id)}
-                      id={product.id}
+                      checked={checkedProducts.includes(id)}
+                      id={id}
                       onClick={handleCheck}
                     />
                   </td>
                   <td>
                     <div className="cartProductImg">
-                      <img alt="상품" src="#" />
+                      <img alt="상품" src={thumbnail_image_url} />
                     </div>
                   </td>
                   <td>
@@ -110,7 +154,7 @@ const Cart = () => {
                   </td>
                   <td>
                     <button>-</button>
-                    <div>1</div>
+                    <div>{quantity}</div>
                     <button>+</button>
                   </td>
                   <td>
@@ -118,17 +162,28 @@ const Cart = () => {
                   </td>
                   <td>
                     <button>주문하기</button>
-                    <button>삭제하기</button>
+                    <button
+                      className="deleteBtn"
+                      onClick={() => {
+                        deleteThisProduct(id);
+                      }}
+                    >
+                      삭제하기
+                    </button>
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-        <button>선택상품삭제</button>
-        <button className="deleteBtn" onClick={deleteAllProducts}>
-          장바구니비우기
-        </button>
+        <div className="deleteBtnBox">
+          <button className="deleteSelectedBtn" onclick={deleteSelectedProduct}>
+            선택상품삭제
+          </button>
+          <button className="deleteAllBtn" onClick={deleteAllProducts}>
+            장바구니비우기
+          </button>
+        </div>
         <table className="cartTotalPrice">
           <thead>
             <tr>
@@ -143,9 +198,11 @@ const Cart = () => {
             </tr>
           </tbody>
         </table>
-        <button>전체상품주문</button>
-        <button>선택상품주문</button>
-        <button>쇼핑계속하기</button>
+        <div className="bottomBtnBox">
+          <button className="bottomBtn">전체상품주문</button>
+          <button className="bottomBtn">선택상품주문</button>
+          <button className="bottomBtn">쇼핑계속하기</button>
+        </div>
         <CartFooter />
       </div>
     </div>

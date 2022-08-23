@@ -1,6 +1,12 @@
+@import '../../styles/variables.scss';
+
 .cart {
   display: flex;
   justify-content: center;
+
+  button {
+    border: none;
+  }
 
   .cartContents {
     width: 1200px;
@@ -12,25 +18,21 @@
     .cartProductArea {
       width: 1200px;
       margin: 20px 0;
-      border: 1px solid black;
+      border: 1px solid rgba(0, 0, 0, 0.2);
       text-align: center;
 
       thead {
-        border: 1px solid black;
+        background-color: whitesmoke;
+        border: 1px solid rgba(0, 0, 0, 0.2);
 
         th {
-          border: 1px solid black;
-        }
-      }
-      tfoot {
-        td {
-          text-align: right;
+          border: 1px solid rgba(0, 0, 0, 0.2);
         }
       }
 
       tbody {
         tr {
-          border: 1px solid black;
+          border: 1px solid rgba(0, 0, 0, 0.2);
 
           td:last-child {
             display: flex;
@@ -38,21 +40,68 @@
             justify-content: center;
             align-items: center;
           }
+
+          .cartProductImg {
+            width: 20px;
+            height: 20px;
+          }
+
+          img {
+            object-fit: cover;
+          }
         }
+      }
+    }
+
+    .deleteBtnBox {
+      width: 1200px;
+      display: flex;
+      justify-content: space-between;
+
+      .deleteSelectedBtn {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      .deleteAllBtn {
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.2);
       }
     }
 
     .cartTotalPrice {
       width: 1200px;
-      border: 1px solid black;
+      border: 1px solid rgba(0, 0, 0, 0.2);
       margin: 20px 0;
 
-      tbody {
-        border: 1px solid black;
+      th,
+      td {
+        vertical-align: middle;
+      }
 
-        td {
-          text-align: center;
-        }
+      thead {
+        background-color: whitesmoke;
+        height: 30px;
+      }
+
+      tbody {
+        height: 50px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+    }
+
+    .bottomBtnBox {
+      @include flexCenter;
+
+      .bottomBtn {
+        width: 200px;
+        height: 40px;
+        margin-left: 3px;
+        color: white;
+        background-color: black;
+        font-size: 16px;
       }
     }
   }
