@@ -8,11 +8,11 @@ const ProductsList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.0.117:3001/products/list?page=${pageNumber}`, {
+    fetch(`http://10.58.0.117:3000/products/list?page=${pageNumber}`, {
       method: 'GET',
     })
       .then(response => response.json())
-      .then(result => console.log(result.data));
+      .then(result => setProducts(result.data));
   }, [pageNumber]);
 
   useEffect(() => {
