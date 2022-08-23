@@ -58,7 +58,7 @@ const FOOTER_CS_INFO_LIST = [
 
 const FOOTER_CONTACT_LIST = [
   { id: 1, text: '불량, 교환, 환불 메일쓰기' },
-  { id: 2, text: '입/입점문의 바로가기' },
+  { id: 2, text: '입점문의 바로가기' },
   { id: 3, text: '마케팅 제휴 문의' },
   { id: 4, text: '해외수출 문의하기' },
   { id: 5, text: '채용공고 바로가기' },
