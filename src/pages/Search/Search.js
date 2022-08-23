@@ -29,5 +29,6 @@ const Search = () => {
     </>
   );
 };
+//TODO : 위 리턴문은 데이터 응답을 확인하기 위한 임시 코드입니다. 메인 페이지 merge 후 상품 카드 컴포넌트를 활용할 예정입니다.
 
 export default Search;
