@@ -9,7 +9,11 @@ const Modal = ({ isOpen, toggleModal }) => {
         <h3 className="headerTitle"> 장바구니 담기</h3>
       </div>
       <div className="content">
-        <img className="cart" src="/images/cart-icon.svg" alt="카트이미지" />
+        <img
+          className="cart"
+          src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbLp0yG%2FbtrKpEj2zXH%2FcHn6dkLYdhoKKcA2rFBcV0%2Fimg.png"
+          alt="카트이미지"
+        />
         <p className="textContent">장바구니에 상품이 정상적으로 담겼습니다.</p>
       </div>
       <div className="modalButtons">

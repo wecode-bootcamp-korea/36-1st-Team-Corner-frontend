@@ -17,7 +17,7 @@ const Product = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const { name, thumbnail_image_url, price, detail } = product;
+  const { name, thumbnail_image_url, price, detail, stock } = product;
 
   useEffect(() => {
     fetch(`/data/productData.json`)
@@ -89,7 +89,11 @@ const Product = () => {
   };
 
   const countPlus = e => {
-    setCount(preCount => preCount + 1);
+    setCount(preCount =>
+      preCount <= (preCount > stock)
+        ? alert('재고 수량을 넘었습니다')
+        : preCount + 1
+    );
   };
   const countMinus = e => {
     setCount(preCount => (preCount <= 0 ? 0 : preCount - 1));
