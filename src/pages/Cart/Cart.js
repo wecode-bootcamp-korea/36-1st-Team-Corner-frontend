@@ -201,9 +201,9 @@ const Cart = () => {
           </div>
         )}
         <div className="bottomBtnBox">
-          <button className="bottomBtn">전체상품주문</button>
+          <button>전체상품주문</button>
           <Link to="/">
-            <button className="bottomBtn">쇼핑계속하기</button>
+            <button className="goShoppingBtn">쇼핑계속하기</button>
           </Link>
         </div>
         <CartFooter />

@@ -169,10 +169,10 @@
     }
 
     .bottomBtnBox {
-      display: flex;
-      justify-content: space-between;
+      @include flexCenter;
+      position: relative;
 
-      .bottomBtn {
+      button {
         width: 200px;
         height: 40px;
         margin-left: 3px;
@@ -180,6 +180,12 @@
         background-color: black;
         font-size: 16px;
         text-decoration: none;
+      }
+
+      .goShoppingBtn {
+        position: absolute;
+        right: 0;
+        bottom: 0.5px;
       }
     }
   }
