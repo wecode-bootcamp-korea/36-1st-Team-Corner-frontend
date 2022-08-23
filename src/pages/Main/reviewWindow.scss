@@ -1,34 +1,194 @@
 .reviewWindow {
-  .reviewHeader {
-  }
-  .reviewContent {
-    .noReview {
+  width: 1080px;
+  margin-left: 50%;
+  transform: translate(-50%);
+
+  .reviewWindowWrap {
+    text-align: center;
+
+    .reviewHeader {
+      padding: 27px 0 10px;
+
+      .reviewHeaderTitle {
+        padding-bottom: 30px;
+        font-size: 30px;
+      }
+
+      .reviewDescription {
+        font-size: 15px;
+        margin-bottom: 100px;
+      }
+
+      .subHeaderTitle {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .subHeader {
+        display: flex;
+        text-align: left;
+        margin-bottom: 10px;
+        border-bottom: solid 2px black;
+
+        .subHeaderTitleDescription {
+          margin-left: 10px;
+          font-size: 20px;
+        }
+
+        .reviewCount {
+          margin-left: 10px;
+          font-size: 20px;
+        }
+
+        .showMyReviewWrapper {
+          margin-left: 50px;
+        }
+      }
     }
-    .noReviewHide {
+
+    .reviewContent {
+      border-top: solid 1px #d8dde5;
+
+      .noReview {
+        margin: 100px 0;
+
+        .phraseNoReview {
+          color: #707680;
+          margin-bottom: 10px;
+        }
+
+        .phrasePleaseReview {
+          color: #707680;
+          font-weight: bold;
+          margin-bottom: 30px;
+        }
+
+        .openReviewInput {
+          width: 224px;
+          height: 48px;
+          padding: 12px;
+          border-radius: 4px;
+          background-color: black;
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 1.5;
+          text-align: center;
+          color: white;
+        }
+      }
+
+      .noReviewHide {
+        display: none;
+      }
+
+      .reviews {
+        .reviewContainer {
+          display: flex;
+          padding: 20px 20px 20px 0;
+
+          .review {
+            width: 70%;
+            text-align: left;
+          }
+          border-bottom: solid 1px #d8dde5;
+
+          .userInfo {
+            padding-left: 30px;
+            border-left: solid 1px #d8dde5;
+
+            .userInfoWrap {
+              text-align: left;
+
+              .userName {
+                display: flex;
+                align-items: center;
+                padding-bottom: 10px;
+
+                .reviewer {
+                  font-weight: bold;
+                }
+
+                .userLevelTag {
+                  background: #e28585;
+                  color: white;
+                  font-size: 0.1px;
+                  padding: 0 10px;
+                  border: solid 1px #e28585;
+                  border-radius: 10px;
+                  margin-right: 5px;
+                }
+              }
+
+              .dateReviewWritten {
+                color: #707680;
+                span {
+                  color: #555c67;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .reviewsHide {
+        display: none;
+      }
+    }
+
+    .reviewInput {
+      border: solid 1px #d8dde5;
+      padding: 10px;
+      margin: 20px 0;
+      border-radius: 10px;
+
+      .reviewTextArea {
+        width: 90%;
+        border-radius: 10px;
+        min-height: 100px;
+        resize: none;
+        margin: 10px 0;
+        padding: 10px;
+      }
+    }
+
+    .reviewInputHide {
       display: none;
     }
-    .reviews {
+
+    .reviewButtons {
+      button {
+        width: 224px;
+        height: 48px;
+
+        border-radius: 4px;
+        background-color: #4087c9;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 1.5;
+        text-align: center;
+        color: white;
+        border: none;
+      }
+      .cancelInput {
+        margin-right: 10px;
+        background-color: #707680;
+      }
+
+      .registerInput {
+      }
     }
-    .reviewsHide {
+
+    .reviewButtonsHide {
       display: none;
     }
-  }
-  .reviewInput {
-  }
-  .reviewInputHide {
-    display: none;
-  }
-  .reviewButtons {
-  }
-  .reviewButtons {
-  }
-  .reviewButtonsHide {
-    display: none;
   }
 }
+
 .inputActivate {
   display: none;
 }
+
 .inputActivateHide {
   z-index: 1000;
   width: 100px;
