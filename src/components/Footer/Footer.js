@@ -16,7 +16,7 @@ const Footer = () => {
               <i className="fab fa-facebook-f" />
               <i className="fab fa-youtube" />
             </div>
-            <span>이용 약과 | 댕댕정보 처리방침</span>
+            <span>이용 약관 | 개인정보 처리방침</span>
             <span>
               Copyright <i className="far fa-copyright" /> BODYLIKE.ALL rights
               reserved.
@@ -51,15 +51,15 @@ export default Footer;
 
 const FOOTER_CS_INFO_LIST = [
   { id: 1, text: '030-6928-2688' },
-  { id: 2, text: '휴일 02:00 AM - 05:00 AM (점심 시간 : 전에 끝남)' },
-  { id: 3, text: '배송 안내 : 셀프 픽업' },
-  { id: 4, text: '계좌 정보 : 현금 계산만' },
+  { id: 2, text: '평일 10:00 AM - 19:00 PM (점심 시간 : 12시 ~ 1시)' },
+  { id: 3, text: '배송 안내 : 코너 택배' },
+  { id: 4, text: '계좌 정보 : 코너은행 (주)코너코퍼레이션' },
 ];
 
 const FOOTER_CONTACT_LIST = [
-  { id: 1, text: '불량, 교환, 환불 원정대' },
-  { id: 2, text: '입/입점문의 바로세로' },
-  { id: 3, text: '마케팅 제휴 무늬' },
-  { id: 4, text: '해외수출 문익점' },
-  { id: 5, text: '채용공고 바른생활' },
+  { id: 1, text: '불량, 교환, 환불 메일쓰기' },
+  { id: 2, text: '입/입점문의 바로가기' },
+  { id: 3, text: '마케팅 제휴 문의' },
+  { id: 4, text: '해외수출 문의하기' },
+  { id: 5, text: '채용공고 바로가기' },
 ];
