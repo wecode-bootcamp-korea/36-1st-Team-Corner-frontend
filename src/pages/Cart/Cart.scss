@@ -28,10 +28,12 @@
 
         th {
           border: 1px solid rgba(0, 0, 0, 0.2);
+          font-size: 11px;
+          vertical-align: middle;
         }
       }
 
-      tbody {
+      .cartProductBox {
         tr {
           border: 1px solid rgba(0, 0, 0, 0.2);
 
@@ -43,8 +45,8 @@
           }
 
           .cartProductImg {
-            width: 20px;
-            height: 20px;
+            width: 80px;
+            height: 80px;
           }
 
           img {
@@ -85,14 +87,29 @@
 
       thead {
         background-color: whitesmoke;
-
         height: 30px;
+
+        th {
+          font-size: 11px;
+        }
       }
 
       tbody {
         height: 50px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         text-align: center;
+
+        td {
+          font-size: 23px;
+        }
+
+        td:last-child {
+          color: rgba(0, 0, 0, 0.5);
+
+          span {
+            color: $mainColor;
+          }
+        }
       }
     }
 

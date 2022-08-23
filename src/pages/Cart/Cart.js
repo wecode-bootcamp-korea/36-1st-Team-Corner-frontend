@@ -8,6 +8,7 @@ const Cart = () => {
   const [checkedProducts, setCheckedProducts] = useState([]);
 
   //const token = localStorage.getItem('token');
+
   const token =
     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyMDQyODUsImlhdCI6MTY2MTE2ODI4NX0.-9_PKB_y2MLusZijYYi95Ch1mFzU8of_tdSwVTx6V7k';
 
@@ -22,6 +23,14 @@ const Cart = () => {
       .then(response => response.json())
       .then(result => setCartProducts(result.data));
   }, []);
+
+  // useEffect(() => {
+  //   fetch('http://localhost:3001/data/cartMockData.json', {
+  //     method: 'GET',
+  //   })
+  //     .then(response => response.json())
+  //     .then(result => setCartProducts(result.data));
+  // }, []);
 
   const isAllProductsChecked =
     cartProducts.length !== 0 && cartProducts.length === checkedProducts.length;
@@ -125,7 +134,7 @@ const Cart = () => {
               <th>선택</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="cartProductBox">
             {cartProducts.map(product => {
               const { id, name, price, quantity, thumbnail_image_url } =
                 product;
@@ -163,7 +172,7 @@ const Cart = () => {
                   <td>
                     <button>주문하기</button>
                     <button
-                      className="deleteBtn"
+                      className="deleteThisBtn"
                       onClick={() => {
                         deleteThisProduct(id);
                       }}
@@ -193,8 +202,12 @@ const Cart = () => {
           </thead>
           <tbody>
             <tr>
-              <td>2000원</td>
-              <td>2000원</td>
+              <td>
+                <span>{2000}</span>원
+              </td>
+              <td>
+                <span>{2000}</span>원
+              </td>
             </tr>
           </tbody>
         </table>
