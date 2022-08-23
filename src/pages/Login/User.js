@@ -59,7 +59,7 @@ const User = ({ content, isSelectLogin }) => {
         if (result.accessToken) {
           localStorage.setItem('token', result.accessToken);
           alert('로그인 성공');
-          navigate('/main');
+          navigate('/');
         } else {
           alert('아이디 혹은 비밀번호를 확인 해 주세요');
         }
