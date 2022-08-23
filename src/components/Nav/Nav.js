@@ -26,7 +26,7 @@ const Nav = () => {
       <div className="navArea">
         <div className="content">
           <Link className="logo" to="/">
-            BODYLIKE
+            <img alt="로고" src="http://localhost:3001/images/logo.png" />
           </Link>
           <div className="menu">
             <ul className="menuList">

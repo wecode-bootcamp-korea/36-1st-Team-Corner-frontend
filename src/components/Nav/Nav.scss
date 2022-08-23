@@ -16,10 +16,9 @@
       width: 1200px;
 
       .logo {
-        color: $mainColor;
-        text-decoration: none;
-        font-size: 30px;
-        font-weight: 900;
+        img {
+          height: 30px;
+        }
       }
 
       .menuList {
