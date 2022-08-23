@@ -11,8 +11,9 @@
   .cartContents {
     width: 1200px;
 
-    h1 {
+    .cartTitle {
       font-size: 30px;
+      font-weight: 700;
     }
 
     .cartProductArea {
@@ -62,11 +63,13 @@
         color: white;
         background-color: rgba(0, 0, 0, 0.2);
         border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
       }
 
       .deleteAllBtn {
         background-color: white;
         border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
       }
     }
 
@@ -82,6 +85,7 @@
 
       thead {
         background-color: whitesmoke;
+
         height: 30px;
       }
 

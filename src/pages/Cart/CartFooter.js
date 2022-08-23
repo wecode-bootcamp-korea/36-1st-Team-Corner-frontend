@@ -4,9 +4,9 @@ import './CartFooter.scss';
 const CartFooter = () => {
   return (
     <div className="cartFooter">
-      <h2>이용안내</h2>
+      <h3>이용안내</h3>
       <div className="guide">
-        <h3>장바구니 이용안내</h3>
+        <h4>장바구니 이용안내</h4>
         <ul>
           {CART_FOOTER_CARTGUIDE.map(info => {
             return <li key={info.id}>{info.text}</li>;
@@ -14,7 +14,7 @@ const CartFooter = () => {
         </ul>
       </div>
       <div className="guide">
-        <h3>무이자할부 이용안내</h3>
+        <h4>무이자할부 이용안내</h4>
         <ul>
           {CART_FOOTER_PAYMENTGUIDE.map(info => {
             return <li key={info.id}>{info.text}</li>;
