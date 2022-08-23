@@ -11,7 +11,6 @@ const Product = () => {
   const navigate = useNavigate();
   const params = useParams();
   const productId = params.id;
-  const counted = parseInt(count);
 
   const eventHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -30,24 +29,21 @@ const Product = () => {
   const toBuy = e => {
     e.preventDefault();
     const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyMDQyODUsImlhdCI6MTY2MTE2ODI4NX0.-9_PKB_y2MLusZijYYi95Ch1mFzU8of_tdSwVTx6V7k';
-
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
     const x = true;
 
     if (x === true) {
-      fetch(`http://10.58.0.117:3000/cart/product/${productId}`, {
+      fetch(`http://10.58.2.193:3000/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
         },
         body: JSON.stringify({
-          quantity: counted,
-          // totalPrice: { priceOfTotal },
-          // stock: { stock },
+          quantity: count,
         }),
       })
-        .then(res => res.json())
+        // .then(res => res.json())
         .then(res => {
           if (res.ok) {
             return navigate('/cart');
@@ -62,24 +58,24 @@ const Product = () => {
   const goToCart = e => {
     e.preventDefault();
     const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyMDQyODUsImlhdCI6MTY2MTE2ODI4NX0.-9_PKB_y2MLusZijYYi95Ch1mFzU8of_tdSwVTx6V7k';
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
 
     const x = true;
     if (x === true) {
-      fetch(`http://10.58.0.117:3000/cart/product/${productId}`, {
+      fetch(`http://10.58.2.193:3000/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
         },
         body: JSON.stringify({
-          quantity: counted,
-          // totalPrice: { priceOfTotal },
-          // stock: { stock },
+          quantity: count,
         }),
       }).then(res => {
         if (res.ok) {
           return setIsModalOpen(true);
+        } else if (res.status === 401) {
+          alert('재고');
         } else {
           alert('로그인이 필요한 기능입니다');
           navigate('/login');
@@ -90,13 +86,12 @@ const Product = () => {
 
   const countPlus = e => {
     setCount(preCount =>
-      preCount <= (preCount > stock)
-        ? alert('재고 수량을 넘었습니다')
-        : preCount + 1
+      preCount < stock ? preCount + 1 : alert('재고 수량을 넘었습니다')
     );
   };
+
   const countMinus = e => {
-    setCount(preCount => (preCount <= 0 ? 0 : preCount - 1));
+    setCount(preCount => (preCount <= 0 ? 0 : (preCount = 1)));
   };
 
   const discountPrice = price * 0.8;
