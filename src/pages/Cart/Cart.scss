@@ -16,6 +16,16 @@
       font-weight: 700;
     }
 
+    .cartEmpty {
+      @include flexCenter;
+      width: 1200px;
+      height: 300px;
+
+      h3 {
+        color: rgba(0, 0, 0, 0.5);
+      }
+    }
+
     .cartProductArea {
       width: 1200px;
       margin: 20px 0;
@@ -27,8 +37,9 @@
         border: 1px solid rgba(0, 0, 0, 0.2);
 
         th {
+          height: 35px;
           border: 1px solid rgba(0, 0, 0, 0.2);
-          font-size: 11px;
+          font-size: 14px;
           vertical-align: middle;
         }
       }
@@ -37,20 +48,56 @@
         tr {
           border: 1px solid rgba(0, 0, 0, 0.2);
 
-          td:last-child {
+          .tdImgbox {
+            width: 150px;
+
+            .cartProductImg {
+              padding: 15px 0;
+
+              img {
+                height: 90px;
+                width: 90px;
+                vertical-align: middle;
+                object-fit: cover;
+              }
+            }
+          }
+
+          .tdNamebox {
+            width: 350px;
+            font-size: 15px;
+            font-weight: bold;
+          }
+
+          .tdPricebox {
+            width: 200px;
+            font-size: 15px;
+          }
+
+          .tdCountbox {
+            width: 150px;
+            font-size: 15px;
+            vertical-align: middle;
+
+            .btnbox {
+              display: flex;
+              flex-direction: column;
+
+              .countBtnbox {
+                margin-bottom: 15px;
+                span {
+                  margin: 0 30px;
+                  padding-top: 3px;
+                }
+              }
+            }
+          }
+
+          .tdBtnsbox {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-          }
-
-          .cartProductImg {
-            width: 80px;
-            height: 80px;
-          }
-
-          img {
-            object-fit: cover;
           }
         }
       }
@@ -60,13 +107,6 @@
       width: 1200px;
       display: flex;
       justify-content: space-between;
-
-      .deleteSelectedBtn {
-        color: white;
-        background-color: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 2px;
-      }
 
       .deleteAllBtn {
         background-color: white;
