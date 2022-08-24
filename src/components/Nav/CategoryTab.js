@@ -7,7 +7,7 @@ const CategoryTab = () => {
     <div className="categoryTab">
       <div className="tabs">
         <ul className="tabList">
-          <Link className="link" to="/product/list?page=1&pageSize=9">
+          <Link className="link" to="/product/list">
             <li className="all">All</li>
           </Link>
           {CATEGORY_LIST.map(({ id, name }, i) => {
