@@ -12,11 +12,6 @@ const Product = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const productId = params.id;
   const counted = parseInt(count);
-
-  // const eventHandler = () => {
-  //  setIsModalOpen;
-  // };
-
   const { name, thumbnail_image_url, price, detail, stock } = product;
 
   useEffect(() => {
@@ -26,10 +21,11 @@ const Product = () => {
   }, [productId]);
   const toBuy = e => {
     e.preventDefault();
-    // 테스트용 코드
     // const token =
-    //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
+    // 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
+    // 테스트용 코드
     const token = localStorage.getItem('token') || '';
+    // const x = true;
     if (token) {
       fetch(`http://10.58.0.117:3000/user/cart/product/${productId}`, {
         method: 'POST',
@@ -45,7 +41,7 @@ const Product = () => {
           return navigate('/cart');
         } else {
           alert('로그인이 필요한 기능입니다');
-          navigate('/login');
+          navigate('/auth/signUp');
         }
       });
     }
@@ -53,11 +49,12 @@ const Product = () => {
 
   const goToCart = e => {
     e.preventDefault();
-    // const token = localStorage.getItem('token') || '';
+    const token = localStorage.getItem('token') || '';
     // test용 코드
-    const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM4LCJleHAiOjE2NjEzNDc2NTQsImlhdCI6MTY2MTMxMTY1NH0.DKR-NR9Vy26BnyiJwN3cVj93Qj8oLLMhs1_HXzeqrd4';
-    if (token === true) {
+    // const token =
+    //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM4LCJleHAiOjE2NjEzNDc2NTQsImlhdCI6MTY2MTMxMTY1NH0.DKR-NR9Vy26BnyiJwN3cVj93Qj8oLLMhs1_HXzeqrd4';
+    // const x = true;
+    if (token) {
       fetch(`http://10.58.0.117:3000/cart/product/${productId}`, {
         method: 'POST',
         headers: {
@@ -74,12 +71,11 @@ const Product = () => {
           alert('재고 수량이 부족합니다.');
         } else {
           alert('로그인이 필요한 기능입니다.');
-          navigate('/login');
+          navigate('/auth/signUp');
         }
       });
     }
   };
-
   const countPlus = e => {
     setCount(preCount =>
       preCount < stock ? preCount + 1 : alert('재고 수량을 넘었습니다')
@@ -95,6 +91,10 @@ const Product = () => {
   const discountPrice = price * 0.8;
   const priceOfInteger = Math.floor(price);
   const priceOfTotal = discountPrice * count;
+
+  const toggleModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="product">
@@ -170,11 +170,7 @@ const Product = () => {
             </div>
           </form>
         </div>
-        {isModalOpen === true && <Modal />}
-        {/* isOpen={isModalOpen}
-        // toggleModal={eventHandler}
-        isModalOpen={isModalOpen}
-        /> */}
+        {isModalOpen === true && <Modal toggleModal={toggleModal} />}
         <div>
           <ProductDetail ProductDetails={detail} />
         </div>
