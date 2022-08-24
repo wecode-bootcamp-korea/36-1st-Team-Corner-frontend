@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav/Nav';
 import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
 import Search from './pages/Search/Search';
@@ -11,13 +12,10 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/login" element={<Login />} />
-
+        <Route path="/auth/signIn" element={<Login />} />
+        <Route path="/auth/signUp" element={<Login />} />
         <Route path="/" element={<Main />} />
-
-        <Route path="/signup" element={<Login />} />
-
-        <Route path="/products/search" element={<Search />} />
+        <Route path="/product/search" element={<Search />} />
       </Routes>
       <Footer />
     </BrowserRouter>
