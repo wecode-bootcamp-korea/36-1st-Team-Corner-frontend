@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 import './ReviewWindow.scss';
 const ReviewWindow = () => {
   const [isReturned, setIsReturned] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const [reviewText, setReviewText] = useState('');
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [reviewModifyInput, setReviewModifyInput] = useState(false);
 
   let isReviewExist = useRef(false);
   if (reviewList.length !== 0) isReviewExist.current = true;
@@ -170,6 +172,24 @@ const ReviewWindow = () => {
                 <div className="reviewContainer" key={review.id}>
                   <div className="review">
                     <p className="reviewText">{review.contents}</p>
+                    {reviewModifyInput && (
+                      <div className="modifyInputWindow">
+                        <textarea
+                          className="modifyInputArea"
+                          placeholder="수정 할 내용을 작성하세요"
+                        />
+                        <button onClick={() => modifyMyReview(review.id)}>
+                          수정하기
+                        </button>
+                        <button
+                          onClick={() =>
+                            setReviewModifyInput(!reviewModifyInput)
+                          }
+                        >
+                          수정취소
+                        </button>
+                      </div>
+                    )}
                   </div>
                   <div className="userInfo">
                     <div className="userInfoWrap">
@@ -183,18 +203,22 @@ const ReviewWindow = () => {
                         {review.created_at}
                       </div>
                     </div>
-                    <button
-                      className="modifiyThisReview"
-                      onClick={() => modifyMyReview(review.id)}
-                    >
-                      수정하기
-                    </button>
-                    <button
-                      className="deleteThisReview"
-                      onClick={() => deleteMyReview(review.id)}
-                    >
-                      삭제하기
-                    </button>
+                    {firstUpdate.current && (
+                      <div className="buttonWrapper">
+                        <button
+                          className="modifiyThisReview"
+                          onClick={() => modifyMyReview(review.id)}
+                        >
+                          수정하기
+                        </button>
+                        <button
+                          className="deleteThisReview"
+                          onClick={() => deleteMyReview(review.id)}
+                        >
+                          삭제하기
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               );
@@ -202,7 +226,9 @@ const ReviewWindow = () => {
 
             <div
               className={
-                isReviewExist.current ? 'reviewInput' : 'reviewInputHide'
+                isReviewExist.current && !firstUpdate
+                  ? 'reviewInput'
+                  : 'reviewInputHide'
               }
             >
               <div className="modifyInputWindow">
@@ -222,7 +248,6 @@ const ReviewWindow = () => {
                   }
                 >
                   <button className="cancelInput">작성취소</button>
-
                   <button className="registerInput" onClick={submitReview}>
                     등록하기
                   </button>
