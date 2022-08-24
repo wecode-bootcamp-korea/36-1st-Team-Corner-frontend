@@ -1,0 +1,74 @@
+.user {
+  width: 100vw;
+  height: 100%;
+
+  img {
+    width: 50%;
+    height: 100%;
+    float: right;
+    object-fit: cover;
+  }
+
+  .layoutLeftPage {
+    width: 50%;
+    height: 100%;
+    float: left;
+
+    p {
+      text-align: left;
+      display: flex;
+    }
+
+    //TODO
+    // 폰트 정해지면 넣을 에정
+
+    .formOuter {
+      height: 100%;
+      margin: 0 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    form {
+      margin-top: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    input,
+    button,
+    .title {
+      width: 375px;
+      height: 40px;
+    }
+
+    .title {
+      margin-bottom: 40px;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.33;
+      text-align: left;
+    }
+
+    input {
+      margin-bottom: 20px;
+      border: none;
+      border-bottom: solid 1px #cccccc;
+    }
+
+    button {
+      margin-top: 10px;
+      margin-bottom: 12px;
+      background-color: #2087c9;
+      color: #ffffff;
+      border: none;
+      border-radius: 5.5px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}

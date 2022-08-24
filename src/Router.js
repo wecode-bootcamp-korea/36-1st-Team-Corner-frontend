@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Nav from './components/Nav/Nav';
-import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
-import ProductsList from './pages/ProductsList/ProductsList';
+import ProductList from './pages/ProductList/ProductsList';
+import Main from './pages/Main/Main';
+import Search from './pages/Search/Search';
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
@@ -11,9 +11,11 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/auth/signIn" element={<Login />} />
+        <Route path="/auth/signUp" element={<Login />} />
         <Route path="/" element={<Main />} />
-        <Route path="/products/list" element={<ProductsList />} />
+        <Route path="/product/list" element={<ProductList />} />
+        <Route path="/product/search" element={<Search />} />
       </Routes>
       <Footer />
     </BrowserRouter>
