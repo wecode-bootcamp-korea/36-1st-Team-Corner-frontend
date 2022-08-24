@@ -25,108 +25,15 @@
       width: 1200px;
       height: 300px;
 
-      h3 {
+      .emptyAlert {
         color: rgba(0, 0, 0, 0.5);
       }
     }
 
-    .cartProductArea {
-      width: 1200px;
-      margin: 20px 0;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      text-align: center;
-
-      thead {
-        background-color: whitesmoke;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-
-        th {
-          height: 35px;
-          border: 1px solid rgba(0, 0, 0, 0.2);
-          font-size: 14px;
-          vertical-align: middle;
-        }
-      }
-
-      .cartProductBox {
-        tr {
-          border: 1px solid rgba(0, 0, 0, 0.2);
-
-          .tdImgbox {
-            width: 130px;
-
-            .cartProductImg {
-              padding: 15px 0;
-
-              img {
-                height: 90px;
-                width: 90px;
-                vertical-align: middle;
-                object-fit: cover;
-              }
-            }
-          }
-
-          .tdNamebox {
-            width: 300px;
-            font-size: 15px;
-            font-weight: bold;
-          }
-
-          .tdPricebox {
-            width: 130px;
-            font-size: 15px;
-          }
-
-          .tdCountbox {
-            width: 150px;
-            font-size: 15px;
-
-            .btnbox {
-              display: flex;
-              flex-direction: column;
-
-              .countBtnbox {
-                margin-bottom: 15px;
-                span {
-                  margin: 0 30px;
-                  padding-top: 3px;
-                }
-              }
-            }
-          }
-
-          .tdTotalPricebox {
-            width: 130px;
-          }
-
-          .tdBtnsbox {
-            width: 250px;
-
-            .orderBtn {
-              width: 100px;
-              height: 30px;
-              color: white;
-              background-color: black;
-              margin: 0 5px;
-            }
-
-            .deleteThisBtn {
-              width: 100px;
-              height: 30px;
-              background-color: inherit;
-              border: 1px solid rgba(0, 0, 0, 0.2);
-              margin: 0 5px;
-            }
-          }
-        }
-      }
-    }
-
     .deleteBtnBox {
-      width: 1200px;
       display: flex;
       justify-content: flex-end;
+      width: 1200px;
 
       .deleteAllBtn {
         background-color: white;
@@ -135,7 +42,7 @@
       }
     }
 
-    .cartTotalPrice {
+    .cartPrice {
       width: 1200px;
       border: 1px solid rgba(0, 0, 0, 0.2);
       margin: 20px 0;
@@ -154,7 +61,7 @@
         }
       }
 
-      tbody {
+      .cartTotalPrice {
         height: 50px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         text-align: center;
@@ -163,7 +70,7 @@
           font-size: 23px;
         }
 
-        td:last-child {
+        .payPrice {
           color: rgba(0, 0, 0, 0.5);
 
           span {

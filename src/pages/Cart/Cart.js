@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CartProductTable from './CartProductTable';
 import CartFooter from './CartFooter';
 import './Cart.scss';
 
@@ -77,7 +78,7 @@ const Cart = () => {
     if (cartProductsCopy[selectedIndex].quantity !== 1) {
       cartProductsCopy[selectedIndex].quantity -= 1;
     }
-    if (cartProductsCopy[selectedIndex].quantity == 1) {
+    if (cartProductsCopy[selectedIndex].quantity === 1) {
       alert('최소 주문 수량은 1개입니다.');
     }
 
@@ -136,102 +137,34 @@ const Cart = () => {
         <h1 className="cartTitle">장바구니</h1>
         {cartProducts.length === 0 ? (
           <div className="cartEmpty">
-            <h3>장바구니가 비어 있습니다.</h3>
+            <h3 className="emptyAlert">장바구니가 비어 있습니다.</h3>
           </div>
         ) : (
           <div className="cartFull">
-            <table className="cartProductArea">
-              <thead>
-                <tr>
-                  <th>이미지</th>
-                  <th>상품명</th>
-                  <th>판매가</th>
-                  <th>수량</th>
-                  <th>합계</th>
-                  <th>선택</th>
-                </tr>
-              </thead>
-              <tbody className="cartProductBox">
-                {cartProducts.map(product => {
-                  const { id, name, price, quantity, thumbnail_image_url } =
-                    product;
-                  const priceDiscount = Math.floor(price * discount);
-                  return (
-                    <tr key={id}>
-                      <td className="tdImgbox">
-                        <div className="cartProductImg">
-                          <img alt="상품" src={thumbnail_image_url} />
-                        </div>
-                      </td>
-                      <td className="tdNamebox">
-                        <span>{name}</span>
-                      </td>
-                      <td className="tdPricebox">
-                        <span>
-                          {priceDiscount
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                          원
-                        </span>
-                      </td>
-                      <td className="tdCountbox">
-                        <div className="btnbox">
-                          <div className="countBtnbox">
-                            <button onClick={() => handleMinusOne(id)}>
-                              -
-                            </button>
-                            <span>{quantity}</span>
-                            <button onClick={() => handlePlusOne(id)}>+</button>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="tdTotalPricebox">
-                        <span>
-                          {(quantity * priceDiscount)
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                          원
-                        </span>
-                      </td>
-                      <td className="tdBtnsbox">
-                        <button
-                          className="orderBtn"
-                          onClick={() => {
-                            handleOrderThis(id);
-                          }}
-                        >
-                          주문하기
-                        </button>
-                        <button
-                          className="deleteThisBtn"
-                          onClick={() => {
-                            deleteThisProduct(id);
-                          }}
-                        >
-                          삭제
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <CartProductTable
+              cartProducts={cartProducts}
+              handleMinusOne={handleMinusOne}
+              handlePlusOne={handlePlusOne}
+              handleOrderThis={handleOrderThis}
+              deleteThisProduct={deleteThisProduct}
+            />
 
             <div className="deleteBtnBox">
               <button className="deleteAllBtn" onClick={deleteAllProducts}>
                 장바구니비우기
               </button>
             </div>
-            <table className="cartTotalPrice">
+
+            <table className="cartPrice">
               <thead>
                 <tr>
                   <th>총 상품금액</th>
                   <th>결제예정금액</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="cartTotalPrice">
                 <tr>
-                  <td>
+                  <td className="totalPrice">
                     <span>
                       {totalPrice
                         .toString()
@@ -239,7 +172,7 @@ const Cart = () => {
                     </span>
                     원
                   </td>
-                  <td>
+                  <td className="payPrice">
                     <span>
                       {totalPrice
                         .toString()
@@ -253,7 +186,9 @@ const Cart = () => {
           </div>
         )}
         <div className="bottomBtnBox">
-          <button onClick={handleOrderAll}>전체상품주문</button>
+          <button className="orderAllBtn" onClick={handleOrderAll}>
+            전체상품주문
+          </button>
           <Link to="/">
             <button className="goShoppingBtn">쇼핑계속하기</button>
           </Link>
