@@ -97,7 +97,7 @@ const Cart = () => {
   };
 
   const handlePlusOne = id => {
-    const selectedIndex = cartProducts.findIndex(el => el.id === id);
+    const selectedIndex = cartProducts.findIndex(product => product.id === id);
     cartProductsCopy[selectedIndex].quantity += 1;
 
     fetch(`http://10.58.0.117:3000/cart/user/product/${id}`, {
@@ -165,20 +165,10 @@ const Cart = () => {
               <tbody className="cartTotalPrice">
                 <tr>
                   <td className="totalPrice">
-                    <span>
-                      {totalPrice
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                    </span>
-                    원
+                    <span>{totalPrice.toLocaleString()}</span>원
                   </td>
                   <td className="payPrice">
-                    <span>
-                      {totalPrice
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                    </span>
-                    원
+                    <span>{totalPrice.toLocaleString()}</span>원
                   </td>
                 </tr>
               </tbody>

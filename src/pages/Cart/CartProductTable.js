@@ -37,12 +37,7 @@ const cartProductTable = ({
                 <span>{name}</span>
               </td>
               <td className="tdPricebox">
-                <span>
-                  {priceDiscount
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  원
-                </span>
+                <span>{priceDiscount.toLocaleString()}원</span>
               </td>
               <td className="tdCountbox">
                 <div className="countBtnbox">
@@ -54,12 +49,7 @@ const cartProductTable = ({
                 </div>
               </td>
               <td className="tdTotalPricebox">
-                <span>
-                  {(quantity * priceDiscount)
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  원
-                </span>
+                <span>{(quantity * priceDiscount).toLocaleString()}원</span>
               </td>
               <td className="tdBtnsbox">
                 <button
