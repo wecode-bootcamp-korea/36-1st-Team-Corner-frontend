@@ -17,13 +17,13 @@ const Nav = () => {
 
   const onSubmitSearch = e => {
     if (e.key === 'Enter') {
-      navigate(`/products/search?q=${userInput}`);
+      navigate(`/product/search?q=${userInput}`);
     }
   };
 
   if (
-    window.location.pathname === '/login' ||
-    window.location.pathname === '/signup'
+    window.location.pathname === '/auth/signIn' ||
+    window.location.pathname === '/auth/signUp'
   )
     return null;
   return (
@@ -37,12 +37,12 @@ const Nav = () => {
           <div className="menu">
             <ul className="menuList">
               <li>
-                {}
-                <Link className="link" to="/login">
+                <Link className="link" to="/auth/signIn">
                   로그인
                 </Link>
               </li>
               <li>
+                q
                 <Link className="link" to="/cart/user">
                   장바구니
                 </Link>
