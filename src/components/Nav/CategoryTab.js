@@ -12,7 +12,11 @@ const CategoryTab = () => {
           </Link>
           {CATEGORY_LIST.map(({ id, name }, i) => {
             return (
-              <Link className="link" key={id} to={`/product/list?cate=${id}`}>
+              <Link
+                className="link"
+                key={id}
+                to={`/product/list?page=1&pageSize=9&cate=${id}`}
+              >
                 <li>{name}</li>
               </Link>
             );
