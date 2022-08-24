@@ -24,7 +24,7 @@ const Product = () => {
       .then(result => setProduct(result.data[0]));
   }, [productId]);
 
-  // const token = localStorage.getItem('token') || '';
+  // const token = localStorage.getItem('token') || ''; login창 merge되면 쓸 코드
 
   const toBuy = e => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const Product = () => {
     const x = true;
 
     if (x === true) {
-      fetch(`http://10.58.2.193:3000/cart/product/${productId}`, {
+      fetch(`http://10.58.0.117:3000/user/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,27 +42,25 @@ const Product = () => {
         body: JSON.stringify({
           quantity: count,
         }),
-      })
-        // .then(res => res.json())
-        .then(res => {
-          if (res.ok) {
-            return navigate('/cart');
-          } else {
-            alert('로그인이 필요한 기능입니다');
-            navigate('/login');
-          }
-        });
+      }).then(res => {
+        if (res.ok) {
+          return navigate('/cart');
+        } else {
+          alert('로그인이 필요한 기능입니다');
+          navigate('/login');
+        }
+      });
     }
   };
 
   const goToCart = e => {
     e.preventDefault();
     const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyOTE1MDQsImlhdCI6MTY2MTI1NTUwNH0.hMs9yhxOnyZBohpzIVqcG1T6Aej4ZU9MGCEieTUcYiQ';
 
     const x = true;
     if (x === true) {
-      fetch(`http://10.58.2.193:3000/cart/product/${productId}`, {
+      fetch(`http://10.58.0.117:3000/user/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +135,10 @@ const Product = () => {
             </div>
             <div className="totalPrice">
               <span className="totalPriceText"> 총 상품 금액 </span>
-              <span className="totalPriceNum"> {priceOfTotal} 원 </span>
+              <span className="totalPriceNum">
+                {' '}
+                {priceOfTotal} 원 ({count}개)
+              </span>
             </div>
             <div className="btn">
               <button className="buyBtn" onClick={toBuy}>

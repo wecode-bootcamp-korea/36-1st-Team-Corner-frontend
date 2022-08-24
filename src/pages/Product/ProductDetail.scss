@@ -12,29 +12,33 @@
 
   .productDetailTap {
     width: 1200px;
-    border-bottom: 2px solid #000;
     margin: 100px 0;
     display: flex;
     align-items: center;
+    border-bottom: 2px solid #000;
   }
 
   .detailTap {
-    background: #000;
-    color: white;
     width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #000;
+    color: white;
   }
 
   .reviewTap {
     width: 50%;
     height: 100%;
-    color: #9da0a5;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #9da0a5;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .productDetailImg {

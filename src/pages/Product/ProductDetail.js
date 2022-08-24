@@ -19,10 +19,6 @@ const ProductDetail = ({ ProductDetails }) => {
       </ul>
       <div className="productDetailImgPage">
         <div className="productDetailImg">
-          <img
-            alt="productDetailImg"
-            src="https://web-bodyluv.imgblank.kr/product/event/2022_chuseok/chuseok_1.png"
-          />
           <img alt="productDetailImg" src={ProductDetails} />
         </div>
       </div>

@@ -11,8 +11,8 @@
 
   .productPage {
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
+    justify-content: space-between;
     margin-top: 40px;
 
     img {
@@ -43,14 +43,14 @@
   }
 
   .priceTitle {
+    height: 57px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 57px;
-    font-size: 28px;
-    line-height: 1.5;
-    color: #000;
     padding-bottom: 15px;
+    font-size: 40px;
+    color: #000;
+    line-height: 1.5;
     font-weight: normal;
   }
 
@@ -59,7 +59,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-weight: bold;
+    font-weight: 350;
 
     .countOption {
       display: flex;
@@ -80,6 +80,9 @@
         width: 18px;
         height: 16px;
         margin: 0;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -89,25 +92,26 @@
     height: 57px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    border-top: 1px solid #9a9ba0;
-    color: #353535;
     vertical-align: middle;
-    background: #fff;
+    justify-content: space-between;
     margin-top: 17px;
     padding: 20px 0 35px 0;
+    border-top: 1px solid #9a9ba0;
+    color: #353535;
+    background: #fff;
     font-size: 20px;
 
-    .totalPriceText {
+    .totalPriceText,
+    .totalPriceNum {
       font-weight: bold;
     }
   }
 
   .salePrice {
+    margin-left: 15px;
     color: #b0b0b0;
     text-decoration: line-through;
     font-size: 22px;
-    margin-left: 15px;
   }
 
   .btn {
@@ -117,29 +121,37 @@
     padding-top: 20px;
 
     .buyBtn {
-      margin: 0 10px;
+      width: 49%;
       height: 66px;
+      text-align: center;
       line-height: 66px;
+      margin: 0 10px;
       font-size: 25px;
       font-weight: bold;
       background: #000;
       color: #fff;
-      text-align: center;
-      width: 49%;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .cart {
-      margin: 0 10px;
       width: 49%;
       height: 66px;
+      margin: 0 10px;
+      padding: 0;
+      text-align: center;
       line-height: 66px;
+      background: #fff;
+      border: 1px solid #707070;
+      color: #000;
       font-size: 25px;
       font-weight: bold;
-      background: #fff;
-      color: #000;
-      text-align: center;
-      padding: 0;
-      border: 1px solid #707070;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
