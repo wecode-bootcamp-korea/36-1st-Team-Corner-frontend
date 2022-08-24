@@ -1,0 +1,38 @@
+.card {
+  margin-bottom: 70px;
+  padding: 0 !important;
+
+  .thumbNailImage {
+    width: 381px;
+    margin-bottom: 10px;
+    aspect-ratio: 1;
+    object-fit: fill;
+  }
+
+  .productName {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .currentPrice {
+    margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: 900;
+  }
+
+  .price {
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-decoration: line-through;
+  }
+
+  .tagSpace {
+    margin-bottom: 10px;
+  }
+
+  .reviewCount {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
