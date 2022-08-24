@@ -21,13 +21,18 @@ const Nav = () => {
     }
   };
 
+  if (
+    window.location.pathname === '/login' ||
+    window.location.pathname === '/signup'
+  )
+    return null;
   return (
     <nav className="nav">
       <NavCarousel />
       <div className="navArea">
         <div className="content">
           <Link className="logo" to="/">
-            <img alt="로고" src="http://localhost:3001/images/logo.png" />
+            <img alt="로고" src="/images/logo.png" />
           </Link>
           <div className="menu">
             <ul className="menuList">
@@ -38,7 +43,7 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link className="link" to="/user/cart">
+                <Link className="link" to="/cart/user">
                   장바구니
                 </Link>
                 <CountingBadge />

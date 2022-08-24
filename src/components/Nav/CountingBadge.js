@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './CountingBadge.scss';
 
 const CountingBadge = () => {
-  const [productCounting, setProductCounting] = useState('');
+  const [productCounting, setProductCounting] = useState(0);
 
   //const token = localStorage.getItem('token');
   const token =
