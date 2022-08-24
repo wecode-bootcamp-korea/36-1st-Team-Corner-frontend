@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
 import Search from './pages/Search/Search';
-import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (

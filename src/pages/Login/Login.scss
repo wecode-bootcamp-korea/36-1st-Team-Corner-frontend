@@ -37,6 +37,9 @@
       // position: fixed;
       top: 130px;
       left: 5%;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     form {
