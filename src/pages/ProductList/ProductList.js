@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-const ProductsList = () => {
+const ProductList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryId = searchParams.get('cate');
   const pageNumber = searchParams.get('page');
@@ -23,6 +23,14 @@ const ProductsList = () => {
       .then(result => setProducts(result.data));
   }, [categoryId]);
 
+  useEffect(() => {
+    fetch(`http://10.58.0.117:3000/product/list?cate=${categoryId}&page=1`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(result => setProducts(result.data));
+  }, [pageNumber, categoryId]);
+
   return (
     <ul className="productsList">
       {products.map((product, i) => {
@@ -33,4 +41,4 @@ const ProductsList = () => {
   );
 };
 
-export default ProductsList;
+export default ProductList;
