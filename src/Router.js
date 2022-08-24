@@ -5,7 +5,6 @@ import Login from './pages/Login/Login';
 import Cart from './pages/Cart/Cart';
 import Main from './pages/Main/Main';
 import Search from './pages/Search/Search';
-import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
@@ -16,7 +15,7 @@ const Router = () => {
         <Route path="/auth/signIn" element={<Login />} />
         <Route path="/auth/signUp" element={<Login />} />
         <Route path="/" element={<Main />} />
-        <Route path="/user/cart/product" element={<Cart />} />
+        <Route path="/cart/user" element={<Cart />} />
         <Route path="/product/search" element={<Search />} />
       </Routes>
       <Footer />
