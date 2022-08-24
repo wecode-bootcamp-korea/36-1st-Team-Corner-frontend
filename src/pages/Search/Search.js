@@ -8,7 +8,7 @@ const Search = () => {
   const searchedWord = searchParams.get('q');
 
   useEffect(() => {
-    fetch(`http://10.58.0.117:3000/products/search?q=${searchedWord}`, {
+    fetch(`http://10.58.7.174:3000/products/search?q=${searchedWord}`, {
       method: 'GET',
     })
       .then(response => response.json())
