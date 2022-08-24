@@ -21,10 +21,10 @@ const Cart = () => {
 
   //const token = localStorage.getItem('token';
   const token =
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM4LCJleHAiOjE2NjEzNDc2NTQsImlhdCI6MTY2MTMxMTY1NH0.DKR-NR9Vy26BnyiJwN3cVj93Qj8oLLMhs1_HXzeqrd4';
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEzODYzNzgsImlhdCI6MTY2MTM1MDM3OH0.iO1N-QxxuiitviIRrS5WI8dzg-gS8HsRSRrUNfyxD9s';
 
   useEffect(() => {
-    fetch('http://10.58.0.117:3000/cart/user', {
+    fetch('http://10.58.0.117:3000/carts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const Cart = () => {
 
   const deleteAllProducts = () => {
     if (window.confirm('장바구니를 비우시겠습니까?')) {
-      fetch('http://10.58.0.117:3000/cart/user/product', {
+      fetch('http://10.58.0.117:3000/carts', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const Cart = () => {
 
   const deleteThisProduct = id => {
     if (window.confirm('선택하신 상품을 삭제하시겠습니까?')) {
-      fetch(`http://10.58.0.117:3000/cart/user/product/${id}`, {
+      fetch(`http://10.58.0.117:3000/carts/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ const Cart = () => {
       alert('최소 주문 수량은 1개입니다.');
     }
 
-    fetch(`http://10.58.0.117:3000/cart/user/product/${id}`, {
+    fetch(`http://10.58.0.117:3000/carts/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const Cart = () => {
     const selectedIndex = cartProducts.findIndex(product => product.id === id);
     cartProductsCopy[selectedIndex].quantity += 1;
 
-    fetch(`http://10.58.0.117:3000/cart/user/product/${id}`, {
+    fetch(`http://10.58.0.117:3000/carts/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
