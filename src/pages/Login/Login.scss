@@ -34,9 +34,9 @@
     .logo {
       width: 118px;
       height: 16px;
-      // position: fixed;
       top: 130px;
       left: 5%;
+
       &:hover {
         cursor: pointer;
       }
@@ -80,6 +80,7 @@
       border-radius: 5.5px;
       font-size: 14px;
       font-weight: 500;
+
       &:hover {
         cursor: pointer;
       }
