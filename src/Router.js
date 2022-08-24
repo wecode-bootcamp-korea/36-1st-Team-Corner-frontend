@@ -4,14 +4,15 @@ import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
 import Search from './pages/Search/Search';
 import Footer from './components/Footer/Footer';
+import Nav from './components/Nav/Nav';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Login />} />
+        <Route path="/auth/signIn" element={<Login />} />
+        <Route path="auth/signUp" element={<Login />} />
         <Route path="/" element={<Main />} />
         <Route path="/products/search" element={<Search />} />
       </Routes>
