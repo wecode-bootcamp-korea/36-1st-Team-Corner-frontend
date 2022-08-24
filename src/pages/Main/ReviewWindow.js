@@ -39,10 +39,6 @@ const ReviewWindow = () => {
       });
   };
 
-  const clickMyReviewListButton = () => {
-    setButtonClicked(!isButtonClicked);
-  };
-
   const inputAuthValidation = () => {
     const token =
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
@@ -78,17 +74,27 @@ const ReviewWindow = () => {
     });
   };
 
+  const firstUpdate = useRef(false);
+
+  const openMyReviewListButton = () => {
+    setButtonClicked(!isButtonClicked);
+  };
+
   useEffect(() => {
-    fetch('http://10.58.2.193:3000/review/product/1', {
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(res => {
-        setReviewList(res.data);
-      });
+    if (firstUpdate.current) {
+      fetch('http://10.58.2.193:3000/review/product/1', {
+        method: 'GET',
+        header: {
+          'Content-Type': 'application/json',
+          /**여기다가 상품 아이디 */
+        },
+      })
+        .then(res => res.json())
+        .then(res => {
+          setReviewList(res.data);
+        });
+      firstUpdate.Current = true;
+    }
   }, [isButtonClicked]);
 
   useEffect(() => {
@@ -117,7 +123,7 @@ const ReviewWindow = () => {
 
             <span className="reviewCount">({reviewCount})</span>
             <p className="showMyReviewWrapper">
-              <button className="showMyReview" onClick={getMyReviews}>
+              <button className="showMyReview" onClick={openMyReviewListButton}>
                 내 리뷰 보기.
               </button>
             </p>
