@@ -8,7 +8,7 @@ const ProductsList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.0.117:3000/products/list?page=${pageNumber}`, {
+    fetch(`http://10.58.0.117:3000/product/list?page=${pageNumber}`, {
       method: 'GET',
     })
       .then(response => response.json())
@@ -16,7 +16,7 @@ const ProductsList = () => {
   }, [pageNumber]);
 
   useEffect(() => {
-    fetch(`http://10.58.0.117:3000/products/list?cate=${categoryId}&page=1`, {
+    fetch(`http://10.58.0.117:3000/product/list?cate=${categoryId}&page=1`, {
       method: 'GET',
     })
       .then(response => response.json())
