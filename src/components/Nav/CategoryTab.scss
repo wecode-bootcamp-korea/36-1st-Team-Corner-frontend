@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.categoryTab {
+  @include flexCenter;
+  width: 100vw;
+  margin-bottom: 40px;
+
+  .tabs {
+    display: flex;
+    justify-content: flex-start;
+    width: 1200px;
+    height: 18px;
+
+    .tabList {
+      display: flex;
+
+      .link {
+        text-decoration: none;
+        color: inherit;
+
+        li {
+          margin-right: 50px;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
