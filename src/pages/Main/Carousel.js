@@ -69,7 +69,7 @@ const Carousel = () => {
           {CAROUSEL_IMAGES.map(image => {
             return (
               <p
-                key={image.key}
+                key={image.id}
                 className={
                   carouselPositionNumber === image.id - 1 ? 'barOn' : 'barOff'
                 }
