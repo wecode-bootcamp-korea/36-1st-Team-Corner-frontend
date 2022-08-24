@@ -5,13 +5,25 @@ import './Cart.scss';
 
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  //const token = localStorage.getItem('token');
-  const token =
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyOTE1MDQsImlhdCI6MTY2MTI1NTUwNH0.hMs9yhxOnyZBohpzIVqcG1T6Aej4ZU9MGCEieTUcYiQ';
+  const discount = 0.8;
 
   useEffect(() => {
-    fetch('http://10.58.0.117:3000/user/cart/product', {
+    let totalPrice = 0;
+    cartProducts.map(product => {
+      return (totalPrice +=
+        product.quantity * Math.floor(product.price * discount));
+    });
+    setTotalPrice(totalPrice);
+  }, [cartProducts]);
+
+  //const token = localStorage.getItem('token';
+  const token =
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM4LCJleHAiOjE2NjEzNDc2NTQsImlhdCI6MTY2MTMxMTY1NH0.DKR-NR9Vy26BnyiJwN3cVj93Qj8oLLMhs1_HXzeqrd4';
+
+  useEffect(() => {
+    fetch('http://10.58.0.117:3000/cart/user', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +36,7 @@ const Cart = () => {
 
   const deleteAllProducts = () => {
     if (window.confirm('장바구니를 비우시겠습니까?')) {
-      fetch('http://10.58.0.117:3000/user/cart/product', {
+      fetch('http://10.58.0.117:3000/cart/user/product', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +54,7 @@ const Cart = () => {
 
   const deleteThisProduct = id => {
     if (window.confirm('선택하신 상품을 삭제하시겠습니까?')) {
-      fetch(`http://10.58.0.117:3000/user/cart/product/${id}`, {
+      fetch(`http://10.58.0.117:3000/cart/user/product/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -62,9 +74,14 @@ const Cart = () => {
 
   const handleMinusOne = id => {
     const selectedIndex = cartProducts.findIndex(product => product.id === id);
-    cartProductsCopy[selectedIndex].quantity -= 1;
+    if (cartProductsCopy[selectedIndex].quantity !== 1) {
+      cartProductsCopy[selectedIndex].quantity -= 1;
+    }
+    if (cartProductsCopy[selectedIndex].quantity == 1) {
+      alert('최소 주문 수량은 1개입니다.');
+    }
 
-    fetch(`http://10.58.0.117:3000/user/cart/product/${id}`, {
+    fetch(`http://10.58.0.117:3000/cart/user/product/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -82,7 +99,7 @@ const Cart = () => {
     const selectedIndex = cartProducts.findIndex(el => el.id === id);
     cartProductsCopy[selectedIndex].quantity += 1;
 
-    fetch(`http://10.58.0.117:3000/user/cart/product/${id}`, {
+    fetch(`http://10.58.0.117:3000/cart/user/product/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -92,18 +109,26 @@ const Cart = () => {
         id: cartProductsCopy[selectedIndex].id,
         quantity: cartProductsCopy[selectedIndex].quantity,
       }),
+    }).then(response => {
+      if (response.status === 401) {
+        alert('재고 수량이 부족합니다.');
+      } else {
+        setCartProducts(cartProductsCopy);
+      }
     });
-    setCartProducts(cartProductsCopy);
   };
 
-  const [totalPrice, setTotalPrice] = useState(0);
-  useEffect(() => {
-    let sum = 0;
-    cartProducts.map(product => {
-      return (sum += product.quantity * Math.floor(product.price));
-    });
-    setTotalPrice(sum);
-  }, [cartProducts]);
+  const handleOrderThis = id => {
+    if (window.confirm('해당 상품을 주문하시겠습니까?')) {
+      alert('주문이 완료되었습니다.');
+    }
+  };
+
+  const handleOrderAll = () => {
+    if (window.confirm('전체 상품을 주문하시겠습니까?')) {
+      alert('주문이 완료되었습니다.');
+    }
+  };
 
   return (
     <div className="cart">
@@ -130,7 +155,7 @@ const Cart = () => {
                 {cartProducts.map(product => {
                   const { id, name, price, quantity, thumbnail_image_url } =
                     product;
-                  const priceI = Math.floor(price);
+                  const priceDiscount = Math.floor(price * discount);
                   return (
                     <tr key={id}>
                       <td className="tdImgbox">
@@ -142,7 +167,12 @@ const Cart = () => {
                         <span>{name}</span>
                       </td>
                       <td className="tdPricebox">
-                        <span>{priceI}원</span>
+                        <span>
+                          {priceDiscount
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                          원
+                        </span>
                       </td>
                       <td className="tdCountbox">
                         <div className="btnbox">
@@ -156,10 +186,22 @@ const Cart = () => {
                         </div>
                       </td>
                       <td className="tdTotalPricebox">
-                        <span>{quantity * priceI}원</span>
+                        <span>
+                          {(quantity * priceDiscount)
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                          원
+                        </span>
                       </td>
                       <td className="tdBtnsbox">
-                        <button className="orderBtn">주문하기</button>
+                        <button
+                          className="orderBtn"
+                          onClick={() => {
+                            handleOrderThis(id);
+                          }}
+                        >
+                          주문하기
+                        </button>
                         <button
                           className="deleteThisBtn"
                           onClick={() => {
@@ -190,10 +232,20 @@ const Cart = () => {
               <tbody>
                 <tr>
                   <td>
-                    <span>{totalPrice}</span>원
+                    <span>
+                      {totalPrice
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </span>
+                    원
                   </td>
                   <td>
-                    <span>{totalPrice}</span>원
+                    <span>
+                      {totalPrice
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </span>
+                    원
                   </td>
                 </tr>
               </tbody>
@@ -201,7 +253,7 @@ const Cart = () => {
           </div>
         )}
         <div className="bottomBtnBox">
-          <button>전체상품주문</button>
+          <button onClick={handleOrderAll}>전체상품주문</button>
           <Link to="/">
             <button className="goShoppingBtn">쇼핑계속하기</button>
           </Link>
