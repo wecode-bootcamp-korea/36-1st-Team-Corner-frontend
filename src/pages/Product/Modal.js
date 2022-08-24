@@ -5,7 +5,6 @@ import './Modal.scss';
 const Modal = ({ toggleModal }) => {
   return (
     <div className="modal">
-      {/* id={isOpen ? 'openModal' : 'closeModal'} */}
       <div className="header">
         <h3 className="headerTitle"> 장바구니 담기</h3>
       </div>

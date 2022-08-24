@@ -71,7 +71,7 @@ const Product = () => {
           alert('재고 수량이 부족합니다.');
         } else {
           alert('로그인이 필요한 기능입니다.');
-          navigate('/auth/signUp');
+          navigate('/auth/sign');
         }
       });
     }
