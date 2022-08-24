@@ -69,6 +69,11 @@
     .countInput {
       width: 37px;
       height: 32px;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
     }
 
     .countBtn {

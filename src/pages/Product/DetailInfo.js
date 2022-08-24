@@ -4,7 +4,7 @@ import './DetailInfo.scss';
 const DetailInfo = () => {
   return (
     <div className="detailInfo">
-      <div classname="paymentInformation">
+      <div className="paymentInformation">
         <h3>상품결제정보</h3>
         <h4>
           고액결제의 경우 안전을 위해 카드사에서 확인전화를 드릴 수도 있습니다.
@@ -20,7 +20,7 @@ const DetailInfo = () => {
           7일 이내로 입금을 하셔야 하며 입금되지 않은 주문은 자동취소 됩니다.
         </h4>
       </div>
-      <div classname="delivery">
+      <div className="delivery">
         <h3>배송정보</h3>
         <li>배송 방법 : 택배</li>
         <li>배송 지역 : 전국지역</li>
@@ -78,7 +78,7 @@ const DetailInfo = () => {
           주문취소가 불가합니다.(단, '상품준비중'상태일 경우 취소가능)
         </li>
       </div>
-      <div classname="ExchangeAndReturn ">
+      <div className="ExchangeAndReturn ">
         <h3>교환 및 반품 정보</h3>
         <h2>교환 및 반품이 가능한 경우</h2>
         <li>

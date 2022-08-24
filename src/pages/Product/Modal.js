@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Modal.scss';
 
-const Modal = ({ isOpen, toggleModal }) => {
+const Modal = ({ toggleModal }) => {
   return (
-    <div className="modal" id={isOpen ? 'openModal' : 'closeModal'}>
+    <div className="modal">
+      {/* id={isOpen ? 'openModal' : 'closeModal'} */}
       <div className="header">
         <h3 className="headerTitle"> 장바구니 담기</h3>
       </div>

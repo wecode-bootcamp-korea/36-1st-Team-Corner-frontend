@@ -5,16 +5,17 @@ import Modal from './Modal';
 import ProductDetail from './ProductDetail';
 
 const Product = () => {
+  const navigate = useNavigate();
+  const params = useParams();
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
-  const params = useParams();
   const productId = params.id;
+  const counted = parseInt(count);
 
-  const eventHandler = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  // const eventHandler = () => {
+  //  setIsModalOpen;
+  // };
 
   const { name, thumbnail_image_url, price, detail, stock } = product;
 
@@ -23,16 +24,13 @@ const Product = () => {
       .then(response => response.json())
       .then(result => setProduct(result.data[0]));
   }, [productId]);
-
-  // const token = localStorage.getItem('token') || ''; login창 merge되면 쓸 코드
-
   const toBuy = e => {
     e.preventDefault();
-    const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
-    const x = true;
-
-    if (x === true) {
+    // 테스트용 코드
+    // const token =
+    //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
+    const token = localStorage.getItem('token') || '';
+    if (token) {
       fetch(`http://10.58.0.117:3000/user/cart/product/${productId}`, {
         method: 'POST',
         headers: {
@@ -55,12 +53,12 @@ const Product = () => {
 
   const goToCart = e => {
     e.preventDefault();
+    // const token = localStorage.getItem('token') || '';
+    // test용 코드
     const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEyOTE1MDQsImlhdCI6MTY2MTI1NTUwNH0.hMs9yhxOnyZBohpzIVqcG1T6Aej4ZU9MGCEieTUcYiQ';
-
-    const x = true;
-    if (x === true) {
-      fetch(`http://10.58.0.117:3000/user/cart/product/${productId}`, {
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM4LCJleHAiOjE2NjEzNDc2NTQsImlhdCI6MTY2MTMxMTY1NH0.DKR-NR9Vy26BnyiJwN3cVj93Qj8oLLMhs1_HXzeqrd4';
+    if (token === true) {
+      fetch(`http://10.58.0.117:3000/cart/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,9 +71,9 @@ const Product = () => {
         if (res.ok) {
           return setIsModalOpen(true);
         } else if (res.status === 401) {
-          alert('재고');
+          alert('재고 수량이 부족합니다.');
         } else {
-          alert('로그인이 필요한 기능입니다');
+          alert('로그인이 필요한 기능입니다.');
           navigate('/login');
         }
       });
@@ -89,12 +87,14 @@ const Product = () => {
   };
 
   const countMinus = e => {
-    setCount(preCount => (preCount <= 0 ? 0 : (preCount = 1)));
+    if (count < 2) {
+      return;
+    }
+    setCount(preCount => preCount - 1);
   };
-
   const discountPrice = price * 0.8;
   const priceOfInteger = Math.floor(price);
-  const priceOfTotal = priceOfInteger * count;
+  const priceOfTotal = discountPrice * count;
 
   return (
     <div className="product">
@@ -108,13 +108,27 @@ const Product = () => {
           <form className="productForm">
             <div className="priceTitle"> {name} </div>
             <div className="price">
-              <div className="priceTag">{discountPrice} 원</div>
-              <div className="salePrice"> {priceOfInteger} 원 </div>
+              <div className="priceTag">
+                {discountPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                원
+              </div>
+              <div className="salePrice">
+                {' '}
+                {priceOfInteger
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                원{' '}
+              </div>
             </div>
             <div className="productOption">
               <div className="optionName">{name}</div>
               <div className="countOption">
-                <input value={count} className="countInput" />
+                <input
+                  onChange={e => setCount(e.target.value)}
+                  type="number"
+                  className="countInput"
+                  value={counted}
+                />
                 <div className="countBtn">
                   <img
                     className="countUpBtn"
@@ -126,18 +140,24 @@ const Product = () => {
                     className="countDownBtn"
                     src="	https://img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif
                   "
-                    alt="수량증가"
+                    alt="수량감소"
                     onClick={countMinus}
                   />
                 </div>
               </div>
-              <div className="optionPrice">{priceOfInteger} 원</div>
+              <div className="optionPrice">
+                {discountPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                원
+              </div>
             </div>
             <div className="totalPrice">
               <span className="totalPriceText"> 총 상품 금액 </span>
               <span className="totalPriceNum">
                 {' '}
-                {priceOfTotal} 원 ({count}개)
+                {priceOfTotal
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                원 ({count}개)
               </span>
             </div>
             <div className="btn">
@@ -150,7 +170,11 @@ const Product = () => {
             </div>
           </form>
         </div>
-        <Modal isOpen={isModalOpen} toggleModal={eventHandler} />
+        {isModalOpen === true && <Modal />}
+        {/* isOpen={isModalOpen}
+        // toggleModal={eventHandler}
+        isModalOpen={isModalOpen}
+        /> */}
         <div>
           <ProductDetail ProductDetails={detail} />
         </div>

@@ -13,7 +13,7 @@ const ProductDetail = ({ ProductDetails }) => {
     <div className="productDetail">
       <ul className="productDetailTap">
         <li className="detailTap">상품 정보</li>
-        <li className="reviewTap" value="btn" onClick={onHomeClick}>
+        <li className="reviewTap" onClick={onHomeClick}>
           리뷰
         </li>
       </ul>
