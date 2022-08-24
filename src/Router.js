@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav/Nav';
 import Login from './pages/Login/Login';
 import Product from './pages/Product/Product';
 import Main from './pages/Main/Main';
 import Search from './pages/Search/Search';
-import Nav from './components/Nav/Nav';
+
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
