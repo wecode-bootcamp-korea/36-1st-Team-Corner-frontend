@@ -19,7 +19,6 @@ const Nav = () => {
       navigate(`/products/search?q=${userInput}`);
     }
   };
-
   return (
     <nav className="nav">
       <NavCarousel />
