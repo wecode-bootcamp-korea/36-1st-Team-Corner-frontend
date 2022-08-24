@@ -5,7 +5,6 @@ import Login from './pages/Login/Login';
 import ProductList from './pages/ProductList/ProductList';
 import Main from './pages/Main/Main';
 import Search from './pages/Search/Search';
-import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
