@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ReviewWindow.scss';
-
 const ReviewWindow = () => {
   const [isReturned, setIsReturned] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const [reviewText, setReviewText] = useState('');
-  const [isButtonClicked, setButtonClicked] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   let isReviewExist = useRef(false);
   if (reviewList.length !== 0) isReviewExist.current = true;
+
+  const token =
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImV4cCI6MTY2MTM0OTE1OSwiaWF0IjoxNjYxMzEzMTU5fQ.P_njpAGkb9ckDFtiUlfClK8VM7A-ZJjg6GKQZrXc5bQ';
 
   const modifiedReviewList = reviewList.map(review => {
     let maskedName = review.name.replace(/^(.).*(.)$/, '$1**$2');
@@ -19,9 +21,6 @@ const ReviewWindow = () => {
   const reviewCount = reviewList.length;
 
   const authValidation = () => {
-    const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
-
     fetch('http://10.58.2.193:3000/common/access', {
       method: 'GET',
       headers: {
@@ -40,9 +39,6 @@ const ReviewWindow = () => {
   };
 
   const inputAuthValidation = () => {
-    const token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
-
     fetch('http://10.58.2.193:3000/common/access', {
       method: 'GET',
       headers: {
@@ -64,8 +60,7 @@ const ReviewWindow = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ',
+        Authorization: token,
       },
       body: JSON.stringify({ contents: reviewText }),
     }).then(() => {
@@ -74,27 +69,59 @@ const ReviewWindow = () => {
     });
   };
 
-  const firstUpdate = useRef(false);
-
   const openMyReviewListButton = () => {
-    setButtonClicked(!isButtonClicked);
+    setIsButtonClicked(!isButtonClicked);
   };
+
+  const deleteMyReview = id => {
+    const reviewId = id;
+
+    fetch(`http://10.58.2.193:3000/review/product/1/${reviewId}/my`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ reviewId: id }),
+    }).then(() => setIsButtonClicked(!isButtonClicked));
+  };
+
+  const modifyMyReview = id => {
+    const reviewId = id;
+
+    fetch(`http://10.58.2.193:3000/review/product/1/${reviewId}/my`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ contents: reviewText }),
+    }).then(() => setIsButtonClicked(!isButtonClicked));
+  };
+
+  const firstUpdate = useRef(false);
 
   useEffect(() => {
     if (firstUpdate.current) {
-      fetch('http://10.58.2.193:3000/review/product/1', {
+      fetch('http://10.58.2.193:3000/review/product/1/my', {
         method: 'GET',
-        header: {
-          'Content-Type': 'application/json',
-          /**여기다가 상품 아이디 */
+        headers: {
+          Authorization: token,
         },
       })
-        .then(res => res.json())
         .then(res => {
-          setReviewList(res.data);
+          if (res.ok) {
+            return res.json();
+          } else if (res.ok === false) {
+            alert('로그인이 필요힙니다.');
+          }
+        })
+        .then(data => {
+          setReviewList(data.data);
         });
-      firstUpdate.Current = true;
     }
+    firstUpdate.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isButtonClicked]);
 
   useEffect(() => {
@@ -156,6 +183,18 @@ const ReviewWindow = () => {
                         {review.created_at}
                       </div>
                     </div>
+                    <button
+                      className="modifiyThisReview"
+                      onClick={() => modifyMyReview(review.id)}
+                    >
+                      수정하기
+                    </button>
+                    <button
+                      className="deleteThisReview"
+                      onClick={() => deleteMyReview(review.id)}
+                    >
+                      삭제하기
+                    </button>
                   </div>
                 </div>
               );
@@ -166,24 +205,28 @@ const ReviewWindow = () => {
                 isReviewExist.current ? 'reviewInput' : 'reviewInputHide'
               }
             >
-              <textarea
-                className="reviewTextArea"
-                placeholder="내용을 입력하세요."
-                onChange={putRevText}
-                value={reviewText}
-                onClick={inputAuthValidation}
-              />
+              <div className="modifyInputWindow">
+                <textarea
+                  className="reviewTextArea"
+                  placeholder="내용을 입력하세요."
+                  onChange={putRevText}
+                  value={reviewText}
+                  onClick={inputAuthValidation}
+                />
 
-              <div
-                className={
-                  isReviewExist.current ? 'reviewButtons' : 'reviewButtonsHide'
-                }
-              >
-                <button className="cancelInput">작성취소</button>
+                <div
+                  className={
+                    isReviewExist.current
+                      ? 'reviewButtons'
+                      : 'reviewButtonsHide'
+                  }
+                >
+                  <button className="cancelInput">작성취소</button>
 
-                <button className="registerInput" onClick={submitReview}>
-                  등록하기
-                </button>
+                  <button className="registerInput" onClick={submitReview}>
+                    등록하기
+                  </button>
+                </div>
               </div>
             </div>
           </div>
