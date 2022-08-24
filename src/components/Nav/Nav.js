@@ -42,7 +42,7 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link className="link" to="/cart/user">
+                <Link className="link" to="/carts">
                   장바구니
                 </Link>
                 <CountingBadge />
