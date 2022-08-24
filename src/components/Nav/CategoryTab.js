@@ -8,7 +8,7 @@ const CategoryTab = () => {
       <div className="tabs">
         <ul className="tabList">
           <Link className="link" to="/product/list?page=1&pageSize=9">
-            <li>All</li>
+            <li className="all">All</li>
           </Link>
           {CATEGORY_LIST.map(({ id, name }, i) => {
             return (
