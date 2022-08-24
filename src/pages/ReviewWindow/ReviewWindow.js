@@ -5,15 +5,14 @@ const ReviewWindow = () => {
   const [isReturned, setIsReturned] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const [reviewText, setReviewText] = useState('');
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const reviewModifyInput = useRef(false);
-  const reviewsCount = useRef(0);
+  const [myReviewUpdate, setMyReviewUpdate] = useState(false);
+  const myReviews = useRef(false);
 
   let isReviewExist = useRef(false);
   if (reviewList.length !== 0) isReviewExist.current = true;
 
   const token =
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImV4cCI6MTY2MTM0OTE1OSwiaWF0IjoxNjYxMzEzMTU5fQ.P_njpAGkb9ckDFtiUlfClK8VM7A-ZJjg6GKQZrXc5bQ';
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImV4cCI6MTY2MTM4NTYwMSwiaWF0IjoxNjYxMzQ5NjAxfQ.0hQGIVvBN0fypuWx2SWKV7unPH9bziIZBiFf8S_FjJo';
 
   const modifiedReviewList = reviewList.map(review => {
     let maskedName = review.name.replace(/^(.).*(.)$/, '$1**$2');
@@ -21,7 +20,7 @@ const ReviewWindow = () => {
     return { ...review, name: maskedName, created_at: newDate };
   });
 
-  // const reviewCount = reviewList.length;
+  const reviewCount = reviewList.length;
 
   const authValidation = () => {
     fetch('http://10.58.2.193:3000/common/access', {
@@ -58,23 +57,36 @@ const ReviewWindow = () => {
     setReviewText(e.target.value);
   };
 
+  const backToList = () => {
+    myReviews.current = false;
+    setIsReturned(!isReturned);
+  };
+
   const submitReview = () => {
-    fetch('http://10.58.2.193:3000/review/product/1', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token,
-      },
-      body: JSON.stringify({ contents: reviewText }),
-    }).then(() => {
-      setIsReturned(!isReturned);
-      setReviewText('');
-    });
+    if (reviewText !== '') {
+      fetch('http://10.58.2.193:3000/review/product/1', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        body: JSON.stringify({ contents: reviewText }),
+      }).then(() => {
+        setIsReturned(!isReturned);
+        setReviewText('');
+      });
+    } else {
+      alert('내용을 입력 하세요.');
+    }
   };
 
   const openMyReviewListButton = () => {
-    reviewModifyInput.current = true;
-    setIsButtonClicked(!isButtonClicked);
+    if (reviewList.length > 0) {
+      myReviews.current = true;
+      setMyReviewUpdate(true);
+    } else {
+      alert('작성 된 리뷰가 없습니다');
+    }
   };
 
   const deleteMyReview = id => {
@@ -85,7 +97,7 @@ const ReviewWindow = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ reviewId: id }),
-    }).then(() => setIsButtonClicked(!isButtonClicked));
+    }).then(() => setMyReviewUpdate(!myReviewUpdate));
   };
 
   const firstUpdate = useRef(false);
@@ -105,23 +117,20 @@ const ReviewWindow = () => {
             alert('로그인이 필요힙니다.');
           }
         })
-        .then(data => {
-          setReviewList(data.data);
+        .then(reviewData => {
+          setReviewList(reviewData.reviewList);
         });
     }
     firstUpdate.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isButtonClicked]);
+  }, [myReviewUpdate]);
 
   useEffect(() => {
-    fetch('http://10.58.2.193:3000/review/product/1', {
+    fetch('http://10.58.2.193:3000/review/product/1?page=1&pageSize=8', {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(res => {
-        setReviewList(res.reviewList);
-        reviewsCount.current = res.reviewCount['count(*)'];
-      });
+      .then(reviewData => setReviewList(reviewData.reviewList));
   }, [isReturned]);
 
   return (
@@ -138,10 +147,13 @@ const ReviewWindow = () => {
               모두 솔직한 상품평을 작성해 보아요!
             </span>
 
-            <span className="reviewCount">({reviewsCount.current})</span>
+            <span className="reviewCount">({reviewCount})</span>
             <p className="showMyReviewWrapper">
               <button className="showMyReview" onClick={openMyReviewListButton}>
                 내 리뷰 보기.
+              </button>
+              <button className="backToFullReview" onClick={backToList}>
+                전체 리뷰 보기
               </button>
             </p>
           </div>
@@ -176,7 +188,7 @@ const ReviewWindow = () => {
                         {review.created_at}
                       </div>
                     </div>
-                    {reviewModifyInput.current && (
+                    {myReviews.current && (
                       <div className="buttonWrapper">
                         <button
                           className="deleteThisReview"
@@ -190,7 +202,7 @@ const ReviewWindow = () => {
                 </div>
               );
             })}
-            {isReviewExist.current && (
+            {!myReviews.current && (
               <div className="reviewInput">
                 <div className="modifyInputWindow">
                   <textarea
