@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from '../Main/Pagination';
+import './ProductList.scss';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -35,7 +36,7 @@ const ProductList = () => {
   const page = searchParams.get('page');
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:3000/products/list?cate=1&page==1`, {
+    fetch(`http://10.58.0.117:3000/product/list?page=1&pageSize=30`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -43,7 +44,7 @@ const ProductList = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://10.58.7.174:3000/?page=${page}`, {
+    fetch(`http://10.58.0.117:3000/?page=${page}`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -51,15 +52,16 @@ const ProductList = () => {
   }, [page]);
 
   return (
-    <>
-      <Pagination
-        products={products}
-        currentPage={currentPage}
-        changeCurrentPage={setCurrentPage}
-        paramsSave={setSearchParams}
-      />
-      ;
-    </>
+    <div className="productList">
+      <div className="wrapper">
+        <Pagination
+          products={products}
+          currentPage={currentPage}
+          changeCurrentPage={setCurrentPage}
+          paramsSave={setSearchParams}
+        />
+      </div>
+    </div>
     //TODO : merge 후 상품 리스트 컴포넌트 추가 필요
   );
 };

@@ -1,0 +1,10 @@
+.productList {
+  display: flex;
+  justify-content: center;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+  }
+}
