@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import './Search.scss';
 
 const Search = () => {
   const [searchedProduct, setSearchedProduct] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchedWord = searchParams.get('q');
-
-  // const location = useLocation();
-  // console.log(location.search);
 
   useEffect(() => {
     fetch(`http://10.58.0.117:3000/products/search?q=${searchedWord}`, {
