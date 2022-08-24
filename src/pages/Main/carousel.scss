@@ -1,0 +1,77 @@
+.carousel {
+  display: flex;
+  align-items: center;
+
+  .prevImg {
+    width: 20px;
+    height: 20px;
+    margin-left: 3%;
+    background-color: white;
+    border: solid 2px black;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(-45deg);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .nextImg {
+    width: 20px;
+    height: 20px;
+    margin-right: 3%;
+    background-color: white;
+    border: solid 2px black;
+    border-bottom: none;
+    border-left: none;
+    transform: rotate(45deg);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .carouselWindow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1080px;
+    height: 650px;
+    margin: 10px auto 50px;
+    overflow-x: hidden;
+    position: relative;
+
+    .images {
+      display: flex;
+      width: 100%;
+
+      .carouselImage {
+        width: 100%;
+        min-width: 1080px;
+        height: 585px;
+      }
+    }
+    .carouselBar {
+      position: absolute;
+      bottom: 20%;
+      display: flex;
+      justify-content: flex-start;
+
+      .barOn {
+        width: 5rem;
+        height: 7px;
+        color: white;
+        background-color: white;
+      }
+
+      .barOff {
+        width: 5rem;
+        height: 7px;
+        color: white;
+        background-color: #e6e6e5;
+        opacity: 29%;
+      }
+    }
+  }
+}
