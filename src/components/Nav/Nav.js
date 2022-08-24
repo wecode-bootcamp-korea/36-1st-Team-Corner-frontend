@@ -42,7 +42,6 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                q
                 <Link className="link" to="/cart/user">
                   장바구니
                 </Link>
