@@ -21,6 +21,10 @@ const User = ({ content, isSelectLogin }) => {
     info.userId.includes('@', '.');
 
   const goToSignUp = e => {
+    navigate('/auth/signUp');
+  };
+
+  const goToMain = e => {
     navigate('/');
   };
 
@@ -39,7 +43,7 @@ const User = ({ content, isSelectLogin }) => {
       .then(response => {
         if (response.ok) {
           alert('회원가입 성공');
-          navigate('/login');
+          navigate('/auth/signIn');
         }
         return response.json();
       })
@@ -76,6 +80,7 @@ const User = ({ content, isSelectLogin }) => {
       <div className="layoutLeftPage">
         <div className="formOuter">
           <img
+            onClick={goToMain}
             alt="logo"
             src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FxRctI%2FbtrKqFjVPvE%2FUGGxknuQ3SjbN6B6RzWafk%2Fimg.png"
             className="logo"
