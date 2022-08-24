@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const User = ({ content, isSelectLogin }) => {
   const { title, btnText, img } = content;
@@ -19,6 +19,10 @@ const User = ({ content, isSelectLogin }) => {
     info.userId.length > 5 &&
     info.userPw.length > 5 &&
     info.userId.includes('@', '.');
+
+  const goToSignUp = e => {
+    navigate('/');
+  };
 
   const toSignUp = e => {
     e.preventDefault();
@@ -96,9 +100,7 @@ const User = ({ content, isSelectLogin }) => {
             </button>
 
             {title === '로그인' && (
-              <Link to="/signup">
-                <button>회원가입하기</button>
-              </Link>
+              <button onClick={goToSignUp}>회원가입하기</button>
             )}
           </form>
         </div>
