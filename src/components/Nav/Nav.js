@@ -27,6 +27,7 @@ const Nav = () => {
 
   const onSubmitSearch = e => {
     if (e.key === 'Enter') {
+      e.preventDefault();
       navigate(`/product/search?q=${userInput}`);
     }
   };
@@ -48,7 +49,7 @@ const Nav = () => {
             <ul className="menuList">
               <li>
                 <Link className="link" to="/auth/signIn">
-                  {isLogined ? <span>로그인</span> : <span>로그아웃</span>}
+                  {isLogined ? <span>로그아웃</span> : <span>로그인</span>}
                 </Link>
               </li>
               <li>
