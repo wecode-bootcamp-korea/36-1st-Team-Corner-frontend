@@ -11,7 +11,6 @@ import Product from './pages/Product/Product';
 import Main from './pages/Main/Main';
 import Search from './pages/Search/Search';
 import ProductList from './components/ProductList/ProductList';
-
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
@@ -22,7 +21,7 @@ const Router = () => {
         <Route path="/review/" element={<ReviewWindow />} />
         <Route path="/products/search" element={<Search />} />
         <Route path="/" element={<Main />} />;
-        <Route path="/cart/product/:id" element={<Product />} />;
+        <Route path="/product/:id" element={<Product />} />;
         <Route path="/auth/signIn" element={<Login />} />
         <Route path="/auth/signUp" element={<Login />} />
         <Route path="/carts" element={<Cart />} />
