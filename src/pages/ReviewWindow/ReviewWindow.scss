@@ -1,0 +1,251 @@
+.reviewWindow {
+  width: 1080px;
+  margin-left: 50%;
+  transform: translate(-50%);
+
+  .reviewWindowWrap {
+    text-align: center;
+
+    .reviewHeader {
+      padding: 27px 0 10px;
+
+      .reviewHeaderTitle {
+        padding-bottom: 30px;
+        font-size: 30px;
+      }
+
+      .reviewDescription {
+        margin-bottom: 100px;
+        font-size: 15px;
+      }
+
+      .subHeaderTitle {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .subHeader {
+        display: flex;
+        margin-bottom: 10px;
+        border-bottom: solid 2px black;
+        text-align: left;
+
+        .subHeaderTitleDescription {
+          margin-left: 10px;
+          font-size: 20px;
+        }
+
+        .reviewCount {
+          margin-left: 10px;
+          font-size: 20px;
+        }
+
+        .showMyReviewWrapper {
+          margin-left: 450px;
+
+          button {
+            width: 200px;
+            padding: none;
+            border: none;
+            background-color: white;
+            font-size: 20px;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        .secondReviewCall {
+          margin: 0 0 2px 3px;
+          font-size: 20px;
+        }
+      }
+    }
+
+    .reviewContent {
+      border-top: solid 1px #d8dde5;
+
+      .noReview {
+        margin: 100px 0;
+
+        .phraseNoReview {
+          margin-bottom: 10px;
+          color: #707680;
+        }
+
+        .phrasePleaseReview {
+          margin-bottom: 30px;
+          color: #707680;
+          font-weight: bold;
+        }
+
+        .openReviewInput {
+          width: 224px;
+          height: 48px;
+          padding: 12px;
+          color: white;
+          background-color: black;
+          border-radius: 4px;
+          line-height: 1.5;
+          font-size: 16px;
+          font-weight: bold;
+          text-align: center;
+        }
+      }
+
+      .reviews {
+        .reviewContainer {
+          display: flex;
+          padding: 20px 20px 20px 0;
+
+          .review {
+            width: 70%;
+            text-align: left;
+          }
+          border-bottom: solid 1px #d8dde5;
+
+          .userInfo {
+            padding-left: 30px;
+            border-left: solid 1px #d8dde5;
+
+            .userInfoWrap {
+              text-align: left;
+
+              .userName {
+                display: flex;
+                align-items: center;
+                padding-bottom: 10px;
+
+                .reviewer {
+                  font-weight: bold;
+                }
+
+                .userLevelTag {
+                  margin-right: 5px;
+                  padding: 0 10px;
+                  border: solid 1px #e28585;
+                  border-radius: 10px;
+                  background: #e28585;
+                  color: white;
+                  font-size: 0.1px;
+                }
+              }
+
+              .dateReviewWritten {
+                color: #707680;
+                .date {
+                  color: #555c67;
+                  font-weight: bold;
+                }
+              }
+            }
+
+            .deleteThisReview {
+              width: 120x;
+              height: 25px;
+              background-color: #4087c9;
+              color: white;
+              margin-top: 50px;
+              border-radius: 4px;
+              border: none;
+              font-size: 15x;
+              font-weight: bold;
+              line-height: 1.5;
+              text-align: center;
+            }
+          }
+        }
+      }
+      .paginationGroup {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0 50px;
+
+        button {
+          background-color: white;
+          border: none;
+          font-size: 20px;
+
+          &:hover {
+            font-size: 25px;
+            cursor: pointer;
+          }
+        }
+
+        .pageNumber {
+          &:hover {
+            cursor: pointer;
+          }
+
+          &:focus {
+            color: blue;
+            font-size: 25px;
+          }
+        }
+
+        .clickedPageNumber {
+          color: blue;
+        }
+      }
+    }
+
+    .reviewInput {
+      margin: 20px 0;
+      padding: 10px;
+      border: solid 1px #d8dde5;
+      border-radius: 10px;
+
+      .reviewTextArea {
+        width: 90%;
+        min-height: 100px;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 10px;
+        resize: none;
+      }
+    }
+
+    .reviewInputHide {
+      display: none;
+    }
+
+    .reviewButtons {
+      button {
+        width: 224px;
+        height: 48px;
+        background-color: #4087c9;
+        color: white;
+        border-radius: 4px;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 1.5;
+        text-align: center;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 80%;
+        }
+      }
+
+      .cancelInput {
+        margin-right: 10px;
+        background-color: #707680;
+      }
+    }
+
+    .reviewButtonsHide {
+      display: none;
+    }
+  }
+}
+
+.inputActivate {
+  display: none;
+}
+
+.inputActivateHide {
+  width: 100px;
+  height: 100px;
+  z-index: 1000;
+}

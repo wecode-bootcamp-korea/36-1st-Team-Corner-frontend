@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import NavCarousel from './NavCarousel';
 import CategoryTab from './CategoryTab';
@@ -7,7 +7,19 @@ import CountingBadge from './CountingBadge';
 import './Nav.scss';
 
 const Nav = () => {
+  const location = useLocation();
+
   const [userInput, setUserInput] = useState('');
+  const [isLogined, setIsLogined] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLogined(true);
+    } else {
+      setIsLogined(false);
+    }
+  }, []);
 
   const handleChange = e => {
     setUserInput(e.target.value);
@@ -18,15 +30,16 @@ const Nav = () => {
   const onSubmitSearch = e => {
     e.preventDefault();
     if (e.key === 'Enter') {
+      e.preventDefault();
       navigate(`/product/search?q=${userInput}`);
     }
   };
 
   if (
-    window.location.pathname === '/auth/signIn' ||
-    window.location.pathname === '/auth/signUp'
+    location.pathname === '/auth/signIn' ||
+    location.pathname === '/auth/signUp'
   )
-    return null;
+    return;
   return (
     <nav className="nav">
       <NavCarousel />
@@ -39,11 +52,11 @@ const Nav = () => {
             <ul className="menuList">
               <li>
                 <Link className="link" to="/auth/signIn">
-                  로그인
+                  {isLogined ? <span>로그아웃</span> : <span>로그인</span>}
                 </Link>
               </li>
               <li>
-                <Link className="link" to="/cart/user">
+                <Link className="link" to="/carts">
                   장바구니
                 </Link>
                 <CountingBadge />
