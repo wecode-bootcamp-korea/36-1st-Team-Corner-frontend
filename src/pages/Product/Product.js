@@ -24,7 +24,7 @@ const Product = () => {
   const toBuy = e => {
     e.preventDefault();
     if (!token) {
-      alert('로그인이 필요한 기능입니다');
+      alert('로그인이 필요한 기능입니다.');
       navigate('/auth/signIn');
     } else {
       fetch(`http://10.58.0.117:3000/carts/product/${productId}`, {
