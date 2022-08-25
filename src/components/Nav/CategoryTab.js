@@ -7,12 +7,16 @@ const CategoryTab = () => {
     <div className="categoryTab">
       <div className="tabs">
         <ul className="tabList">
-          <Link className="link" to="/products/list?page=1">
+          <Link className="link" to="/product/list?page=1&pageSize=9">
             <li>All</li>
           </Link>
           {CATEGORY_LIST.map(({ id, name }, i) => {
             return (
-              <Link className="link" key={id} to={`/products/list?cate=${id}`}>
+              <Link
+                className="link"
+                key={id}
+                to={`/product/list?page=1&pageSize=9&cate=${id}`}
+              >
                 <li>{name}</li>
               </Link>
             );
