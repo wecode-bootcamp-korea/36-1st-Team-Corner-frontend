@@ -6,9 +6,12 @@ const ProductsInMain = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://10.58.0.117:3000/', {
-      method: 'GET',
-    })
+    fetch(
+      'http://10.58.0.117:3000/product/list?page=1&pageSize=9&orderBy=price',
+      {
+        method: 'GET',
+      }
+    )
       .then(res => res.json())
       .then(data => setProducts(data.data));
   }, []);
