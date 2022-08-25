@@ -62,7 +62,7 @@ const CategoryProduct = () => {
   };
 
   return (
-    <div className="productList">
+    <div className="categoryProduct">
       <div className="wrapper">
         <div className="pagination">
           <ProductList products={products} />
