@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import ItemList from '../Main/ItemList';
-import './ProductList.scss';
+import ProductList from '../../components/ProductList/ProductList';
+import './CategoryProduct.scss';
 
-const ProductList = () => {
+const CategoryProduct = () => {
   const [products, setProducts] = useState([]);
   const [totalProduct, setTotalProduct] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -65,7 +65,7 @@ const ProductList = () => {
     <div className="productList">
       <div className="wrapper">
         <div className="pagination">
-          <ItemList products={products} />
+          <ProductList products={products} />
           <div className="paginationGroup">
             <button className="prevPage" onClick={() => movePrev(page)}>
               이전
@@ -98,4 +98,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default CategoryProduct;

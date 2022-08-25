@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
     })
       .then(response => response.json())
       .then(result => setReviewCount(result.reviewCount[0].reviewCount));
-  }, [id]);
+  }, []);
 
   return (
     <div className="productCard">
