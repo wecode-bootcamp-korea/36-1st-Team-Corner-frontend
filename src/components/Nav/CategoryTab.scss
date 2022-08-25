@@ -18,6 +18,10 @@
         color: inherit;
         text-decoration: none;
 
+        .all {
+          color: $mainColor;
+        }
+
         li {
           margin-right: 50px;
           font-size: 18px;
