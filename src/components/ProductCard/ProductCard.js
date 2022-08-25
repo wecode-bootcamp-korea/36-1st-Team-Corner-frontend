@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
   const priceI = Math.floor(price);
 
   useEffect(() => {
-    fetch(`http://10.58.2.193:3000/review/product/${id}?page=1&pageSize=5`, {
+    fetch(`http://10.58.0.117:3000/review/product/${id}?page=1&pageSize=5`, {
       method: 'GET',
     })
       .then(response => response.json())
