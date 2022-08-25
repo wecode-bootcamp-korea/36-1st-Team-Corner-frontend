@@ -159,12 +159,17 @@
       .paginationGroup {
         display: flex;
         justify-content: center;
-        margin-bottom: 50px;
+        margin: 20px 0 50px;
 
         button {
           background-color: white;
           border: none;
-          font-size: 12px;
+          font-size: 20px;
+
+          &:hover {
+            font-size: 25px;
+            cursor: pointer;
+          }
         }
 
         .pageNumber {
@@ -174,6 +179,7 @@
 
           &:focus {
             color: blue;
+            font-size: 25px;
           }
         }
 

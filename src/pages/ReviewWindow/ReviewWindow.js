@@ -11,8 +11,6 @@ const ReviewWindow = () => {
   const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [reviewCount, setReviewCount] = useState(0);
-  console.log('reviwCount', reviewCount);
-  console.log('currentPage', currentPage);
   const isReviewExist = useRef(false);
   const firstUpdate = useRef(false);
   const secondReviewsCall = useRef(false);
@@ -41,7 +39,7 @@ const ReviewWindow = () => {
       .then(res => {
         if (res.result === true) {
           isReviewExist.current = !isReviewExist.current;
-          setIsReturned(!isReturned);
+          if (myReviews !== true) setIsReturned(!isReturned);
         } else {
           alert('로그인이 필요한 기능입니다.');
         }
@@ -92,13 +90,15 @@ const ReviewWindow = () => {
         if (res.result !== true) {
           alert('로그인이 필요한 기능입니다.');
         } else {
-          setMyReviewUpdate(!myReviewUpdate);
+          setMyReviewUpdate(true);
+          setPage(1);
+          setCurrentPage(1);
         }
       });
   };
 
   const backToList = () => {
-    setMyReviews(false);
+    setMyReviewUpdate(false);
     setIsReturned(!isReturned);
   };
 
@@ -112,14 +112,18 @@ const ReviewWindow = () => {
       body: JSON.stringify({ reviewId: id }),
     }).then(() => setMyReviewUpdate(!myReviewUpdate));
   };
+
   useEffect(() => {
-    if (firstUpdate.current) {
-      fetch('http://10.58.2.193:3000/review/product/1/my', {
-        method: 'GET',
-        headers: {
-          Authorization: token,
-        },
-      })
+    if (firstUpdate.current && myReviewUpdate === true) {
+      fetch(
+        `http://10.58.2.193:3000/review/product/1/my?page=${page}&pageSize=6`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
         .then(res => {
           if (res.ok) {
             return res.json();
@@ -131,7 +135,7 @@ const ReviewWindow = () => {
           if (reviewData.reviewList.length !== 0) {
             setMyReviews(true);
             setReviewList(reviewData.reviewList);
-            setReviewCount(reviewData.reviewCount[0].reviewCount); //여기 조심 , 고친 곳!!!! return 뺏음
+            setReviewCount(reviewData.reviewCount[0].reviewCount);
           } else {
             alert('작성 된 리뷰가 없습니다');
           }
@@ -140,7 +144,8 @@ const ReviewWindow = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }
     firstUpdate.current = true;
-  }, [myReviewUpdate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, myReviewUpdate]);
 
   useEffect(() => {
     fetch('http://10.58.2.193:3000/review/product/1?page=1&pageSize=6', {
@@ -154,21 +159,24 @@ const ReviewWindow = () => {
 
     secondReviewsCall.current = true;
   }, []);
-  console.log('page', page);
+
   useEffect(() => {
     if (secondReviewsCall.current !== false) {
-      fetch(
-        `http://10.58.2.193:3000/review/product/1?page=${page}&pageSize=6`,
-        {
-          method: 'GET',
-        }
-      )
-        .then(res => res.json())
-        .then(reviewData => {
-          setReviewList(reviewData.reviewList);
-          setReviewCount(reviewData.reviewCount[0].reviewCount);
-        });
+      if (myReviewUpdate === false) {
+        fetch(
+          `http://10.58.2.193:3000/review/product/1?page=${page}&pageSize=6`,
+          {
+            method: 'GET',
+          }
+        )
+          .then(res => res.json())
+          .then(reviewData => {
+            setReviewList(reviewData.reviewList);
+            setReviewCount(reviewData.reviewCount[0].reviewCount);
+          });
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReturned, page]);
 
   const pageNumber = Math.ceil(reviewCount / 6);
@@ -192,7 +200,6 @@ const ReviewWindow = () => {
   };
 
   const movePage = click => {
-    console.log('movepage', click);
     if (currentPage !== click) {
       setCurrentPage(click);
       setPage(click);
@@ -215,7 +222,7 @@ const ReviewWindow = () => {
 
             <span className="secondReviewCall">({reviewCount})</span>
             <p className="showMyReviewWrapper">
-              {!myReviews ? (
+              {!myReviewUpdate ? (
                 <button
                   className="showMyReview"
                   onClick={openMyReviewListButton}
@@ -267,7 +274,7 @@ const ReviewWindow = () => {
                             className="deleteThisReview"
                             onClick={() => deleteMyReview(review.id)}
                           >
-                            이 리뷰 삭제하기 &#x2716
+                            이 리뷰 삭제하기 &#x2716;
                           </button>
                         </div>
                       )}
