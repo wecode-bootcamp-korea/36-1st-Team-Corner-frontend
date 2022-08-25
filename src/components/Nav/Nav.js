@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import NavCarousel from './NavCarousel';
 import CategoryTab from './CategoryTab';
@@ -7,6 +7,8 @@ import CountingBadge from './CountingBadge';
 import './Nav.scss';
 
 const Nav = () => {
+  const location = useLocation();
+
   const [userInput, setUserInput] = useState('');
   const [isLogined, setIsLogined] = useState(false);
 
@@ -33,10 +35,10 @@ const Nav = () => {
   };
 
   if (
-    window.location.pathname === '/auth/signIn' ||
-    window.location.pathname === '/auth/signUp'
+    location.pathname === '/auth/signIn' ||
+    location.pathname === '/auth/signUp'
   )
-    return null;
+    return;
   return (
     <nav className="nav">
       <NavCarousel />
