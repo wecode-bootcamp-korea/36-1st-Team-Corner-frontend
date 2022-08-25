@@ -267,7 +267,7 @@ const ReviewWindow = () => {
                             className="deleteThisReview"
                             onClick={() => deleteMyReview(review.id)}
                           >
-                            이 리뷰 삭제하기 X
+                            이 리뷰 삭제하기 &#x2716
                           </button>
                         </div>
                       )}
