@@ -13,6 +13,7 @@ const Product = () => {
   const productId = params.id;
   const counted = parseInt(count);
   const { name, thumbnail_image_url, price, detail, stock } = product;
+  const token = localStorage.getItem('token') || ' ';
 
   useEffect(() => {
     fetch(`http://10.58.0.117:3000/product/${productId}`)
@@ -22,13 +23,15 @@ const Product = () => {
 
   const toBuy = e => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
-    if (token) {
-      fetch(`http://10.58.0.117:3000/user/carts/product/${productId}`, {
+    if (!token) {
+      alert('로그인이 필요한 기능입니다');
+      navigate('/auth/signIn');
+    } else {
+      fetch(`http://10.58.0.117:3000/carts/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem('Authorization'),
+          Authorization: 'Bearer ' + token,
         },
 
         body: JSON.stringify({
@@ -37,26 +40,23 @@ const Product = () => {
       }).then(res => {
         if (res.ok) {
           return navigate('user/carts');
-        } // } else {
-        //   alert('로그인이 필요한 기능입니다');
-        //   navigate('/auth/signUp');
-        // }
+        }
       });
-    } else {
-      alert('로그인이 필요한 기능입니다');
-      navigate('/auth/signIn');
     }
   };
 
   const goToCart = e => {
     e.preventDefault();
-    const token = localStorage.getItem('token') || '';
-    if (token) {
-      fetch(`http://10.58.0.117:3000/cart/product/${productId}`, {
+    // const token = localStorage.getItem('token');
+    if (!token) {
+      alert('로그인이 필요한 기능입니다');
+      navigate('/auth/signIn');
+    } else {
+      fetch(`http://10.58.0.117:3000/carts/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token,
+          Authorization: 'Bearer ' + token,
         },
         body: JSON.stringify({
           quantity: count,
@@ -68,11 +68,12 @@ const Product = () => {
           alert('재고 수량이 부족합니다.');
         } else {
           alert('로그인이 필요한 기능입니다.');
-          navigate('/auth/sign');
+          navigate('/auth/signIn');
         }
       });
     }
   };
+
   const countPlus = e => {
     setCount(preCount =>
       preCount < stock ? preCount + 1 : alert('재고 수량을 넘었습니다')

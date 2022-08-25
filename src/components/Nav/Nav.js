@@ -21,11 +21,6 @@ const Nav = () => {
     }
   };
 
-  if (
-    window.location.pathname === '/auth/signIn' ||
-    window.location.pathname === '/auth/signUp'
-  )
-    return null;
   return (
     <nav className="nav">
       <NavCarousel />

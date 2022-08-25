@@ -2,11 +2,6 @@ import React from 'react';
 import './Footer.scss';
 
 const Footer = () => {
-  if (
-    window.location.pathname === '/auth/signIn' ||
-    window.location.pathname === '/auth/signUp'
-  )
-    return null;
   return (
     <footer className="footer">
       <div className="footerInner">
