@@ -1,0 +1,93 @@
+.cartProductTable {
+  width: 1200px;
+  margin: 20px 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+
+  thead {
+    background-color: whitesmoke;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    th {
+      height: 35px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      font-size: 14px;
+      vertical-align: middle;
+    }
+  }
+
+  .cartProductList {
+    tr {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+
+      .tdImgbox {
+        width: 130px;
+
+        .cartProductImg {
+          padding: 15px 0;
+
+          img {
+            height: 90px;
+            width: 90px;
+            vertical-align: middle;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .tdNamebox {
+        width: 300px;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .tdPricebox {
+        width: 130px;
+        font-size: 15px;
+      }
+
+      .tdCountbox {
+        width: 150px;
+        font-size: 15px;
+
+        .countBtnbox {
+          display: flex;
+          flex-direction: column;
+
+          .btnbox {
+            margin-bottom: 15px;
+
+            .totalCount {
+              margin: 0 30px;
+              padding-top: 3px;
+            }
+          }
+        }
+      }
+
+      .tdTotalPricebox {
+        width: 130px;
+      }
+
+      .tdBtnsbox {
+        width: 250px;
+
+        .orderBtn {
+          width: 100px;
+          height: 30px;
+          margin: 0 5px;
+          color: white;
+          background-color: black;
+        }
+
+        .deleteThisBtn {
+          width: 100px;
+          height: 30px;
+          margin: 0 5px;
+          background-color: inherit;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+}

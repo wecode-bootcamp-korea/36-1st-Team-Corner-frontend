@@ -1,4 +1,6 @@
-.card {
+@import '../../styles/variables.scss';
+
+.productCard {
   margin-bottom: 70px;
   padding: 0 !important;
 
@@ -16,12 +18,14 @@
 
   .currentPrice {
     margin-bottom: 10px;
+    color: $mainColor;
     font-size: 26px;
     font-weight: 900;
   }
 
   .price {
     margin-bottom: 10px;
+
     font-size: 20px;
     text-decoration: line-through;
   }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ItemList from './ItemList';
+import ProductList from '../../components/ProductList/ProductList';
 import './productsinmain.scss';
 
 const ProductsInMain = () => {
@@ -21,7 +21,7 @@ const ProductsInMain = () => {
           "바디라이크의 베스트 아이템을 만나보세요!"
         </h2>
       </div>
-      <ItemList products={products} />
+      <ProductList products={products} />
     </div>
   );
 };

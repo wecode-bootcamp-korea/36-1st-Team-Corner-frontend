@@ -2,13 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import './carousel.scss';
 
 const Carousel = () => {
-  const [carouselPositionNumber, setCarouselPositionNumber] = useState(1);
-  const MAX_SLIDES = CAROUSEL_IMAGES.length;
+  const [carouselPositionNumber, setCarouselPositionNumber] = useState(2);
+  const MAX_SLIDES = CAROUSEL_IMAGES.length + 1;
   const slideRef = useRef();
 
   const moveNext = () => {
-    if (carouselPositionNumber >= MAX_SLIDES) {
-      setCarouselPositionNumber(0);
+    if (carouselPositionNumber === MAX_SLIDES) {
+      setCarouselPositionNumber(1);
     } else {
       setCarouselPositionNumber(carouselPositionNumber + 1);
     }
@@ -16,20 +16,32 @@ const Carousel = () => {
 
   const movePrev = () => {
     if (carouselPositionNumber === 0) {
-      setCarouselPositionNumber(MAX_SLIDES);
+      setCarouselPositionNumber(MAX_SLIDES - 1);
     } else {
       setCarouselPositionNumber(carouselPositionNumber - 1);
     }
   };
 
+  const changeIntervalTime = useRef(false);
+
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (carouselPositionNumber >= MAX_SLIDES) {
-        setCarouselPositionNumber(0);
-      } else {
-        setCarouselPositionNumber(carouselPositionNumber + 1);
-      }
-    }, 3000);
+    const timer = setInterval(
+      () => {
+        if (carouselPositionNumber >= MAX_SLIDES) {
+          setCarouselPositionNumber(1);
+          changeIntervalTime.current = false;
+        } else {
+          if (carouselPositionNumber === MAX_SLIDES - 1) {
+            setCarouselPositionNumber(carouselPositionNumber + 1);
+            changeIntervalTime.current = true;
+          } else {
+            setCarouselPositionNumber(carouselPositionNumber + 1);
+          }
+        }
+      },
+
+      changeIntervalTime.current ? 0 : 3000
+    );
 
     return () => {
       clearInterval(timer);
@@ -37,17 +49,31 @@ const Carousel = () => {
   });
 
   useEffect(() => {
-    slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${
-      carouselPositionNumber * 100
-    }%`;
-  }, [carouselPositionNumber]);
+    if (carouselPositionNumber === MAX_SLIDES) {
+      slideRef.current.style.transition = 'none';
+      slideRef.current.style.transform = 'translateX(0%)';
+    } else if (carouselPositionNumber === 6) {
+      slideRef.current.style.transition = 'none';
+      slideRef.current.style.transform = 'translateX(-500%)';
+    } else {
+      slideRef.current.style.transition = 'all 0.5s ease-in-out';
+      slideRef.current.style.transform = `translateX(-${
+        carouselPositionNumber * 100
+      }%`;
+    }
+  }, [MAX_SLIDES, carouselPositionNumber]);
 
   return (
     <div className="carousel">
       <button className="prevImg" onClick={movePrev} />
       <div className="carouselWindow">
         <div className="images" ref={slideRef}>
+          <img
+            className="carouselImage"
+            src={CAROUSEL_IMAGES[4].url}
+            alt="firstImageCopy"
+            key={CAROUSEL_IMAGES[4].id}
+          />
           {CAROUSEL_IMAGES.map(image => {
             return (
               <img
@@ -61,7 +87,7 @@ const Carousel = () => {
           <img
             className="carouselImage"
             src={CAROUSEL_IMAGES[0].url}
-            alt="carouselImage"
+            alt="firstImageCopy"
             key={CAROUSEL_IMAGES[0].id}
           />
         </div>
@@ -71,7 +97,7 @@ const Carousel = () => {
               <p
                 key={image.id}
                 className={
-                  carouselPositionNumber === image.id - 1 ? 'barOn' : 'barOff'
+                  carouselPositionNumber === image.id ? 'barOn' : 'barOff'
                 }
               />
             );
