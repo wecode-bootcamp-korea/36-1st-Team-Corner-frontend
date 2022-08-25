@@ -13,9 +13,12 @@ const ProductsInMain = () => {
       }
     )
       .then(res => res.json())
-      .then(data => setProducts(data.data));
+      .then(data => {
+        console.log(data);
+        setProducts(data.products);
+      });
   }, []);
-
+  console.log('main', products);
   return (
     <div className="productsInMain">
       <div className="titleMain">

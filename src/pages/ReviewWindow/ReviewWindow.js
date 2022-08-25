@@ -15,12 +15,12 @@ const ReviewWindow = () => {
   const firstUpdate = useRef(false);
   const secondReviewsCall = useRef(false);
 
+  const token = localStorage.getItem('token');
+
   const putRevText = e => {
     setReviewText(e.target.value);
   };
   if (reviewList.length !== 0) isReviewExist.current = true;
-  const token =
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImV4cCI6MTY2MTQyNjE4NSwiaWF0IjoxNjYxMzkwMTg1fQ.FAFmhk69bw5PTeArkzYC4OZaSv-XfcD6IoRSbDJUT1k';
 
   const modifiedReviewList = reviewList.map(review => {
     let maskedName = review.name.replace(/^(.).*(.)$/, '$1**$2');
@@ -32,7 +32,7 @@ const ReviewWindow = () => {
     fetch('http://10.58.2.193:3000/common/access', {
       method: 'GET',
       headers: {
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
       },
     })
       .then(res => res.json())
@@ -50,7 +50,7 @@ const ReviewWindow = () => {
     fetch('http://10.58.2.193:3000/common/access', {
       method: 'GET',
       headers: {
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
       },
     })
       .then(res => res.json())
@@ -65,7 +65,7 @@ const ReviewWindow = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token,
+          Authorization: 'Bearer ' + token,
         },
         body: JSON.stringify({ contents: reviewText }),
       }).then(() => {
@@ -82,7 +82,7 @@ const ReviewWindow = () => {
     fetch('http://10.58.2.193:3000/common/access', {
       method: 'GET',
       headers: {
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
       },
     })
       .then(res => res.json())
@@ -106,7 +106,7 @@ const ReviewWindow = () => {
     fetch(`http://10.58.2.193:3000/review/${id}`, {
       method: 'DELETE',
       headers: {
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ reviewId: id }),
@@ -120,7 +120,7 @@ const ReviewWindow = () => {
         {
           method: 'GET',
           headers: {
-            Authorization: token,
+            Authorization: 'Bearer ' + token,
           },
         }
       )

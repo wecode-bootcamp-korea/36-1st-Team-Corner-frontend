@@ -26,7 +26,7 @@ const Cart = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
       },
     })
       .then(response => response.json())
@@ -39,7 +39,7 @@ const Cart = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token,
+          Authorization: 'Bearer ' + token,
         },
       }).then(response => {
         if (response.status === 204) {
