@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProductList from '../../components/ProductList/ProductList';
+import ProductList from '../ProductList/ProductList';
 import './productsinmain.scss';
 
 const ProductsInMain = () => {
