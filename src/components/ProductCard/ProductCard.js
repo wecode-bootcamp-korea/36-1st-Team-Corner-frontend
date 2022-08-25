@@ -1,11 +1,11 @@
 import React from 'react';
-import './card.scss';
+import './ProductCard.scss';
 
-const Card = ({ product }) => {
+const ProductCard = ({ product }) => {
   const { name, price, thumbnail_image_url } = product;
 
   return (
-    <div className="card">
+    <div className="productCard">
       <img
         className="thumbNailImage"
         src={thumbnail_image_url}
@@ -22,4 +22,4 @@ const Card = ({ product }) => {
   );
 };
 
-export default Card;
+export default ProductCard;

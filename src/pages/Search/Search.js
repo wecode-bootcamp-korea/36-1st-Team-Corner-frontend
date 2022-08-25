@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import ItemList from '../Main/ItemList';
+import ProductList from '../../components/ProductList/ProductList';
 import './Search.scss';
 
 const Search = () => {
@@ -22,7 +22,7 @@ const Search = () => {
         {searchedWord == '' ? (
           <span className="pleaseSearch">검색어를 입력해 주세요.</span>
         ) : (
-          <ItemList products={products} />
+          <ProductList products={products} />
         )}
       </div>
     </div>
