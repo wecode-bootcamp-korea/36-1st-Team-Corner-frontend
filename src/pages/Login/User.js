@@ -79,12 +79,14 @@ const User = ({ content, isSelectLogin }) => {
       <img alt="mainImg" src={img} />
       <div className="layoutLeftPage">
         <div className="formOuter">
-          <img
-            onClick={goToMain}
-            alt="logo"
-            src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FxRctI%2FbtrKqFjVPvE%2FUGGxknuQ3SjbN6B6RzWafk%2Fimg.png"
-            className="logo"
-          />
+          <div className="imgOuter">
+            <img
+              onClick={goToMain}
+              alt="logo"
+              src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FxRctI%2FbtrKqFjVPvE%2FUGGxknuQ3SjbN6B6RzWafk%2Fimg.png"
+              className="logo"
+            />
+          </div>
           <form>
             <h2 className="title"> {title} </h2>
             <input
