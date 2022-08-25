@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import NavCarousel from './NavCarousel';
@@ -8,6 +8,16 @@ import './Nav.scss';
 
 const Nav = () => {
   const [userInput, setUserInput] = useState('');
+  const [isLogined, setIsLogined] = useState(false);
+
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      setIsLogined(true);
+    } else {
+      setIsLogined(false);
+    }
+  });
 
   const handleChange = e => {
     setUserInput(e.target.value);
@@ -38,7 +48,7 @@ const Nav = () => {
             <ul className="menuList">
               <li>
                 <Link className="link" to="/auth/signIn">
-                  로그인
+                  {isLogined ? <span>로그인</span> : <span>로그아웃</span>}
                 </Link>
               </li>
               <li>
