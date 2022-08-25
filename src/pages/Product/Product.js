@@ -22,24 +22,25 @@ const Product = () => {
 
   const toBuy = e => {
     e.preventDefault();
-    const token = localStorage.getItem('token') || '';
-    if (token === true) {
+    const token = localStorage.getItem('token');
+    if (token) {
       fetch(`http://10.58.0.117:3000/user/carts/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token,
+          Authorization: localStorage.getItem('Authorization'),
         },
+
         body: JSON.stringify({
           quantity: count,
         }),
       }).then(res => {
         if (res.ok) {
           return navigate('user/carts');
-        } else {
-          alert('로그인이 필요한 기능입니다');
-          navigate('/auth/signUp');
-        }
+        } // } else {
+        //   alert('로그인이 필요한 기능입니다');
+        //   navigate('/auth/signUp');
+        // }
       });
     } else {
       alert('로그인이 필요한 기능입니다');
