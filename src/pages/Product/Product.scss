@@ -1,0 +1,162 @@
+.product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .productMargin {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .productPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+
+    img {
+      width: 668px;
+      height: 666px;
+      margin: 0px;
+    }
+  }
+
+  .productForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .price {
+    height: 57px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  .priceTag {
+    color: #2087c9;
+    font-weight: 700;
+    font-size: 27px;
+  }
+
+  .priceTitle {
+    height: 57px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 15px;
+    font-size: 40px;
+    color: #000;
+    line-height: 1.5;
+    font-weight: normal;
+  }
+
+  .productOption {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 350;
+
+    .countOption {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .countInput {
+      width: 37px;
+      height: 32px;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
+
+    .countBtn {
+      display: flex;
+      flex-direction: column;
+
+      .countUpBtn,
+      .countDownBtn {
+        width: 18px;
+        height: 16px;
+        margin: 0;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .totalPrice {
+    width: 430px;
+    height: 57px;
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    justify-content: space-between;
+    margin-top: 17px;
+    padding: 20px 0 35px 0;
+    border-top: 1px solid #9a9ba0;
+    color: #353535;
+    background: #fff;
+    font-size: 20px;
+
+    .totalPriceText,
+    .totalPriceNum {
+      font-weight: bold;
+    }
+  }
+
+  .salePrice {
+    margin-left: 15px;
+    color: #b0b0b0;
+    text-decoration: line-through;
+    font-size: 22px;
+  }
+
+  .btn {
+    display: flex;
+    flex-direction: row;
+    border-top: solid 1px#9a9ba0;
+    padding-top: 20px;
+
+    .buyBtn {
+      width: 49%;
+      height: 66px;
+      text-align: center;
+      line-height: 66px;
+      margin: 0 10px;
+      font-size: 25px;
+      font-weight: bold;
+      background: #000;
+      color: #fff;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .cart {
+      width: 49%;
+      height: 66px;
+      margin: 0 10px;
+      padding: 0;
+      text-align: center;
+      line-height: 66px;
+      background: #fff;
+      border: 1px solid #707070;
+      color: #000;
+      font-size: 25px;
+      font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
