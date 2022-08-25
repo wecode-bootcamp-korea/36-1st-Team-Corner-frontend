@@ -19,11 +19,12 @@ const Product = () => {
       .then(response => response.json())
       .then(result => setProduct(result.data[0]));
   }, [productId]);
+
   const toBuy = e => {
     e.preventDefault();
     const token = localStorage.getItem('token') || '';
     if (token) {
-      fetch(`http://10.58.0.117:3000/user/cart/product/${productId}`, {
+      fetch(`http://10.58.0.117:3000/user/carts/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -106,10 +107,7 @@ const Product = () => {
               </div>
               <div className="salePrice">
                 {' '}
-                {priceOfInteger
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                원{' '}
+                {priceOfInteger.toLocaleString()} 원{' '}
               </div>
             </div>
             <div className="productOption">
@@ -138,18 +136,14 @@ const Product = () => {
                 </div>
               </div>
               <div className="optionPrice">
-                {discountPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                원
+                {discountPrice.toLocaleString()} 원
               </div>
             </div>
             <div className="totalPrice">
               <span className="totalPriceText"> 총 상품 금액 </span>
               <span className="totalPriceNum">
                 {' '}
-                {priceOfTotal
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                원 ({count}개)
+                {priceOfTotal.toLocaleString()} 원 ({count}개)
               </span>
             </div>
             <div className="btn">
