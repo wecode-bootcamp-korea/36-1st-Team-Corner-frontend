@@ -16,10 +16,9 @@
       width: 1200px;
 
       .logo {
-        color: $mainColor;
-        text-decoration: none;
-        font-size: 30px;
-        font-weight: 900;
+        img {
+          height: 30px;
+        }
       }
 
       .menuList {
@@ -57,19 +56,6 @@
         .link {
           color: inherit;
           text-decoration: none;
-        }
-
-        .countBadge {
-          width: 14px;
-          height: 15px;
-          margin-left: 2px;
-          color: white;
-          background-color: #4a4a4a;
-          border-radius: 50%;
-          font-size: 10px;
-          font-weight: 400;
-          text-align: center;
-          line-height: 14px;
         }
       }
     }

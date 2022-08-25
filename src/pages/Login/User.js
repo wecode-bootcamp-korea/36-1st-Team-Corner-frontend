@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const User = ({ content, isSelectLogin }) => {
   const { title, btnText, img } = content;
@@ -20,6 +20,14 @@ const User = ({ content, isSelectLogin }) => {
     info.userPw.length > 5 &&
     info.userId.includes('@', '.');
 
+  const goToSignUp = e => {
+    navigate('/auth/signUp');
+  };
+
+  const goToMain = e => {
+    navigate('/');
+  };
+
   const toSignUp = e => {
     e.preventDefault();
     fetch('http://10.58.7.174:3000/auth/signUp', {
@@ -35,7 +43,7 @@ const User = ({ content, isSelectLogin }) => {
       .then(response => {
         if (response.ok) {
           alert('회원가입 성공');
-          navigate('/login');
+          navigate('/auth/signIn');
         }
         return response.json();
       })
@@ -71,7 +79,14 @@ const User = ({ content, isSelectLogin }) => {
       <img alt="mainImg" src={img} />
       <div className="layoutLeftPage">
         <div className="formOuter">
-          <p>BODYLIKE</p>
+          <div className="imgOuter">
+            <img
+              onClick={goToMain}
+              alt="logo"
+              src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FxRctI%2FbtrKqFjVPvE%2FUGGxknuQ3SjbN6B6RzWafk%2Fimg.png"
+              className="logo"
+            />
+          </div>
           <form>
             <h2 className="title"> {title} </h2>
             <input
@@ -96,9 +111,7 @@ const User = ({ content, isSelectLogin }) => {
             </button>
 
             {title === '로그인' && (
-              <Link to="/signup">
-                <button>회원가입하기</button>
-              </Link>
+              <button onClick={goToSignUp}>회원가입하기</button>
             )}
           </form>
         </div>

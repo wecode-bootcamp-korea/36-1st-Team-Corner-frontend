@@ -1,0 +1,36 @@
+.productList {
+  display: flex;
+  justify-content: center;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+
+    .paginationGroup {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 50px;
+
+      button {
+        background-color: white;
+        border: none;
+        font-size: 12px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .pageNumber {
+        &:focus {
+          color: blue;
+        }
+      }
+
+      .clickedPageNumber {
+        color: blue;
+      }
+    }
+  }
+}
