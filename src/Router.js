@@ -7,7 +7,6 @@ import CategoryProduct from './pages/CategoryProduct/CategoryProduct';
 import Product from './pages/Product/Product';
 import Main from './pages/Main/Main';
 import Search from './pages/Search/Search';
-
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
