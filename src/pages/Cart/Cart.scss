@@ -1,0 +1,104 @@
+@import '../../styles/variables.scss';
+
+.cart {
+  display: flex;
+  justify-content: center;
+
+  button {
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .cartContents {
+    width: 1200px;
+
+    .cartTitle {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .cartEmpty {
+      @include flexCenter;
+      width: 1200px;
+      height: 300px;
+
+      .emptyAlert {
+        color: rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .deleteBtnBox {
+      display: flex;
+      justify-content: flex-end;
+      width: 1200px;
+
+      .deleteAllBtn {
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+      }
+    }
+
+    .cartPrice {
+      width: 1200px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      margin: 20px 0;
+
+      th,
+      td {
+        vertical-align: middle;
+      }
+
+      thead {
+        background-color: whitesmoke;
+        height: 30px;
+
+        th {
+          font-size: 11px;
+        }
+      }
+
+      .cartTotalPrice {
+        height: 50px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        text-align: center;
+
+        td {
+          font-size: 23px;
+        }
+
+        .payPrice {
+          color: rgba(0, 0, 0, 0.5);
+
+          span {
+            color: $mainColor;
+          }
+        }
+      }
+    }
+
+    .bottomBtnBox {
+      @include flexCenter;
+      position: relative;
+
+      button {
+        width: 200px;
+        height: 40px;
+        margin-left: 3px;
+        color: white;
+        background-color: black;
+        font-size: 16px;
+        text-decoration: none;
+      }
+
+      .goShoppingBtn {
+        position: absolute;
+        right: 0;
+        bottom: 0.5px;
+      }
+    }
+  }
+}
