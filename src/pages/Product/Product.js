@@ -15,7 +15,7 @@ const Product = () => {
   const { name, thumbnail_image_url, price, detail, stock } = product;
 
   useEffect(() => {
-    fetch(`/data/productData.json`)
+    fetch(`http://10.58.0.117:3000/product/${productId}`)
       .then(response => response.json())
       .then(result => setProduct(result.data[0]));
   }, [productId]);
@@ -23,7 +23,7 @@ const Product = () => {
   const toBuy = e => {
     e.preventDefault();
     const token = localStorage.getItem('token') || '';
-    if (token) {
+    if (token === true) {
       fetch(`http://10.58.0.117:3000/user/carts/product/${productId}`, {
         method: 'POST',
         headers: {
@@ -35,12 +35,15 @@ const Product = () => {
         }),
       }).then(res => {
         if (res.ok) {
-          return navigate('/cart');
+          return navigate('user/carts');
         } else {
           alert('로그인이 필요한 기능입니다');
           navigate('/auth/signUp');
         }
       });
+    } else {
+      alert('로그인이 필요한 기능입니다');
+      navigate('/auth/signIn');
     }
   };
 

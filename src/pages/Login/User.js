@@ -22,7 +22,7 @@ const User = ({ content, isSelectLogin }) => {
 
   const toSignUp = e => {
     e.preventDefault();
-    fetch('http://10.58.7.174:3000/auth/signUp', {
+    fetch('http://10.58.0.117:3000/auth/signUp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const User = ({ content, isSelectLogin }) => {
 
   const toLogin = e => {
     e.preventDefault();
-    fetch('http:///10.58.7.174:3000/auth/signIn', {
+    fetch('http:///10.58.0.117:3000/auth/signIn', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
