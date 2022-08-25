@@ -21,11 +21,7 @@ const Product = () => {
   }, [productId]);
   const toBuy = e => {
     e.preventDefault();
-    // const token =
-    // 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImV4cCI6MTY2MTQ0MzI2NSwiaWF0IjoxNjYxMDgzMjY1fQ.KmF-Jp46fdHKwxS01SJ8PtF5yD1SkQP8rwQFA6tU9rQ';
-    // 테스트용 코드
     const token = localStorage.getItem('token') || '';
-    // const x = true;
     if (token) {
       fetch(`http://10.58.0.117:3000/user/cart/product/${productId}`, {
         method: 'POST',
@@ -50,10 +46,6 @@ const Product = () => {
   const goToCart = e => {
     e.preventDefault();
     const token = localStorage.getItem('token') || '';
-    // test용 코드
-    // const token =
-    //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM4LCJleHAiOjE2NjEzNDc2NTQsImlhdCI6MTY2MTMxMTY1NH0.DKR-NR9Vy26BnyiJwN3cVj93Qj8oLLMhs1_HXzeqrd4';
-    // const x = true;
     if (token) {
       fetch(`http://10.58.0.117:3000/cart/product/${productId}`, {
         method: 'POST',
