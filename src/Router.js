@@ -1,10 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-<<<<<<< HEAD
 import Nav from 
-=======
-
-import ReviewWindow from './pages/ReviewWindow/ReviewWindow';
 import Nav from './components/Nav/Nav';
 import Login from './pages/Login/Login';
 import Cart from './pages/Cart/Cart';
@@ -21,7 +17,6 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/review/" element={<ReviewWindow />} />
       
         <Route path="/" element={<Main />} />;
         <Route path="/carts/product/:id" element={<Product />} />;
