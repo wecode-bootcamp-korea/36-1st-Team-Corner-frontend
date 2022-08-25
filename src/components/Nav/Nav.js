@@ -16,6 +16,7 @@ const Nav = () => {
   const navigate = useNavigate();
 
   const onSubmitSearch = e => {
+    e.preventDefault();
     if (e.key === 'Enter') {
       navigate(`/product/search?q=${userInput}`);
     }

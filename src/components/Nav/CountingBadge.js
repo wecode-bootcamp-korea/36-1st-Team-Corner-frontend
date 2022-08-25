@@ -7,7 +7,7 @@ const CountingBadge = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('http://10.58.0.117:3000/cart/counting', {
+    fetch('http://10.58.0.117:3000/carts/counting', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

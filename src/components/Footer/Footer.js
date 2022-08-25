@@ -1,12 +1,15 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './Footer.scss';
 
 const Footer = () => {
+  const location = useLocation();
+
   if (
-    window.location.pathname === '/auth/signIn' ||
-    window.location.pathname === '/auth/signUp'
+    location.pathname === '/auth/signIn' ||
+    location.pathname === '/auth/signUp'
   )
-    return null;
+    return;
   return (
     <footer className="footer">
       <div className="footerInner">
