@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
-  const { name, price, thumbnail_image_url } = product;
+  const [reviewCount, setReviewCount] = useState('');
+
+  const { id, name, price, thumbnail_image_url } = product;
+  const priceI = Math.floor(price);
+
+  useEffect(() => {
+    fetch(`http://10.58.2.193:3000/review/product/${id}?page=1&pageSize=5`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(result => setReviewCount(result.reviewCount[0].reviewCount));
+  }, []);
 
   return (
     <div className="productCard">
@@ -12,11 +23,11 @@ const ProductCard = ({ product }) => {
         alt="productImage"
       />
       <h3 className="productName">{name}</h3>
-      <span className="currentPrice"> {price * 0.8} </span>
-      <span className="price"> {price}</span>
+      <span className="currentPrice"> {(priceI * 0.8).toLocaleString()} </span>
+      <span className="price"> {priceI.toLocaleString()}</span>
       <p className="tagSpace" />
       <p className="reviewCount">
-        리뷰 <span className="reviewCounter">100</span>
+        리뷰 <span className="reviewCounter">{reviewCount}</span>
       </p>
     </div>
   );
