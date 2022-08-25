@@ -20,7 +20,7 @@ const Search = () => {
     <div className="search">
       <div className="wrapper">
         {searchedWord == '' ? (
-          <span className="pleaseSearch">검색어를 입력해 주세요. </span>
+          <span className="pleaseSearch">검색어를 입력해 주세요.</span>
         ) : (
           <ItemList products={products} />
         )}
