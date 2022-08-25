@@ -19,9 +19,7 @@ const Cart = () => {
     setTotalPrice(totalPrice);
   }, [cartProducts]);
 
-  //const token = localStorage.getItem('token';
-  const token =
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM3LCJleHAiOjE2NjEzODYzNzgsImlhdCI6MTY2MTM1MDM3OH0.iO1N-QxxuiitviIRrS5WI8dzg-gS8HsRSRrUNfyxD9s';
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     fetch('http://10.58.0.117:3000/carts', {
