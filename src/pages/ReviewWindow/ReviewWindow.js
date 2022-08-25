@@ -1,26 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import './ReviewWindow.scss';
+
 const ReviewWindow = () => {
   const [isReturned, setIsReturned] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const [reviewText, setReviewText] = useState('');
   const [myReviewUpdate, setMyReviewUpdate] = useState(false);
-  const myReviews = useRef(false);
+  const [myReviews, setMyReviews] = useState(false);
+  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [reviewCount, setReviewCount] = useState(0);
+  console.log('reviwCount', reviewCount);
+  console.log('currentPage', currentPage);
+  const isReviewExist = useRef(false);
+  const firstUpdate = useRef(false);
+  const secondReviewsCall = useRef(false);
 
-  let isReviewExist = useRef(false);
+  const putRevText = e => {
+    setReviewText(e.target.value);
+  };
   if (reviewList.length !== 0) isReviewExist.current = true;
-
   const token =
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImV4cCI6MTY2MTM4NTYwMSwiaWF0IjoxNjYxMzQ5NjAxfQ.0hQGIVvBN0fypuWx2SWKV7unPH9bziIZBiFf8S_FjJo';
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImV4cCI6MTY2MTQyNjE4NSwiaWF0IjoxNjYxMzkwMTg1fQ.FAFmhk69bw5PTeArkzYC4OZaSv-XfcD6IoRSbDJUT1k';
 
   const modifiedReviewList = reviewList.map(review => {
     let maskedName = review.name.replace(/^(.).*(.)$/, '$1**$2');
     let newDate = review.created_at.slice(0, review.created_at.indexOf('T'));
     return { ...review, name: maskedName, created_at: newDate };
   });
-
-  const reviewCount = reviewList.length;
 
   const authValidation = () => {
     fetch('http://10.58.2.193:3000/common/access', {
@@ -53,15 +61,6 @@ const ReviewWindow = () => {
       });
   };
 
-  const putRevText = e => {
-    setReviewText(e.target.value);
-  };
-
-  const backToList = () => {
-    myReviews.current = false;
-    setIsReturned(!isReturned);
-  };
-
   const submitReview = () => {
     if (reviewText !== '') {
       fetch('http://10.58.2.193:3000/review/product/1', {
@@ -72,8 +71,9 @@ const ReviewWindow = () => {
         },
         body: JSON.stringify({ contents: reviewText }),
       }).then(() => {
-        setIsReturned(!isReturned);
         setReviewText('');
+
+        return setIsReturned(!isReturned);
       });
     } else {
       alert('내용을 입력 하세요.');
@@ -81,16 +81,29 @@ const ReviewWindow = () => {
   };
 
   const openMyReviewListButton = () => {
-    if (reviewList.length > 0) {
-      myReviews.current = true;
-      setMyReviewUpdate(true);
-    } else {
-      alert('작성 된 리뷰가 없습니다');
-    }
+    fetch('http://10.58.2.193:3000/common/access', {
+      method: 'GET',
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.result !== true) {
+          alert('로그인이 필요한 기능입니다.');
+        } else {
+          setMyReviewUpdate(!myReviewUpdate);
+        }
+      });
+  };
+
+  const backToList = () => {
+    setMyReviews(false);
+    setIsReturned(!isReturned);
   };
 
   const deleteMyReview = id => {
-    fetch(`http://10.58.2.193:3000/review/product/1/${id}/my`, {
+    fetch(`http://10.58.2.193:3000/review/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: token,
@@ -99,9 +112,6 @@ const ReviewWindow = () => {
       body: JSON.stringify({ reviewId: id }),
     }).then(() => setMyReviewUpdate(!myReviewUpdate));
   };
-
-  const firstUpdate = useRef(false);
-
   useEffect(() => {
     if (firstUpdate.current) {
       fetch('http://10.58.2.193:3000/review/product/1/my', {
@@ -118,20 +128,76 @@ const ReviewWindow = () => {
           }
         })
         .then(reviewData => {
-          setReviewList(reviewData.reviewList);
+          if (reviewData.reviewList.length !== 0) {
+            setMyReviews(true);
+            setReviewList(reviewData.reviewList);
+            setReviewCount(reviewData.reviewCount[0].reviewCount); //여기 조심 , 고친 곳!!!! return 뺏음
+          } else {
+            alert('작성 된 리뷰가 없습니다');
+          }
         });
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }
     firstUpdate.current = true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [myReviewUpdate]);
 
   useEffect(() => {
-    fetch('http://10.58.2.193:3000/review/product/1?page=1&pageSize=8', {
+    fetch('http://10.58.2.193:3000/review/product/1?page=1&pageSize=6', {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(reviewData => setReviewList(reviewData.reviewList));
-  }, [isReturned]);
+      .then(reviewData => {
+        setReviewList(reviewData.reviewList);
+        setReviewCount(reviewData.reviewCount[0].reviewCount);
+      });
+
+    secondReviewsCall.current = true;
+  }, []);
+  console.log('page', page);
+  useEffect(() => {
+    if (secondReviewsCall.current !== false) {
+      fetch(
+        `http://10.58.2.193:3000/review/product/1?page=${page}&pageSize=6`,
+        {
+          method: 'GET',
+        }
+      )
+        .then(res => res.json())
+        .then(reviewData => {
+          setReviewList(reviewData.reviewList);
+          setReviewCount(reviewData.reviewCount[0].reviewCount);
+        });
+    }
+  }, [isReturned, page]);
+
+  const pageNumber = Math.ceil(reviewCount / 6);
+  const pageNumbers = [];
+  for (let i = 0; i < pageNumber; i++) {
+    pageNumbers.push(i + 1);
+  }
+
+  const movePrev = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+      setPage(page - 1);
+    }
+  };
+
+  const moveNext = () => {
+    if (currentPage < pageNumbers.length) {
+      setCurrentPage(currentPage + 1);
+      setPage(page + 1);
+    }
+  };
+
+  const movePage = click => {
+    console.log('movepage', click);
+    if (currentPage !== click) {
+      setCurrentPage(click);
+      setPage(click);
+    }
+  };
 
   return (
     <div className="reviewWindow">
@@ -147,14 +213,20 @@ const ReviewWindow = () => {
               모두 솔직한 상품평을 작성해 보아요!
             </span>
 
-            <span className="reviewCount">({reviewCount})</span>
+            <span className="secondReviewCall">({reviewCount})</span>
             <p className="showMyReviewWrapper">
-              <button className="showMyReview" onClick={openMyReviewListButton}>
-                내 리뷰 보기.
-              </button>
-              <button className="backToFullReview" onClick={backToList}>
-                전체 리뷰 보기
-              </button>
+              {!myReviews ? (
+                <button
+                  className="showMyReview"
+                  onClick={openMyReviewListButton}
+                >
+                  내 리뷰 보기
+                </button>
+              ) : (
+                <button className="backToFullReview" onClick={backToList}>
+                  전체 리뷰 보기
+                </button>
+              )}
             </p>
           </div>
         </div>
@@ -170,68 +242,100 @@ const ReviewWindow = () => {
           )}
 
           <div className={isReviewExist.current ? 'reviews' : 'reviewsHide'}>
-            {modifiedReviewList.map(review => {
-              return (
-                <div className="reviewContainer" key={review.id}>
-                  <div className="review">
-                    <p className="reviewText">{review.contents}</p>
-                  </div>
-                  <div className="userInfo">
-                    <div className="userInfoWrap">
-                      <div className="userName">
-                        <span className="userLevelTag">Basic</span>
-                        <span className="reviewer">{review.name}</span>님의
-                        리뷰입니다.
-                      </div>
-                      <div className="dateReviewWritten">
-                        <span className="date">작성날짜: </span>
-                        {review.created_at}
-                      </div>
+            <div className="reviewAndPages">
+              {modifiedReviewList.map(review => {
+                return (
+                  <div className="reviewContainer" key={review.id}>
+                    <div className="review">
+                      <p className="reviewText">{review.contents}</p>
                     </div>
-                    {myReviews.current && (
-                      <div className="buttonWrapper">
-                        <button
-                          className="deleteThisReview"
-                          onClick={() => deleteMyReview(review.id)}
-                        >
-                          삭제하기
-                        </button>
+                    <div className="userInfo">
+                      <div className="userInfoWrap">
+                        <div className="userName">
+                          <span className="userLevelTag">Basic</span>
+                          <span className="reviewer">{review.name}</span>님의
+                          리뷰입니다.
+                        </div>
+                        <div className="dateReviewWritten">
+                          <span className="date">작성날짜: </span>
+                          {review.created_at}
+                        </div>
                       </div>
-                    )}
+                      {myReviews && (
+                        <div className="buttonWrapper">
+                          <button
+                            className="deleteThisReview"
+                            onClick={() => deleteMyReview(review.id)}
+                          >
+                            이 리뷰 삭제하기 X
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            {!myReviews.current && (
-              <div className="reviewInput">
-                <div className="modifyInputWindow">
-                  <textarea
-                    className="reviewTextArea"
-                    placeholder="내용을 입력하세요."
-                    onChange={putRevText}
-                    value={reviewText}
-                    onClick={inputAuthValidation}
-                  />
+                );
+              })}
+              {pageNumbers !== 0 && (
+                <div className="paginationGroup">
+                  <button className="prevPage" onClick={movePrev}>
+                    이전
+                  </button>
 
-                  <div
-                    className={
-                      isReviewExist.current
-                        ? 'reviewButtons'
-                        : 'reviewButtonsHide'
-                    }
-                  >
-                    <button className="cancelInput">작성취소</button>
-                    <button className="registerInput" onClick={submitReview}>
-                      등록하기
-                    </button>
-                  </div>
+                  <p className="pageNumbers">
+                    {pageNumbers.map(page => {
+                      return (
+                        <button
+                          className={
+                            !(currentPage === page)
+                              ? 'pageNumber'
+                              : 'clickedPageNumber'
+                          }
+                          key={page}
+                          onClick={() => movePage(page)}
+                          value={page}
+                        >
+                          {page}
+                        </button>
+                      );
+                    })}
+                  </p>
+                  <button className="nextPage" onClick={moveNext}>
+                    다음
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          {!myReviews && (
+            <div className="reviewInput">
+              <div className="modifyInputWindow">
+                <textarea
+                  className="reviewTextArea"
+                  placeholder="내용을 입력하세요."
+                  onChange={putRevText}
+                  value={reviewText}
+                  onClick={inputAuthValidation}
+                />
+
+                <div
+                  className={
+                    isReviewExist.current
+                      ? 'reviewButtons'
+                      : 'reviewButtonsHide'
+                  }
+                >
+                  <button className="cancelInput">작성취소</button>
+                  <button className="registerInput" onClick={submitReview}>
+                    등록하기
+                  </button>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 };
+
 export default ReviewWindow;
