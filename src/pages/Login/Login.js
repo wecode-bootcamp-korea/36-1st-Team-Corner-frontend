@@ -6,7 +6,7 @@ import './Login.scss';
 const Login = () => {
   const location = useLocation();
   const currentURL = location.pathname;
-  const isSelectLogin = currentURL === '/login';
+  const isSelectLogin = currentURL === '/auth/signIn';
 
   return (
     <div className="login">

@@ -3,8 +3,8 @@ import './Footer.scss';
 
 const Footer = () => {
   if (
-    window.location.pathname === '/login' ||
-    window.location.pathname === '/signup'
+    window.location.pathname === '/auth/signIn' ||
+    window.location.pathname === '/auth/signUp'
   )
     return null;
   return (
