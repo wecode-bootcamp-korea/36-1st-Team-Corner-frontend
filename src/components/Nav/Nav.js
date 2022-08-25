@@ -13,13 +13,13 @@ const Nav = () => {
   const [isLogined, setIsLogined] = useState(false);
 
   useEffect(() => {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token) {
       setIsLogined(true);
     } else {
       setIsLogined(false);
     }
-  });
+  }, []);
 
   const handleChange = e => {
     setUserInput(e.target.value);
