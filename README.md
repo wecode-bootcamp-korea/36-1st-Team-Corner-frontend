@@ -27,6 +27,7 @@
 
 #### 메인
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+![carousel](https://user-images.githubusercontent.com/73376092/186857763-75f04bc4-44d0-4d3a-bdf3-ef63435fd1ff.gif)
 
 #### 모든 상품 목록
 
