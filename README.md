@@ -52,6 +52,7 @@
 
 #### 리뷰 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+<<strong>리뷰기입창</strong>>
 - 기존 상품평 리스트 출력
 - 기존 상품평 리스트 부재 시 "상품평작성" 버튼이 있는 섹션 출력
 - 상품평 버튼 클릭 시 유효성 검사 후 기입창 열림
