@@ -26,6 +26,7 @@
 #### 내비게이션 바 
 
 #### 메인
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 
 #### 모든 상품 목록
 
@@ -36,6 +37,7 @@
 #### 상품 상세 
 
 #### 리뷰 
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 
 #### 장바구니 
 
