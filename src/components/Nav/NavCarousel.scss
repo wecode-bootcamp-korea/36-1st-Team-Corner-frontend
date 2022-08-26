@@ -2,12 +2,18 @@
 
 .navCarousel {
   @include flexCenter;
+  width: 300%;
   height: 50px;
   color: white;
   background-color: #2087c9;
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
 
-  .isNew {
-    margin-right: 10px;
-    color: rgb(255, 158, 128);
+    .isNew {
+      margin-right: 10px;
+      color: rgb(255, 158, 128);
+    }
   }
 }
