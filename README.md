@@ -33,7 +33,7 @@
 #### 내비게이션 바 
 
 #### 메인
-<<strong>무한케러셀</strong>>
+<<u><strong>무한케러셀</strong></u>>
 - 매 3초마다 우측으로 슬라이드
 - 마지막 페이지에서 우측으로 슬라이드 시 첫번째 슬라이드를 불러옴
 - 좌 우 이동 버튼
@@ -44,7 +44,9 @@
 ![carousel](https://user-images.githubusercontent.com/73376092/186857763-75f04bc4-44d0-4d3a-bdf3-ef63435fd1ff.gif)
 
 
-<<strong>페이지네이션</strong>>
+<<u><strong>페이지네이션</strong></u>>
+
+
 - 이전/다음 페이지 버튼 
 - 페이지 클릭 시 서버에서 해당 페이지에 부합하는 상품들 출력
 
