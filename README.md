@@ -10,6 +10,8 @@
 ## 팀 코너 
 - 프론트엔트 개발자 : 최규선, 조은지, 조민재
 - 벡엔드 개발자 : 이지현, 백민석
+- 
+-[백엔드 깃허브](https://github.com/wecode-bootcamp-korea/36-1st-Team-Corner-backend)
 
 ## 사용 기술 
 - 프론트엔드 : JavaScript, React.js, Sass
@@ -26,8 +28,6 @@
 #### 내비게이션 바 
 
 #### 메인
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-![carousel](https://user-images.githubusercontent.com/73376092/186857763-75f04bc4-44d0-4d3a-bdf3-ef63435fd1ff.gif)
 
 #### 모든 상품 목록
 
@@ -38,7 +38,6 @@
 #### 상품 상세 
 
 #### 리뷰 
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 
 #### 장바구니 
 
