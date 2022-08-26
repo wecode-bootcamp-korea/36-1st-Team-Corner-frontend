@@ -39,7 +39,10 @@
 - 좌 우 이동 버튼
 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+
+
 ![carousel](https://user-images.githubusercontent.com/73376092/186857763-75f04bc4-44d0-4d3a-bdf3-ef63435fd1ff.gif)
+
 
 <<strong>페이지네이션</strong>>
 - 이전/다음 페이지 버튼 
