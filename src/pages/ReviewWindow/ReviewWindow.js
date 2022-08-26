@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import './ReviewWindow.scss';
 
 const ReviewWindow = ({ products }) => {
-  console.log(products);
   const [isReturned, setIsReturned] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const [reviewText, setReviewText] = useState('');
@@ -170,7 +169,7 @@ const ReviewWindow = ({ products }) => {
 
     secondReviewsCall.current = true;
   }, []);
-  console.log(reviewCount);
+
   useEffect(() => {
     if (secondReviewsCall.current !== false) {
       if (myReviewUpdate === false) {
@@ -184,13 +183,12 @@ const ReviewWindow = ({ products }) => {
           .then(reviewData => {
             setReviewList(reviewData.reviewList);
             setReviewCount(reviewData.reviewCount[0].reviewCount);
-            console.log('here', reviewData.reviewList);
           });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReturned, page]);
-  console.log(myReviewUpdate);
+
   const pageNumber = Math.ceil(reviewCount / 6);
   const pageNumbers = [];
   for (let i = 0; i < pageNumber; i++) {
