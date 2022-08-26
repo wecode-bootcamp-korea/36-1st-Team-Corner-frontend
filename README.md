@@ -11,7 +11,7 @@
 - 프론트엔트 개발자 : 최규선, 조은지, 조민재
 - 벡엔드 개발자 : 이지현, 백민석
 
--[백엔드 깃허브](https://github.com/wecode-bootcamp-korea/36-1st-Team-Corner-backend)
+- [백엔드 깃허브](https://github.com/wecode-bootcamp-korea/36-1st-Team-Corner-backend)
 
 ## 사용 기술 
 - 프론트엔드 : JavaScript, React.js, Sass
