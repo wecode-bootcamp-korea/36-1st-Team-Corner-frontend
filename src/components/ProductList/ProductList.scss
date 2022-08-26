@@ -3,7 +3,17 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 
-  div:nth-child(3n + 2) {
-    margin: 0 28px;
+  a:link {
+    text-decoration: none;
+    color: black;
+
+    &:nth-child(3n + 2) {
+      margin: 0 28px;
+    }
+  }
+
+  a:visited {
+    text-decoration: none;
+    color: black;
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './ProductDetail.scss';
 import { useRef } from 'react';
+import ReviewWindow from '../ReviewWindow/ReviewWindow';
 import DetailInfo from './DetailInfo';
 
 const ProductDetail = ({ ProductDetails }) => {
@@ -22,9 +23,10 @@ const ProductDetail = ({ ProductDetails }) => {
           <img alt="productDetailImg" src={ProductDetails} />
         </div>
       </div>
-      <div ref={homeRef} />
+
       <div className="productInfo" />
       <DetailInfo />
+      <div ref={homeRef} />
     </div>
   );
 };

@@ -11,12 +11,12 @@ const CountingBadge = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
       },
     })
       .then(response => response.json())
       .then(result => setProductCounting(result.data));
-  }, [productCounting]);
+  }, [productCounting, token]);
 
   return <div className="countingBadge">{productCounting}</div>;
 };

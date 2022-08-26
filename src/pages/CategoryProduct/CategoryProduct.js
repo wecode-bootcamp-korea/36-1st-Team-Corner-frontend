@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import ProductList from '../../components/ProductList/ProductList';
 import './CategoryProduct.scss';
 
@@ -62,39 +64,43 @@ const CategoryProduct = () => {
   };
 
   return (
-    <div className="categoryProduct">
-      <div className="wrapper">
-        <div className="pagination">
-          <ProductList products={products} />
-          <div className="paginationGroup">
-            <button className="prevPage" onClick={() => movePrev(page)}>
-              이전
-            </button>
-            <p className="pageNumbers">
-              {pageNumbers.map(page => {
-                return (
-                  <button
-                    className={
-                      !(currentPage === page)
-                        ? 'pageNumber'
-                        : 'clickedPageNumber'
-                    }
-                    key={page}
-                    onClick={() => movePage(page)}
-                    value={page}
-                  >
-                    {page}
-                  </button>
-                );
-              })}
-            </p>
-            <button className="nextPage" onClick={() => moveNext(page)}>
-              다음
-            </button>
+    <>
+      <Nav />
+      <div className="categoryProduct">
+        <div className="wrapper">
+          <div className="pagination">
+            <ProductList products={products} />
+            <div className="paginationGroup">
+              <button className="prevPage" onClick={() => movePrev(page)}>
+                이전
+              </button>
+              <p className="pageNumbers">
+                {pageNumbers.map(page => {
+                  return (
+                    <button
+                      className={
+                        !(currentPage === page)
+                          ? 'pageNumber'
+                          : 'clickedPageNumber'
+                      }
+                      key={page}
+                      onClick={() => movePage(page)}
+                      value={page}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+              </p>
+              <button className="nextPage" onClick={() => moveNext(page)}>
+                다음
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

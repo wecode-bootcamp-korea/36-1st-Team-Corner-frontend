@@ -14,10 +14,11 @@ const Modal = ({ toggleModal }) => {
           src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbLp0yG%2FbtrKpEj2zXH%2FcHn6dkLYdhoKKcA2rFBcV0%2Fimg.png"
           alt="카트이미지"
         />
-        <p className="textContent">장바구니에 상품이 정상적으로 담겼습니다.</p>
       </div>
+      <p className="textContent">장바구니에 상품이 정상적으로 담겼습니다.</p>
+
       <div className="modalButtons">
-        <Link to="/cart">
+        <Link to="/carts">
           <button className="goToCartButton">장바구니 이동</button>
         </Link>
         <button className="backToShopButton" onClick={toggleModal}>

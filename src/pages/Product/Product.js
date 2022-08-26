@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import ReviewWindow from '../ReviewWindow/ReviewWindow';
 import './Product.scss';
 import Modal from './Modal';
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import ProductDetail from './ProductDetail';
 
 const Product = () => {
@@ -39,7 +42,7 @@ const Product = () => {
         }),
       }).then(res => {
         if (res.ok) {
-          return navigate('user/carts');
+          return navigate('/carts');
         }
       });
     }
@@ -95,78 +98,85 @@ const Product = () => {
   };
 
   return (
-    <div className="product">
-      <div className="productMargin">
-        <div className="productPage">
-          <img
-            className="productImg"
-            alt="productImg"
-            src={thumbnail_image_url}
-          />
-          <form className="productForm">
-            <div className="priceTitle"> {name} </div>
-            <div className="price">
-              <div className="priceTag">
-                {discountPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                원
-              </div>
-              <div className="salePrice">
-                {' '}
-                {priceOfInteger.toLocaleString()} 원{' '}
-              </div>
-            </div>
-            <div className="productOption">
-              <div className="optionName">{name}</div>
-              <div className="countOption">
-                <input
-                  onChange={e => setCount(e.target.value)}
-                  type="number"
-                  className="countInput"
-                  value={counted}
-                />
-                <div className="countBtn">
-                  <img
-                    className="countUpBtn"
-                    src="https://img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif"
-                    alt="수량증가"
-                    onClick={countPlus}
-                  />
-                  <img
-                    className="countDownBtn"
-                    src="	https://img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif
-                  "
-                    alt="수량감소"
-                    onClick={countMinus}
-                  />
+    <>
+      <Nav />
+      <div className="product">
+        <div className="productMargin">
+          <div className="productPage">
+            <img
+              className="productImg"
+              alt="productImg"
+              src={thumbnail_image_url}
+            />
+            <form className="productForm">
+              <div className="priceTitle"> {name} </div>
+              <div className="price">
+                <div className="priceTag">
+                  {discountPrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                  원
+                </div>
+                <div className="salePrice">
+                  {' '}
+                  {priceOfInteger.toLocaleString()} 원{' '}
                 </div>
               </div>
-              <div className="optionPrice">
-                {discountPrice.toLocaleString()} 원
+              <div className="productOption">
+                <div className="optionName">{name}</div>
+                <div className="countOption">
+                  <input
+                    onChange={e => setCount(e.target.value)}
+                    type="number"
+                    className="countInput"
+                    value={counted}
+                  />
+                  <div className="countBtn">
+                    <img
+                      className="countUpBtn"
+                      src="https://img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif"
+                      alt="수량증가"
+                      onClick={countPlus}
+                    />
+                    <img
+                      className="countDownBtn"
+                      src="	https://img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif
+                  "
+                      alt="수량감소"
+                      onClick={countMinus}
+                    />
+                  </div>
+                </div>
+                <div className="optionPrice">
+                  {discountPrice.toLocaleString()} 원
+                </div>
               </div>
-            </div>
-            <div className="totalPrice">
-              <span className="totalPriceText"> 총 상품 금액 </span>
-              <span className="totalPriceNum">
-                {' '}
-                {priceOfTotal.toLocaleString()} 원 ({count}개)
-              </span>
-            </div>
-            <div className="btn">
-              <button className="buyBtn" onClick={toBuy}>
-                바로 구매하기
-              </button>
-              <button className="cart" onClick={goToCart}>
-                장바구니
-              </button>
-            </div>
-          </form>
-        </div>
-        {isModalOpen === true && <Modal toggleModal={toggleModal} />}
-        <div>
-          <ProductDetail ProductDetails={detail} />
+              <div className="totalPrice">
+                <span className="totalPriceText"> 총 상품 금액 </span>
+                <span className="totalPriceNum">
+                  {' '}
+                  {priceOfTotal.toLocaleString()} 원 ({count}개)
+                </span>
+              </div>
+              <div className="btn">
+                <button className="buyBtn" onClick={toBuy}>
+                  바로 구매하기
+                </button>
+                <button className="cart" onClick={goToCart}>
+                  장바구니
+                </button>
+              </div>
+            </form>
+          </div>
+          {isModalOpen === true && <Modal toggleModal={toggleModal} />}
+          <div>
+            <ProductDetail ProductDetails={detail} />
+            <ReviewWindow products={productId} />
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

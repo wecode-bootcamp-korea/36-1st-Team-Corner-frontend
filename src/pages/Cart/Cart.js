@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import CartProductTable from './CartProductTable';
 import CartFooter from './CartFooter';
 import './Cart.scss';
@@ -26,7 +28,7 @@ const Cart = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
       },
     })
       .then(response => response.json())
@@ -39,10 +41,10 @@ const Cart = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token,
+          Authorization: 'Bearer ' + token,
         },
       }).then(response => {
-        if (response.status === 204) {
+        if (response.status === 200) {
           setCartProducts([]);
         } else {
           alert('오류가 발생하였습니다.');
@@ -57,10 +59,10 @@ const Cart = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token,
+          Authorization: 'Bearer ' + token,
         },
       }).then(response => {
-        if (response.status === 204) {
+        if (response.status === 200) {
           setCartProducts(cartProducts.filter(product => product.id !== id));
         } else {
           alert('오류가 발생하였습니다.');
@@ -130,60 +132,64 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart">
-      <div className="cartContents">
-        <h1 className="cartTitle">장바구니</h1>
-        {cartProducts.length === 0 ? (
-          <div className="cartEmpty">
-            <h3 className="emptyAlert">장바구니가 비어 있습니다.</h3>
-          </div>
-        ) : (
-          <div className="cartFull">
-            <CartProductTable
-              cartProducts={cartProducts}
-              handleMinusOne={handleMinusOne}
-              handlePlusOne={handlePlusOne}
-              handleOrderThis={handleOrderThis}
-              deleteThisProduct={deleteThisProduct}
-            />
-
-            <div className="deleteBtnBox">
-              <button className="deleteAllBtn" onClick={deleteAllProducts}>
-                장바구니비우기
-              </button>
+    <>
+      <Nav />
+      <div className="cart">
+        <div className="cartContents">
+          <h1 className="cartTitle">장바구니</h1>
+          {cartProducts.length === 0 ? (
+            <div className="cartEmpty">
+              <h3 className="emptyAlert">장바구니가 비어 있습니다.</h3>
             </div>
+          ) : (
+            <div className="cartFull">
+              <CartProductTable
+                cartProducts={cartProducts}
+                handleMinusOne={handleMinusOne}
+                handlePlusOne={handlePlusOne}
+                handleOrderThis={handleOrderThis}
+                deleteThisProduct={deleteThisProduct}
+              />
 
-            <table className="cartPrice">
-              <thead>
-                <tr>
-                  <th>총 상품금액</th>
-                  <th>결제예정금액</th>
-                </tr>
-              </thead>
-              <tbody className="cartTotalPrice">
-                <tr>
-                  <td className="totalPrice">
-                    <span>{totalPrice.toLocaleString()}</span>원
-                  </td>
-                  <td className="payPrice">
-                    <span>{totalPrice.toLocaleString()}</span>원
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <div className="deleteBtnBox">
+                <button className="deleteAllBtn" onClick={deleteAllProducts}>
+                  장바구니비우기
+                </button>
+              </div>
+
+              <table className="cartPrice">
+                <thead>
+                  <tr>
+                    <th>총 상품금액</th>
+                    <th>결제예정금액</th>
+                  </tr>
+                </thead>
+                <tbody className="cartTotalPrice">
+                  <tr>
+                    <td className="totalPrice">
+                      <span>{totalPrice.toLocaleString()}</span>원
+                    </td>
+                    <td className="payPrice">
+                      <span>{totalPrice.toLocaleString()}</span>원
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
+          <div className="bottomBtnBox">
+            <button className="orderAllBtn" onClick={handleOrderAll}>
+              전체상품주문
+            </button>
+            <Link to="/">
+              <button className="goShoppingBtn">쇼핑계속하기</button>
+            </Link>
           </div>
-        )}
-        <div className="bottomBtnBox">
-          <button className="orderAllBtn" onClick={handleOrderAll}>
-            전체상품주문
-          </button>
-          <Link to="/">
-            <button className="goShoppingBtn">쇼핑계속하기</button>
-          </Link>
+          <CartFooter />
         </div>
-        <CartFooter />
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
