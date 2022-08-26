@@ -21,6 +21,7 @@
 - 조은지 : 로그인/회원가입 페이지, 상품 상세 페이지
 - 조민재 : 내비게이션 바/푸터, 상품 검색 기능, 장바구니 페이지
 
+
 #### 로그인/회원가입 
 ![회원가입](https://blog.kakaocdn.net/dn/mVr3E/btrKHbhDAO0/S90Eig5wzUelckw0Ny4vM0/img.gif)
 
