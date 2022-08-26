@@ -24,6 +24,12 @@
 #### 로그인/회원가입 
 <img src="https://blog.kakaocdn.net/dn/mVr3E/btrKHbhDAO0/S90Eig5wzUelckw0Ny4vM0/img.gif">
 
+- 로그인창에서 회원가입 버튼 누를시 회원가입 창으로 넘어감
+- 회원가입창/ 로그인창에서 아이디 창 '@', 5글자 && 비밀번호 창 5글자 이상 입력시 회원가입 버튼 활성화 (비밀번호 영문 소대문자 없을 시 알림창 뜸)
+- 로그인창에서 id, pw 기입 후 로그인 버튼 누를 시 서버와 통신 후 로컬 스토리지에 토큰 발급, 메인창으로 넘어감
+- 왼측 상단 로고 클릭시 메인으로 이동
+
+
 #### 내비게이션 바 
 
 #### 메인
@@ -46,7 +52,17 @@
 
 #### 검색 기능
 
-#### 상품 상세 
+#### 상품 상세
+
+<img scr="https://blog.kakaocdn.net/dn/Gn5Xk/btrKGRDLagS/NbKK2AwoV19ixffDPoDqR0/img.gif">
+<img scr="https://blog.kakaocdn.net/dn/dltnVp/btrKGOf9axq/4l3PCVMFlp4R9Y3MfMnBbk/img.gif">
+
+
+- 상품 정보 옆 리뷰 버튼 누르면 하단 리뷰로 슬라이드
+- 상품 카운트 음수로 내려갈 시, 재고 이상 누를 시 알림창 뜸
+- 상품 카운트 누른 후 장바구니 클릭 시 로그인 되어 있을 시 모달창 뜨면서 장바구니/쇼핑하기 버튼 뜸, 로그인 안 되어 있을 시 알람창 뜨며 로그인 창으로 이동
+- 모달 창에서 장바구니 가기 클릭시 제품이 장바구니에 담기며 장바구니로 이동 
+
 
 
 
