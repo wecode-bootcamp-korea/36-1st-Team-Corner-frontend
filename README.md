@@ -22,7 +22,7 @@
 - 조민재 : 내비게이션 바/푸터, 상품 검색 기능, 장바구니 페이지
 
 #### 로그인/회원가입 
-![로그인/회원가입](https://blog.kakaocdn.net/dn/mVr3E/btrKHbhDAO0/S90Eig5wzUelckw0Ny4vM0/img.gif)
+![회원가입](https://blog.kakaocdn.net/dn/mVr3E/btrKHbhDAO0/S90Eig5wzUelckw0Ny4vM0/img.gif)
 
 - 로그인창에서 회원가입 버튼 누를시 회원가입 창으로 넘어감
 - 회원가입창/ 로그인창에서 아이디 창 '@', 5글자 && 비밀번호 창 5글자 이상 입력시 회원가입 버튼 활성화 (비밀번호 영문 소대문자 없을 시 알림창 뜸)
@@ -55,7 +55,7 @@
 #### 상품 상세
 
 ![상세](https://blog.kakaocdn.net/dn/Gn5Xk/btrKGRDLagS/NbKK2AwoV19ixffDPoDqR0/img.gif)
-<img scr="https://blog.kakaocdn.net/dn/dltnVp/btrKGOf9axq/4l3PCVMFlp4R9Y3MfMnBbk/img.gif">
+![상세2](https://blog.kakaocdn.net/dn/dltnVp/btrKGOf9axq/4l3PCVMFlp4R9Y3MfMnBbk/img.gif)
 
 
 - 상품 정보 옆 리뷰 버튼 누르면 하단 리뷰로 슬라이드
