@@ -37,6 +37,7 @@
 #### 검색 기능
 
 #### 상품 상세 
+<img src="https://blog.kakaocdn.net/dn/Gn5Xk/btrKGRDLagS/NbKK2AwoV19ixffDPoDqR0/img.gif">
 
 
 
