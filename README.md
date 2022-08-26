@@ -54,7 +54,7 @@
 
 #### 상품 상세
 
-<img scr="https://blog.kakaocdn.net/dn/Gn5Xk/btrKGRDLagS/NbKK2AwoV19ixffDPoDqR0/img.gif">
+![상세](https://blog.kakaocdn.net/dn/Gn5Xk/btrKGRDLagS/NbKK2AwoV19ixffDPoDqR0/img.gif)
 <img scr="https://blog.kakaocdn.net/dn/dltnVp/btrKGOf9axq/4l3PCVMFlp4R9Y3MfMnBbk/img.gif">
 
 
