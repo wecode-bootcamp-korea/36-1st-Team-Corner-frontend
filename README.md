@@ -27,8 +27,18 @@
 #### 내비게이션 바 
 
 #### 메인
+<<strong>무한케러셀</strong>>
+- 매 3초마다 우측으로 슬라이드
+- 마지막 페이지에서 우측으로 슬라이드 시 첫번째 슬라이드를 불러옴
+- 좌 우 이동 버튼
+
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 ![carousel](https://user-images.githubusercontent.com/73376092/186857763-75f04bc4-44d0-4d3a-bdf3-ef63435fd1ff.gif)
+
+<<strong>페이지네이션</strong>>
+- 이전/다음 페이지 버튼 
+- 페이지 클릭 시 서버에서 해당 페이지에 부합하는 상품들 출력
+
 
 #### 모든 상품 목록
 
@@ -37,12 +47,17 @@
 #### 검색 기능
 
 #### 상품 상세 
-<img src="https://blog.kakaocdn.net/dn/Gn5Xk/btrKGRDLagS/NbKK2AwoV19ixffDPoDqR0/img.gif">
 
 
 
 #### 리뷰 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+- 기존 상품평 리스트 출력
+- 기존 상품평 리스트 부재 시 "상품평작성" 버튼이 있는 섹션 출력
+- 상품평 버튼 클릭 시 유효성 검사 후 기입창 열림
+- 상품평 기입 후 등록하기 버튼 클릭 시 새 리뷰를 포함한 리뷰리스트 출력
+- 내 리뷰보기 클릭 시 사용자 토큰에 부합하는 리뷰들을 출력
+- 개별 리뷰 삭제 기능
 
 #### 장바구니 
 
