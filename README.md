@@ -23,7 +23,7 @@
 
 
 #### 로그인/회원가입 
-![회원](https://blog.kakaocdn.net/dn/mVr3E/btrKHbhDAO0/S90Eig5wzUelckw0Ny4vM0/img.gif)
+![로그인](https://blog.kakaocdn.net/dn/FeIt2/btrKFRku9Tl/c9AsIjKIYVN58DP1oCiJH0/img.gif)
 - 로그인창에서 회원가입 버튼 누를시 회원가입 창으로 넘어감
 - 회원가입창/ 로그인창에서 아이디 창 '@', 5글자 && 비밀번호 창 5글자 이상 입력시 회원가입 버튼 활성화 (비밀번호 영문 소대문자 없을 시 알림창 뜸)
 - 로그인창에서 id, pw 기입 후 로그인 버튼 누를 시 서버와 통신 후 로컬 스토리지에 토큰 발급, 메인창으로 넘어감
