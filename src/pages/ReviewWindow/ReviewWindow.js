@@ -2,13 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import './ReviewWindow.scss';
 
-const ReviewWindow = () => {
+const ReviewWindow = ({ products }) => {
+  console.log(products);
   const [isReturned, setIsReturned] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const [reviewText, setReviewText] = useState('');
   const [myReviewUpdate, setMyReviewUpdate] = useState(false);
   const [myReviews, setMyReviews] = useState(false);
   const [page, setPage] = useState(1);
+  const [deleteReviewPage, setDeleteReviewPage] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [reviewCount, setReviewCount] = useState(0);
   const isReviewExist = useRef(false);
@@ -23,13 +25,17 @@ const ReviewWindow = () => {
   if (reviewList.length !== 0) isReviewExist.current = true;
 
   const modifiedReviewList = reviewList.map(review => {
-    let maskedName = review.name.replace(/^(.).*(.)$/, '$1**$2');
+    let maskedName = review.name;
     let newDate = review.created_at.slice(0, review.created_at.indexOf('T'));
-    return { ...review, name: maskedName, created_at: newDate };
+    return {
+      ...review,
+      name: maskedName,
+      created_at: newDate,
+    };
   });
 
   const authValidation = () => {
-    fetch('http://10.58.2.193:3000/common/access', {
+    fetch('http://10.58.0.117:3000/common/access', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + token,
@@ -47,7 +53,7 @@ const ReviewWindow = () => {
   };
 
   const inputAuthValidation = () => {
-    fetch('http://10.58.2.193:3000/common/access', {
+    fetch('http://10.58.0.117:3000/common/access', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + token,
@@ -61,7 +67,7 @@ const ReviewWindow = () => {
 
   const submitReview = () => {
     if (reviewText !== '') {
-      fetch('http://10.58.2.193:3000/review/product/1', {
+      fetch(`http://10.58.0.117:3000/review/product/${products}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +85,7 @@ const ReviewWindow = () => {
   };
 
   const openMyReviewListButton = () => {
-    fetch('http://10.58.2.193:3000/common/access', {
+    fetch('http://10.58.0.117:3000/common/access', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + token,
@@ -103,20 +109,20 @@ const ReviewWindow = () => {
   };
 
   const deleteMyReview = id => {
-    fetch(`http://10.58.2.193:3000/review/${id}`, {
+    fetch(`http://10.58.0.117:3000/review/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + token,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ reviewId: id }),
-    }).then(() => setMyReviewUpdate(!myReviewUpdate));
+    }).then(() => setDeleteReviewPage(!deleteReviewPage));
   };
 
   useEffect(() => {
     if (firstUpdate.current && myReviewUpdate === true) {
       fetch(
-        `http://10.58.2.193:3000/review/product/1/my?page=${page}&pageSize=6`,
+        `http://10.58.0.117:3000/review/product/${products}/my?page=${page}&pageSize=6`,
         {
           method: 'GET',
           headers: {
@@ -137,6 +143,8 @@ const ReviewWindow = () => {
             setReviewList(reviewData.reviewList);
             setReviewCount(reviewData.reviewCount[0].reviewCount);
           } else {
+            setReviewList(reviewData.reviewList);
+            setReviewCount(reviewData.reviewCount[0].reviewCount);
             alert('작성 된 리뷰가 없습니다');
           }
         });
@@ -145,12 +153,15 @@ const ReviewWindow = () => {
     }
     firstUpdate.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, myReviewUpdate]);
+  }, [deleteReviewPage, myReviewUpdate]);
 
   useEffect(() => {
-    fetch('http://10.58.2.193:3000/review/product/1?page=1&pageSize=6', {
-      method: 'GET',
-    })
+    fetch(
+      `http://10.58.0.117:3000/review/product/${products}?page=${page}&pageSize=6`,
+      {
+        method: 'GET',
+      }
+    )
       .then(res => res.json())
       .then(reviewData => {
         setReviewList(reviewData.reviewList);
@@ -159,12 +170,12 @@ const ReviewWindow = () => {
 
     secondReviewsCall.current = true;
   }, []);
-
+  console.log(reviewCount);
   useEffect(() => {
     if (secondReviewsCall.current !== false) {
       if (myReviewUpdate === false) {
         fetch(
-          `http://10.58.2.193:3000/review/product/1?page=${page}&pageSize=6`,
+          `http://10.58.0.117:3000/review/product/${products}?page=${page}&pageSize=6`,
           {
             method: 'GET',
           }
@@ -173,12 +184,13 @@ const ReviewWindow = () => {
           .then(reviewData => {
             setReviewList(reviewData.reviewList);
             setReviewCount(reviewData.reviewCount[0].reviewCount);
+            console.log('here', reviewData.reviewList);
           });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReturned, page]);
-
+  console.log(myReviewUpdate);
   const pageNumber = Math.ceil(reviewCount / 6);
   const pageNumbers = [];
   for (let i = 0; i < pageNumber; i++) {
@@ -199,10 +211,10 @@ const ReviewWindow = () => {
     }
   };
 
-  const movePage = click => {
-    if (currentPage !== click) {
-      setCurrentPage(click);
-      setPage(click);
+  const movePage = page => {
+    if (currentPage !== page) {
+      setCurrentPage(page);
+      setPage(page);
     }
   };
 
@@ -268,7 +280,7 @@ const ReviewWindow = () => {
                           {review.created_at}
                         </div>
                       </div>
-                      {myReviews && (
+                      {myReviewUpdate && (
                         <div className="buttonWrapper">
                           <button
                             className="deleteThisReview"
@@ -313,7 +325,7 @@ const ReviewWindow = () => {
               )}
             </div>
           </div>
-          {!myReviews && (
+          {!myReviewUpdate && (
             <div className="reviewInput">
               <div className="modifyInputWindow">
                 <textarea

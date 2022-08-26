@@ -9,8 +9,8 @@ const ProductList = ({ products }) => {
     <div className="productList">
       {products.map(product => {
         return (
-          <Link key={product.id} to={`/product/${product.id}`}>
-            <ProductCard key={product.id} product={product} />;
+          <Link className="link" key={product.id} to={`/product/${product.id}`}>
+            <ProductCard key={product.id} product={product} />
           </Link>
         );
       })}

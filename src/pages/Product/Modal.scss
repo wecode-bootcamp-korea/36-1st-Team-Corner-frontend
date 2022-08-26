@@ -19,15 +19,19 @@
   }
 
   .content {
+    display: flex;
+    justify-content: center;
     text-align: center;
+    background: white;
 
     .cart {
       width: 70px;
       padding: 90px 0 10px 0;
+      margin-bottom: 80px;
     }
 
     .textContent {
-      margin-bottom: 60px;
+      margin-bottom: 100px;
     }
   }
 
@@ -37,6 +41,7 @@
     padding: 9px;
     background-color: #fbfafa;
     border-top: solid 1px rgb(220, 220, 220);
+    margin-top: 50px;
 
     button {
       width: 100px;

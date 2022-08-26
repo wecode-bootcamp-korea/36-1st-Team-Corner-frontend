@@ -4,58 +4,53 @@ import './Footer.scss';
 
 const Footer = () => {
   const location = useLocation();
-
-  if (
-    location.pathname === '/auth/signIn' ||
-    location.pathname === '/auth/signUp'
-  )
-    return (
-      <footer className="footer">
-        <div className="footerInner">
-          <img
-            className="footerLogo"
-            alt="푸터로고"
-            src="/images/footerLogo.png"
-          />
-          <div className="footerBox">
-            <div className="boxBrand">
-              <h2>브랜뉴 스토리</h2>
-              <h2>JAJU 묻는 질문</h2>
-              <div className="sns">
-                <i className="fab fa-twitter" />
-                <i className="fab fa-instagram" />
-                <i className="fab fa-facebook-f" />
-                <i className="fab fa-youtube" />
-              </div>
-              <span>이용 냥냥 | 댕댕정보 처리방침</span>
-              <span>
-                Copyright <i className="far fa-copyright" /> BODYLIKE.ALL rights
-                reserved.
-              </span>
+  return (
+    <footer className="footer">
+      <div className="footerInner">
+        <img
+          className="footerLogo"
+          alt="푸터로고"
+          src="/images/footerLogo.png"
+        />
+        <div className="footerBox">
+          <div className="boxBrand">
+            <h2>브랜뉴 스토리</h2>
+            <h2>JAJU 묻는 질문</h2>
+            <div className="sns">
+              <i className="fab fa-twitter" />
+              <i className="fab fa-instagram" />
+              <i className="fab fa-facebook-f" />
+              <i className="fab fa-youtube" />
             </div>
-            <div className="boxCs">
-              <h2>고객센터 문의하기</h2>
-              <ul>
-                {FOOTER_CS_INFO_LIST.map(info => {
-                  return <li key={info.id}>{info.text}</li>;
-                })}
-              </ul>
-            </div>
-            <div className="boxContact">
-              <ul>
-                {FOOTER_CONTACT_LIST.map(info => {
-                  return (
-                    <li key={info.id}>
-                      <h2>{info.text}</h2>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            <span>이용 냥냥 | 댕댕정보 처리방침</span>
+            <span>
+              Copyright <i className="far fa-copyright" /> BODYLIKE.ALL rights
+              reserved.
+            </span>
+          </div>
+          <div className="boxCs">
+            <h2>고객센터 문의하기</h2>
+            <ul>
+              {FOOTER_CS_INFO_LIST.map(info => {
+                return <li key={info.id}>{info.text}</li>;
+              })}
+            </ul>
+          </div>
+          <div className="boxContact">
+            <ul>
+              {FOOTER_CONTACT_LIST.map(info => {
+                return (
+                  <li key={info.id}>
+                    <h2>{info.text}</h2>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
-      </footer>
-    );
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import ProductList from '../../components/ProductList/ProductList';
 import './Search.scss';
 
@@ -17,15 +19,19 @@ const Search = () => {
   }, [searchedWord]);
 
   return (
-    <div className="search">
-      <div className="wrapper">
-        {searchedWord === '' ? (
-          <span className="pleaseSearch">검색어를 입력해 주세요.</span>
-        ) : (
-          <ProductList products={products} />
-        )}
+    <>
+      <Nav />
+      <div className="search">
+        <div className="wrapper">
+          {searchedWord === '' ? (
+            <span className="pleaseSearch">검색어를 입력해 주세요.</span>
+          ) : (
+            <ProductList products={products} />
+          )}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

@@ -12,7 +12,6 @@ import Footer from './components/Footer/Footer';
 const Router = () => {
   return (
     <BrowserRouter>
-      <Nav />
       <Routes>
         <Route path="/" element={<Main />} />;
         <Route path="/product/:id" element={<Product />} />;
@@ -22,7 +21,6 @@ const Router = () => {
         <Route path="/product/list" element={<CategoryProduct />} />
         <Route path="/product/search" element={<Search />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };
