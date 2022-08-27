@@ -95,6 +95,9 @@
 <<strong>리뷰기입창</strong>>
 
 
+![product review](https://user-images.githubusercontent.com/73376092/187031637-34d3ee2d-dde0-4f0c-8d6d-aa2aad67d3f5.gif)
+
+
 - 기존 상품평 리스트 출력
 - 기존 상품평 리스트 부재 시 "상품평작성" 버튼이 있는 섹션 출력
 - 상품평 버튼 클릭 시 유효성 검사 후 기입창 열림
